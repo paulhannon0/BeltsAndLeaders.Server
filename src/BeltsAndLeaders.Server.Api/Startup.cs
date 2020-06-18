@@ -58,7 +58,7 @@ namespace BeltsAndLeaders.Server.Api
 
             // app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseHttpExceptionBeltsAndLeadersdling();
+            app.UseHttpExceptionHandling();
             // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

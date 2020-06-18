@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace BeltsAndLeaders.Server.Api.Middleware
 {
-    internal class HttpExceptionBeltsAndLeadersdlingMiddleware
+    internal class HttpExceptionHandlingMiddleware
     {
         private readonly RequestDelegate next;
 
-        public HttpExceptionBeltsAndLeadersdlingMiddleware(RequestDelegate next)
+        public HttpExceptionHandlingMiddleware(RequestDelegate next)
         {
             this.next = next;
         }

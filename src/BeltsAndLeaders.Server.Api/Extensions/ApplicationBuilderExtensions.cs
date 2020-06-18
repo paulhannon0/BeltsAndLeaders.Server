@@ -5,9 +5,9 @@ namespace BeltsAndLeaders.Server.Api.Extensions
 {
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseHttpExceptionBeltsAndLeadersdling(this IApplicationBuilder application)
+        public static IApplicationBuilder UseHttpExceptionHandling(this IApplicationBuilder application)
         {
-            return application.UseMiddleware<HttpExceptionBeltsAndLeadersdlingMiddleware>();
+            return application.UseMiddleware<HttpExceptionHandlingMiddleware>();
         }
     }
 }
