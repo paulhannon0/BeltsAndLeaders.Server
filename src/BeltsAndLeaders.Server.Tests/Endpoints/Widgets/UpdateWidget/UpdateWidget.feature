@@ -11,14 +11,14 @@ Feature: Update Widget
         Then (204) OK is returned
         And the Widget record has been updated in the database
 
-# Scenario: Request Failure - Invalid Id URL parameter
+    Scenario: Request Failure - Invalid Id URL parameter
 
-#     Given a request path for the 'Update Widget' endpoint with an invalid Id parameter
-#     When the PUT request is made
-#     Then (400) Bad Request is returned
+        Given a request path for the 'Update Widget' endpoint with an invalid Id parameter
+        When the PUT request is made
+        Then (400) Bad Request is returned
 
-# Scenario: Request Failure - Widget resource does not exist
+    Scenario: Request Failure - Widget resource does not exist
 
-#     Given a request path for the 'Update Widget' endpoint with an ID for a non-existent resource
-#     When the PUT request is made
-#     Then (404) Not Found is returned
+        Given a request path for the 'Update Widget' endpoint with an ID for a non-existent resource
+        When the PUT request is made
+        Then (404) Not Found is returned
