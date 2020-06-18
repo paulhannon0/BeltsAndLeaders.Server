@@ -1,0 +1,36 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "BeltsAndLeaders.Server",
+            "enableStepFiltering": false,
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/BeltsAndLeaders.Server.Api/bin/Debug/netcoreapp3.1/BeltsAndLeaders.Server.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/BeltsAndLeaders.Server.Api",
+            "stopAtEntry": false,
+            "justMyCode": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "launchBrowser": {
+                "enabled": false,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start ${auto-detect-url}"
+                },
+                "osx": {
+                    "command": "open"
+                },
+                "linux": {
+                    "command": "xdg-open"
+                }
+            },
+            "env": {
+                "DATABASE_CONNECTION_STRING": "Server=192.168.99.100;Uid=root;Pwd=admin",
+                "DATABASE_NAME": "BeltsAndLeaders"
+            }
+        }
+    ]
+}

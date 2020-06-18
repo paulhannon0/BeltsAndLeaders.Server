@@ -1,0 +1,10 @@
+{
+    "[c#]": {
+        "editor.defaultFormatter": "csharp"
+    },
+    "dotnet-test-explorer.testProjectPath": "src",
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "files.insertFinalNewline": true
+}

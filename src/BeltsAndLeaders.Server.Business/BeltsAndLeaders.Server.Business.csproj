@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../BeltsAndLeaders.Server.Common/BeltsAndLeaders.Server.Common.csproj" />
+    <ProjectReference Include="../BeltsAndLeaders.Server.Data/BeltsAndLeaders.Server.Data.csproj" />
+  </ItemGroup>
+
+</Project>

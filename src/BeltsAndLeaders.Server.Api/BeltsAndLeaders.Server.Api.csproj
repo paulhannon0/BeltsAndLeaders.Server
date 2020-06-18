@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentMigrator" Version="3.*" />
+    <PackageReference Include="FluentMigrator.Runner" Version="3.*" />
+    <PackageReference Include="FluentMigrator.Runner.MySql" Version="3.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../BeltsAndLeaders.Server.Business/BeltsAndLeaders.Server.Business.csproj" />
+    <ProjectReference Include="../BeltsAndLeaders.Server.Common/BeltsAndLeaders.Server.Common.csproj" />
+  </ItemGroup>
+
+</Project>
