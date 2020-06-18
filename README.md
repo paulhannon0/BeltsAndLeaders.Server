@@ -1,4 +1,6 @@
-# Server
+# BeltsAndLeaders.Server
+
+This repository contains the source code for the API for the 'Belts and Leaders Programme' application being developed by Sage. The purpose of the application is to record and rank the achievements of security champions.
 
 ## Installation and Usage
 
