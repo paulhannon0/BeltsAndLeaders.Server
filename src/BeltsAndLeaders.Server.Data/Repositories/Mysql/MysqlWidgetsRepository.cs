@@ -22,13 +22,7 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 
         public async Task DeleteAsync(ulong id)
         {
-            await RepositoryHelper.DeleteAsync<WidgetRecord>
-            (
-                new WidgetRecord
-                {
-                    Id = id
-                }
-            );
+            await RepositoryHelper.DeleteAsync<WidgetRecord>(new WidgetRecord { Id = id });
         }
     }
 }
