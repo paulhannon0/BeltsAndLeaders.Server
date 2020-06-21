@@ -16,7 +16,7 @@ namespace BeltsAndLeaders.Server.Api
 
                 var command = connection.CreateCommand();
 
-                command.CommandText = $"CREATE DATABASE IF NOT EXISTS `{ConfigurationProfile.DatabaseName}`;";
+                command.CommandText = $"CREATE DATABASE IF NOT EXISTS `{ConfigurationProfile.DatabaseName}`; SET foreign_key_checks=0;";
                 command.ExecuteNonQuery();
 
                 connection.Close();
