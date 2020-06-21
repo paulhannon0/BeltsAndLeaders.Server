@@ -13,13 +13,21 @@ namespace BeltsAndLeaders.Server.Data.Migrations
                 "Achievements",
                 table => table
                     .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                    .WithColumn("UserId").AsInt64().ForeignKey("Users", "Id")
-                    .WithColumn("MaturityLevelId").AsInt64().ForeignKey("MaturityLevels", "Id")
+                    .WithColumn("UserId").AsInt64()
+                    .WithColumn("MaturityLevelId").AsInt64()
                     .WithColumn("AchievementDate").AsInt64()
                     .WithColumn("Comment").AsFixedLengthString(1000)
                     .WithColumn("CreatedAt").AsInt64()
                     .WithColumn("UpdatedAt").AsInt64().Nullable()
             );
+
+            Create.ForeignKey()
+                .FromTable("Achievements").ForeignColumn("UserId")
+                .ToTable("Users").PrimaryColumn("Id");
+
+            Create.ForeignKey()
+                .FromTable("Achievements").ForeignColumn("MaturityLevelId")
+                .ToTable("MaturityLevels").PrimaryColumn("Id");
         }
 
         public override void Down()

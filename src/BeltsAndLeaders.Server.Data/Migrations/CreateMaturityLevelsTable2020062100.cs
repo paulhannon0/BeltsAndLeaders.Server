@@ -13,12 +13,16 @@ namespace BeltsAndLeaders.Server.Data.Migrations
                 "MaturityLevels",
                 table => table
                     .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                    .WithColumn("MaturityCategoryId").AsInt64().ForeignKey("MaturityCategories", "Id")
+                    .WithColumn("MaturityCategoryId").AsInt64()
                     .WithColumn("MaturityLevel").AsByte()
                     .WithColumn("Description").AsFixedLengthString(1000)
                     .WithColumn("CreatedAt").AsInt64()
                     .WithColumn("UpdatedAt").AsInt64().Nullable()
             );
+
+            Create.ForeignKey()
+                .FromTable("MaturityLevels").ForeignColumn("MaturityCategoryId")
+                .ToTable("MaturityCategories").PrimaryColumn("Id");
         }
 
         public override void Down()
