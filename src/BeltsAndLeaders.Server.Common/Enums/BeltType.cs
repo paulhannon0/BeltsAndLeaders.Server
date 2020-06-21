@@ -1,4 +1,4 @@
-namespace BeltsAndLeaders.Server.Data.Enums
+namespace BeltsAndLeaders.Server.Common.Enums
 {
     public enum BeltType
     {

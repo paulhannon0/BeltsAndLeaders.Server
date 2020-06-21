@@ -16,4 +16,8 @@
     <PackageReference Include="MySql.Data" Version="8.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../BeltsAndLeaders.Server.Common/BeltsAndLeaders.Server.Common.csproj" />
+  </ItemGroup>
+
 </Project>

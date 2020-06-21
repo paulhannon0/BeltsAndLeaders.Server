@@ -1,4 +1,4 @@
-using BeltsAndLeaders.Server.Data.Enums;
+using BeltsAndLeaders.Server.Common.Enums;
 using Dapper.Contrib.Extensions;
 
 namespace BeltsAndLeaders.Server.Data.Models

@@ -1,8 +1,8 @@
 using BeltsAndLeaders.Server.Common.Enums;
 
-namespace BeltsAndLeaders.Server.Business.Models.Widgets.CreateWidget
+namespace BeltsAndLeaders.Server.Business.Models.Users.CreateUser
 {
-    public class CreateWidgetCommandRequestModel
+    public class CreateUserCommandRequestModel
     {
         public string Name { get; set; }
 
