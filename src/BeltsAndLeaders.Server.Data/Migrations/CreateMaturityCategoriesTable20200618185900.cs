@@ -1,3 +1,4 @@
+using BeltsAndLeaders.Server.Data.Extensions;
 using FluentMigrator;
 
 namespace BeltsAndLeaders.Server.Data.Migrations
@@ -7,13 +8,15 @@ namespace BeltsAndLeaders.Server.Data.Migrations
     {
         public override void Up()
         {
-            this.Execute.Sql($"DROP TABLE IF EXISTS [BeltsAndLeaders].[MaturityCategories];");
-
-            Create.Table("MaturityCategories")
-                .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                .WithColumn("Name").AsFixedLengthString(255)
-                .WithColumn("CreatedAt").AsInt64()
-                .WithColumn("UpdatedAt").AsInt64().Nullable();
+            this.CreateTableIfNotExists
+            (
+                "MaturityCategories",
+                table => table
+                    .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+                    .WithColumn("Name").AsFixedLengthString(255)
+                    .WithColumn("CreatedAt").AsInt64()
+                    .WithColumn("UpdatedAt").AsInt64().Nullable()
+            );
         }
 
         public override void Down()

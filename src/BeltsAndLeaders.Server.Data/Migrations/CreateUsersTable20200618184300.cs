@@ -1,3 +1,4 @@
+using BeltsAndLeaders.Server.Data.Extensions;
 using FluentMigrator;
 
 namespace BeltsAndLeaders.Server.Data.Migrations
@@ -7,18 +8,20 @@ namespace BeltsAndLeaders.Server.Data.Migrations
     {
         public override void Up()
         {
-            this.Execute.Sql($"DROP TABLE IF EXISTS [BeltsAndLeaders].[Users];");
-
-            Create.Table("Users")
-                .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                .WithColumn("Name").AsFixedLengthString(255)
-                .WithColumn("Email").AsFixedLengthString(255)
-                .WithColumn("MaturityLevel").AsByte()
-                .WithColumn("Belt").AsFixedLengthString(255)
-                .WithColumn("SpecialistArea").AsFixedLengthString(255).Nullable()
-                .WithColumn("ChampionStartDate").AsInt64()
-                .WithColumn("CreatedAt").AsInt64()
-                .WithColumn("UpdatedAt").AsInt64().Nullable();
+            this.CreateTableIfNotExists
+            (
+                "Users",
+                table => table
+                    .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+                    .WithColumn("Name").AsFixedLengthString(255)
+                    .WithColumn("Email").AsFixedLengthString(255)
+                    .WithColumn("MaturityLevel").AsByte()
+                    .WithColumn("Belt").AsFixedLengthString(255)
+                    .WithColumn("SpecialistArea").AsFixedLengthString(255).Nullable()
+                    .WithColumn("ChampionStartDate").AsInt64()
+                    .WithColumn("CreatedAt").AsInt64()
+                    .WithColumn("UpdatedAt").AsInt64().Nullable()
+            );
         }
 
         public override void Down()
