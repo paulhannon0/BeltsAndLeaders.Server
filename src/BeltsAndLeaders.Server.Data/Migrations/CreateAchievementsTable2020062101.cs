@@ -7,6 +7,8 @@ namespace BeltsAndLeaders.Server.Data.Migrations
     {
         public override void Up()
         {
+            this.Execute.Sql($"DROP TABLE IF EXISTS [BeltsAndLeaders].[Achivements];");
+
             Create.Table("Achievements")
                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                 .WithColumn("UserId").AsInt64().ForeignKey("Users", "Id")
