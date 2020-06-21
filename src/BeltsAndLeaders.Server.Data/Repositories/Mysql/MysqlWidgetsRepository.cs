@@ -3,7 +3,7 @@ using BeltsAndLeaders.Server.Data.Models;
 
 namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 {
-    public class WidgetsRepository : IWidgetsRepository
+    public class MysqlWidgetsRepository : IWidgetsRepository
     {
         public async Task<ulong> CreateAsync(WidgetRecord widget)
         {

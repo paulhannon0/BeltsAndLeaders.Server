@@ -46,7 +46,7 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<IGetWidgetQuery, GetWidgetQuery>();
 
             // Repositories
-            services.AddScoped<IWidgetsRepository, WidgetsRepository>();
+            services.AddScoped<IWidgetsRepository, MysqlWidgetsRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMigrationRunner migrationRunner)
