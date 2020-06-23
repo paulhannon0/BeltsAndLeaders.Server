@@ -3,8 +3,8 @@ using FluentMigrator;
 
 namespace BeltsAndLeaders.Server.Data.Migrations
 {
-    [Migration(2020062101)]
-    public class CreateAchievementsTable20200618184301 : Migration
+    [Migration(2020062303)]
+    public class CreateAchievementsTable2020062303 : Migration
     {
         public override void Up()
         {
