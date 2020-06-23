@@ -16,6 +16,10 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
 
         public BeltType Belt { get; set; }
 
+        public string SpecialistArea { get; set; }
+
+        public DateTimeOffset? ChampionStartDate { get; set; }
+
         public DateTimeOffset CreatedAt { get; set; }
 
         public DateTimeOffset? UpdatedAt { get; set; }
@@ -36,6 +40,8 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
                 Email = userRecord.Email,
                 MaturityLevel = userRecord.MaturityLevel,
                 Belt = userRecord.Belt,
+                SpecialistArea = userRecord.SpecialistArea,
+                ChampionStartDate = DateTimeOffset.FromUnixTimeMilliseconds(userRecord.ChampionStartDate),
                 CreatedAt = DateTimeOffset.FromUnixTimeMilliseconds(userRecord.CreatedAt),
                 UpdatedAt = updatedAt
             };
@@ -43,13 +49,17 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
 
         public UserRecord ToTableRecord()
         {
+            long championStartDate = this.ChampionStartDate is null
+                ? DateTimeOffset.Now.ToUnixTimeMilliseconds()
+                : this.ChampionStartDate.Value.ToUnixTimeMilliseconds();
+
             return new UserRecord
             {
                 Id = this.Id,
                 Name = this.Name,
                 Email = this.Email,
-                MaturityLevel = this.MaturityLevel,
-                Belt = this.Belt
+                SpecialistArea = this.SpecialistArea,
+                ChampionStartDate = championStartDate
             };
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.Users;
 using BeltsAndLeaders.Server.Business.Models.Users.CreateUser;
@@ -18,7 +19,10 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
         {
             var user = new User
             {
-                Name = commandRequest.Name
+                Name = commandRequest.Name,
+                Email = commandRequest.Email,
+                SpecialistArea = commandRequest.SpecialistArea,
+                ChampionStartDate = commandRequest.ChampionStartDate
             };
 
             return await this.usersRepository.CreateAsync(user.ToTableRecord());

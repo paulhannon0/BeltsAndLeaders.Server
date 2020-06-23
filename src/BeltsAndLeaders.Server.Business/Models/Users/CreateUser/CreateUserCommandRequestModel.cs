@@ -1,3 +1,4 @@
+using System;
 using BeltsAndLeaders.Server.Common.Enums;
 
 namespace BeltsAndLeaders.Server.Business.Models.Users.CreateUser
@@ -8,8 +9,8 @@ namespace BeltsAndLeaders.Server.Business.Models.Users.CreateUser
 
         public string Email { get; set; }
 
-        public byte MaturityLevel { get; set; }
+        public string SpecialistArea { get; set; }
 
-        public BeltType Belt { get; set; }
+        public DateTimeOffset? ChampionStartDate { get; set; }
     }
 }

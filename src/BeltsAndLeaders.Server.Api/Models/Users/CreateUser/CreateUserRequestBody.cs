@@ -1,5 +1,5 @@
+using System;
 using BeltsAndLeaders.Server.Business.Models.Users.CreateUser;
-using BeltsAndLeaders.Server.Common.Enums;
 
 namespace BeltsAndLeaders.Server.Api.Models.Users.CreateUser
 {
@@ -9,9 +9,10 @@ namespace BeltsAndLeaders.Server.Api.Models.Users.CreateUser
 
         public string Email { get; set; }
 
-        public byte MaturityLevel { get; set; }
+        public string SpecialistArea { get; set; }
 
-        public BeltType Belt { get; set; }
+        public DateTimeOffset? ChampionStartDate { get; set; }
+
 
         public CreateUserCommandRequestModel ToCommandRequest()
         {
@@ -19,8 +20,8 @@ namespace BeltsAndLeaders.Server.Api.Models.Users.CreateUser
             {
                 Name = this.Name,
                 Email = this.Email,
-                MaturityLevel = this.MaturityLevel,
-                Belt = this.Belt
+                SpecialistArea = this.SpecialistArea,
+                ChampionStartDate = this.ChampionStartDate
             };
         }
     }
