@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using BeltsAndLeaders.Server.Business.Commands.Widgets.UpdateWidget;
 using BeltsAndLeaders.Server.Business.Commands.Widgets.DeleteWidget;
 using BeltsAndLeaders.Server.Business.Commands.Users.CreateUser;
+using Microsoft.OpenApi.Models;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -50,10 +51,22 @@ namespace BeltsAndLeaders.Server.Api
             // Repositories
             services.AddScoped<IWidgetsRepository, MysqlWidgetsRepository>();
             services.AddScoped<IUsersRepository, MysqlUsersRepository>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BeltsAndLeaders.Server", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMigrationRunner migrationRunner)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BeltsAndLeaders.Server");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
