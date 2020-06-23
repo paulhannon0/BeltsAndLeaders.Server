@@ -1,4 +1,4 @@
-![Build Status](https://github.com/paulhannon0/BeltsAndLeaders.Server/workflows/.github/workflows/dotnet-core.yml/badge.svg)
+![Build Status](https://github.com/paulhannon0/BeltsAndLeaders.Server/workflows/.NET%20Core/badge.svg)
 
 # BeltsAndLeaders.Server
 
