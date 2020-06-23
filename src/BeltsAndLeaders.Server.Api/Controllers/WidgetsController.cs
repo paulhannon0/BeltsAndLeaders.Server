@@ -10,6 +10,8 @@ using BeltsAndLeaders.Server.Business.Commands.Widgets.UpdateWidget;
 using BeltsAndLeaders.Server.Business.Models.Widgets.GetWidget;
 using BeltsAndLeaders.Server.Business.Models.Widgets.DeleteWidget;
 using BeltsAndLeaders.Server.Business.Commands.Widgets.DeleteWidget;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Net;
 
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
@@ -39,6 +41,8 @@ namespace BeltsAndLeaders.Server.Api.Controllers
 
         [HttpPost("/widgets")]
         [Consumes("application/json")]
+        [SwaggerResponse((int)HttpStatusCode.Created)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Create(
             [FromBody] CreateWidgetRequestBody requestModel
         )
@@ -51,6 +55,9 @@ namespace BeltsAndLeaders.Server.Api.Controllers
 
         [HttpGet("/widgets/{Id}")]
         [Produces("application/json")]
+        [SwaggerResponse((int)HttpStatusCode.OK)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<GetWidgetResponseModel>> Get(
             [FromRoute] ulong id
         )
@@ -63,6 +70,9 @@ namespace BeltsAndLeaders.Server.Api.Controllers
 
         [HttpPut("/widgets/{Id}")]
         [Consumes("application/json")]
+        [SwaggerResponse((int)HttpStatusCode.NoContent)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Update(
             [FromRoute] ulong id,
             [FromBody] UpdateWidgetRequestBody requestBody
@@ -75,6 +85,9 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         }
 
         [HttpDelete("/widgets/{Id}")]
+        [SwaggerResponse((int)HttpStatusCode.NoContent)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Delete(
             [FromRoute] ulong id
         )
