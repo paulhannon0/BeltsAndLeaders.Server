@@ -1,3 +1,5 @@
+![Build Status](https://github.com/paulhannon0/BeltsAndLeaders.Server/workflows/.github/workflows/dotnet-core.yml/badge.svg)
+
 # BeltsAndLeaders.Server
 
 This repository contains the source code for the API for the 'Belts and Leaders Programme' application being developed by Sage. The purpose of the application is to record and rank the achievements of security champions.
