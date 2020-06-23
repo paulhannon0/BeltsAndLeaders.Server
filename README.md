@@ -1,4 +1,4 @@
-![Build Status](https://github.com/paulhannon0/BeltsAndLeaders.Server/workflows/.NET%20Core/badge.svg)
+![CI Build](https://github.com/paulhannon0/BeltsAndLeaders.Server/workflows/CI%20Build/badge.svg?branch=master)
 
 # BeltsAndLeaders.Server
 
