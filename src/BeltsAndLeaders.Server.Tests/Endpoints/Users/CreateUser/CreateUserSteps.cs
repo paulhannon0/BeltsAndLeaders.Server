@@ -49,6 +49,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
         {
             this.testHost.RequestBody.Add("Name", this.validName);
             this.testHost.RequestBody.Add("Email", this.validEmail);
+            this.testHost.RequestBody.Add("SpecialistArea", this.validSpecialistArea);
+            this.testHost.RequestBody.Add("ChampionStartDate", this.validChampionStartDate);
         }
 
         [Given("a request body for the \'Create User\' endpoint containing an invalid (.*) parameter")]
@@ -62,6 +64,14 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
 
                 case "Email":
                     this.testHost.RequestBody.Add("Email", this.invalidEmail);
+                    break;
+
+                case "SpecialistArea":
+                    this.testHost.RequestBody.Add("SpecialistArea", this.invalidSpecialistArea);
+                    break;
+
+                case "ChampionStartDate":
+                    this.testHost.RequestBody.Add("ChampionStartDate", this.invalidChampionStartDate);
                     break;
 
                 default:
