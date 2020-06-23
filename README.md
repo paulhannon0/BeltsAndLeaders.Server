@@ -1,3 +1,5 @@
+![CI Build](https://github.com/paulhannon0/BeltsAndLeaders.Server/workflows/CI%20Build/badge.svg?branch=master)
+
 # BeltsAndLeaders.Server
 
 This repository contains the source code for the API for the 'Belts and Leaders Programme' application being developed by Sage. The purpose of the application is to record and rank the achievements of security champions.
@@ -8,11 +10,10 @@ This repository contains the source code for the API for the 'Belts and Leaders 
 2. Navigate to the root directory on the command line and bring up the database using `docker-compose up -d` (**note:** this takes around 30 seconds)
 3. Run the service from VSCode under `Run -> Start (With/Without) Debugging` (**note:** this method uses the environment variables found in .vscode/launch.json)
 
-## Links
+## Project Documents
 
-**API architecture document:** https://docs.google.com/document/d/1xAYon9WhJmmrLa8_9wPnu8TBl96-SBiknQQhZcbaQak/edit?usp=sharing
-
-**Entity relationship diagram:** https://drive.google.com/file/d/1_xkvzZJJ9XBV-zCytR7QonwzfgVCm_Yn/view?usp=sharing
+- API architecture document: https://docs.google.com/document/d/1xAYon9WhJmmrLa8_9wPnu8TBl96-SBiknQQhZcbaQak/edit?usp=sharing
+- Entity relationship diagram: https://drive.google.com/file/d/1_xkvzZJJ9XBV-zCytR7QonwzfgVCm_Yn/view?usp=sharing
 
 ## Project Structure
 
