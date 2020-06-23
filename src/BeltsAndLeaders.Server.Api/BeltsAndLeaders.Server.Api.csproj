@@ -16,6 +16,7 @@
     <PackageReference Include="FluentMigrator.Runner" Version="3.*" />
     <PackageReference Include="FluentMigrator.Runner.MySql" Version="3.*" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.*" />
   </ItemGroup>
 
   <ItemGroup>

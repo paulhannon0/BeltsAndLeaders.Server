@@ -1,8 +1,10 @@
+using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.Users.CreateUser;
 using BeltsAndLeaders.Server.Business.Commands.Users.CreateUser;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
@@ -23,6 +25,8 @@ namespace BeltsAndLeaders.Server.Api.Controllers
 
         [HttpPost("/users")]
         [Consumes("application/json")]
+        [SwaggerResponse((int)HttpStatusCode.Created)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Create(
             [FromBody] CreateUserRequestBody requestModel
         )
