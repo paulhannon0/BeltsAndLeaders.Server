@@ -2,7 +2,7 @@
 
 namespace BeltsAndLeaders.Server.Business.Commands.Users.DeleteUser
 {
-    public interface IDeleteUserCommand : ICommand<DeleteUserCommandRequestModel, ulong> { }
+    public interface IDeleteUserCommand : ICommand<DeleteUserCommandRequestModel, ulong>
     {
     }
 }
