@@ -14,28 +14,12 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
     {
         private readonly TestHost testHost;
         private readonly TestDataHelper testDataHelper;
-        private readonly string validName;
-        private readonly int invalidName;
-        private readonly string validEmail;
-        private readonly int invalidEmail;
-        private readonly string validSpecialistArea;
-        private readonly int invalidSpecialistArea;
-        private readonly DateTimeOffset validChampionStartDate;
-        private readonly string invalidChampionStartDate;
         private ulong newResourceId;
 
         public CreateUserSteps(TestHost testHost, TestDataHelper testDataHelper)
         {
             this.testHost = testHost;
             this.testDataHelper = testDataHelper;
-            this.validName = Guid.NewGuid().ToString();
-            this.invalidName = 1;
-            this.validEmail = Guid.NewGuid().ToString();
-            this.invalidEmail = 1;
-            this.validSpecialistArea = Guid.NewGuid().ToString();
-            this.invalidSpecialistArea = 1;
-            this.validChampionStartDate = DateTimeOffset.Now.Subtract(TimeSpan.FromDays(7));
-            this.invalidChampionStartDate = "this_is_not_a_date";
         }
 
         [Given("a valid request path for the \'Create User\' endpoint")]
@@ -47,10 +31,10 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
         [Given("a valid request body for the \'Create User\' endpoint")]
         public void GivenAValidRequestBodyForTheCreateUserEndpoint()
         {
-            this.testHost.RequestBody.Add("Name", this.validName);
-            this.testHost.RequestBody.Add("Email", this.validEmail);
-            this.testHost.RequestBody.Add("SpecialistArea", this.validSpecialistArea);
-            this.testHost.RequestBody.Add("ChampionStartDate", this.validChampionStartDate);
+            this.testHost.RequestBody.Add("Name", Guid.NewGuid().ToString());
+            this.testHost.RequestBody.Add("Email", Guid.NewGuid().ToString());
+            this.testHost.RequestBody.Add("SpecialistArea", Guid.NewGuid().ToString());
+            this.testHost.RequestBody.Add("ChampionStartDate", DateTimeOffset.Now.Subtract(TimeSpan.FromDays(7)));
         }
 
         [Given("a request body for the \'Create User\' endpoint containing an invalid (.*) parameter")]
@@ -59,19 +43,19 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
             switch (field)
             {
                 case "Name":
-                    this.testHost.RequestBody.Add("Name", this.invalidName);
+                    this.testHost.RequestBody.Add("Name", 1);
                     break;
 
                 case "Email":
-                    this.testHost.RequestBody.Add("Email", this.invalidEmail);
+                    this.testHost.RequestBody.Add("Email", 1);
                     break;
 
                 case "SpecialistArea":
-                    this.testHost.RequestBody.Add("SpecialistArea", this.invalidSpecialistArea);
+                    this.testHost.RequestBody.Add("SpecialistArea", 1);
                     break;
 
                 case "ChampionStartDate":
-                    this.testHost.RequestBody.Add("ChampionStartDate", this.invalidChampionStartDate);
+                    this.testHost.RequestBody.Add("ChampionStartDate", "this_is_not_a_date");
                     break;
 
                 default:
