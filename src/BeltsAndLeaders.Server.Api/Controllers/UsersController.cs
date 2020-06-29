@@ -9,7 +9,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : ApiController
     {
         private readonly ILogger<UsersController> logger;
         private readonly ICreateUserCommand createUserCommand;

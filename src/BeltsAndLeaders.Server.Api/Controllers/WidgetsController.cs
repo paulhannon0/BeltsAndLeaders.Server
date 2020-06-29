@@ -16,7 +16,7 @@ using System.Net;
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
     [ApiController]
-    public class WidgetsController : ControllerBase
+    public class WidgetsController : ApiController
     {
         private readonly ILogger<WidgetsController> logger;
         private readonly ICreateWidgetCommand createWidgetCommand;
