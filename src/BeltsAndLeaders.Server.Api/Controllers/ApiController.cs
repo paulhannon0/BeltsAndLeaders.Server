@@ -10,7 +10,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                context.Result = new BadRequestObjectResult("Request path or body parameter(s) invalid.");
+                context.Result = new BadRequestObjectResult("Request path or body parameter(s) missing or invalid.");
             }
 
             base.OnActionExecuting(context);
