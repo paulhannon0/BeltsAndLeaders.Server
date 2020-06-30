@@ -2,17 +2,17 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.Widgets.GetWidget;
-using BeltsAndLeaders.Server.Data.Repositories;
+using BeltsAndLeaders.Server.Data.Helpers;
 
 namespace BeltsAndLeaders.Server.Tests.Helpers
 {
-    public class TestDataHelper
+    public abstract class TestDataHelper
     {
-        private readonly TestHost testHost;
+        protected TestHost TestHost { get; set; }
 
         public TestDataHelper(TestHost testHost)
         {
-            this.testHost = testHost;
+            this.TestHost = testHost;
         }
 
         public async Task<bool> DoesRecordExist<T>(ulong id) where T : class
@@ -24,7 +24,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
 
         public async Task<ulong> CreateWidgetAsync(string name)
         {
-            var responseMessage = await this.testHost.PostAsync
+            var responseMessage = await this.TestHost.PostAsync
             (
                 "/widgets",
                 new Dictionary<string, object>()
@@ -38,7 +38,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
 
         public async Task<GetWidgetResponseModel> GetWidgetAsync(ulong id)
         {
-            var responseMessage = await this.testHost.GetAsync($"/widgets/{id}");
+            var responseMessage = await this.TestHost.GetAsync($"/widgets/{id}");
 
             return JsonSerializer.Deserialize<GetWidgetResponseModel>
             (

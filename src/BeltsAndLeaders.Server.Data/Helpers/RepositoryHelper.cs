@@ -5,7 +5,7 @@ using Dapper.Contrib.Extensions;
 using BeltsAndLeaders.Server.Data.Models;
 using MySql.Data.MySqlClient;
 
-namespace BeltsAndLeaders.Server.Data.Repositories
+namespace BeltsAndLeaders.Server.Data.Helpers
 {
     public static class RepositoryHelper
     {

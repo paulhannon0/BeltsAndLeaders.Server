@@ -25,6 +25,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         )
         {
             this.logger = logger;
+            this.createUserCommand = createUserCommand;
             this.getUserQuery = getUserQuery;
         }
 
