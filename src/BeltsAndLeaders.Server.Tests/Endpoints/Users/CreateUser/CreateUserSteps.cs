@@ -13,13 +13,13 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
     public class CreateUserSteps
     {
         private readonly TestHost testHost;
-        private readonly TestDataHelper testDataHelper;
+        private readonly WidgetDataHelper widgetDataHelper;
         private ulong newResourceId;
 
-        public CreateUserSteps(TestHost testHost, TestDataHelper testDataHelper)
+        public CreateUserSteps(TestHost testHost, WidgetDataHelper widgetDataHelper)
         {
             this.testHost = testHost;
-            this.testDataHelper = testDataHelper;
+            this.widgetDataHelper = widgetDataHelper;
         }
 
         [Given("a valid request path for the \'Create User\' endpoint")]
@@ -89,7 +89,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
         [Then("the User record has been inserted into the database")]
         public async Task ThenTheUserRecordHasBeenInsertedIntoTheDatabase()
         {
-            var doesRecordExist = await this.testDataHelper.DoesRecordExist<UserRecord>(this.newResourceId);
+            var doesRecordExist = await this.widgetDataHelper.DoesRecordExist<UserRecord>(this.newResourceId);
 
             Assert.IsTrue(doesRecordExist);
         }

@@ -11,15 +11,15 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.DeleteWidget
     public class DeleteWidgetSteps
     {
         private readonly TestHost testHost;
-        private readonly TestDataHelper testDataHelper;
+        private readonly WidgetDataHelper widgetDataHelper;
         private ulong validId;
         private readonly string invalidId;
         private readonly ulong nonExistentId;
 
-        public DeleteWidgetSteps(TestHost testHost, TestDataHelper testDataHelper)
+        public DeleteWidgetSteps(TestHost testHost, WidgetDataHelper widgetDataHelper)
         {
             this.testHost = testHost;
-            this.testDataHelper = testDataHelper;
+            this.widgetDataHelper = widgetDataHelper;
             this.invalidId = "invalid_id";
             this.nonExistentId = 0;
         }
@@ -28,7 +28,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.DeleteWidget
         [Scope(Feature = "Delete Widget")]
         public async Task BeforeScenario()
         {
-            this.validId = await this.testDataHelper.CreateWidgetAsync("WidgetName");
+            this.validId = await this.widgetDataHelper.CreateWidgetAsync("WidgetName");
         }
 
         [Given("a valid request path for the \'Delete Widget\' endpoint")]
@@ -52,7 +52,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.DeleteWidget
         [Then(@"the Widget record has been deleted from the database")]
         public async Task ThenTheWidgetRecordHasBeenDeletedFromTheDatabase()
         {
-            var doesRecordExist = await this.testDataHelper.DoesRecordExist<WidgetRecord>(this.validId);
+            var doesRecordExist = await this.widgetDataHelper.DoesRecordExist<WidgetRecord>(this.validId);
 
             Assert.IsFalse(doesRecordExist);
         }

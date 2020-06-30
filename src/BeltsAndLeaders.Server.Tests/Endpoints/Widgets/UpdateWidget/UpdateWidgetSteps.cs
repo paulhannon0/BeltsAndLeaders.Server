@@ -11,17 +11,17 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.UpdateWidget
     public class UpdateWidgetSteps
     {
         private readonly TestHost testHost;
-        private readonly TestDataHelper testDataHelper;
+        private readonly WidgetDataHelper widgetDataHelper;
         private ulong validId;
         private readonly string invalidId;
         private readonly ulong nonExistentId;
         private readonly string widgetName;
         private readonly string updatedWidgetName;
 
-        public UpdateWidgetSteps(TestHost testHost, TestDataHelper testDataHelper)
+        public UpdateWidgetSteps(TestHost testHost, WidgetDataHelper widgetDataHelper)
         {
             this.testHost = testHost;
-            this.testDataHelper = testDataHelper;
+            this.widgetDataHelper = widgetDataHelper;
             this.invalidId = "invalid_id";
             this.nonExistentId = 0;
             this.widgetName = "WidgetName";
@@ -32,7 +32,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.UpdateWidget
         [Scope(Feature = "Update Widget")]
         public async Task BeforeScenario()
         {
-            this.validId = await this.testDataHelper.CreateWidgetAsync(this.widgetName);
+            this.validId = await this.widgetDataHelper.CreateWidgetAsync(this.widgetName);
         }
 
         [Given("a valid request path for the \'Update Widget\' endpoint")]
@@ -62,7 +62,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.UpdateWidget
         [Then("the Widget record has been updated in the database")]
         public async Task ThenTheWidgetRecordHasBeenUpdatedInTheDatabase()
         {
-            var record = await this.testDataHelper.GetWidgetAsync(this.validId);
+            var record = await this.widgetDataHelper.GetWidgetAsync(this.validId);
 
             Assert.AreEqual(this.updatedWidgetName, record.Name);
         }

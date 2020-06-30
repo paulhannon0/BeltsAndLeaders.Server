@@ -11,16 +11,16 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.GetWidget
     public class GetWidgetSteps
     {
         private readonly TestHost testHost;
-        private readonly TestDataHelper testDataHelper;
+        private readonly WidgetDataHelper widgetDataHelper;
         private ulong validId;
         private readonly string invalidId;
         private readonly ulong nonExistentId;
         private readonly string widgetName;
 
-        public GetWidgetSteps(TestHost testHost, TestDataHelper testDataHelper)
+        public GetWidgetSteps(TestHost testHost, WidgetDataHelper widgetDataHelper)
         {
             this.testHost = testHost;
-            this.testDataHelper = testDataHelper;
+            this.widgetDataHelper = widgetDataHelper;
             this.invalidId = "invalid_id";
             this.nonExistentId = 0;
             this.widgetName = "WidgetName";
@@ -30,7 +30,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.GetWidget
         [Scope(Feature = "Get Widget")]
         public async Task BeforeScenario()
         {
-            this.validId = await this.testDataHelper.CreateWidgetAsync(this.widgetName);
+            this.validId = await this.widgetDataHelper.CreateWidgetAsync(this.widgetName);
         }
 
         [Given("a valid request path for the \'Get Widget\' endpoint")]

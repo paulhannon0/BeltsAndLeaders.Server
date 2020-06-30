@@ -3,7 +3,7 @@
 
 Feature: Create User
 
-    Scenario: Request Successful
+    Scenario: Create User - Request Successful
 
         Given a valid request path for the 'Create User' endpoint
         And a valid request body for the 'Create User' endpoint
@@ -12,7 +12,7 @@ Feature: Create User
         And the Location response header contains the ID of the new resource
         And the User record has been inserted into the database
 
-    Scenario Outline: Request Failure - Invalid body parameter
+    Scenario Outline: Create User - Request Failure - Invalid body parameter
 
         Given a valid request path for the 'Create User' endpoint
         And a request body for the 'Create User' endpoint containing an invalid <ParameterName> parameter
@@ -26,7 +26,7 @@ Feature: Create User
             | SpecialistArea    |
             | ChampionStartDate |
 
-    Scenario: Request Failure - Missing body parameter
+    Scenario: Create User - Request Failure - Missing body parameter
 
         Given a valid request path for the 'Create User' endpoint
         And a request body for the 'Create User' endpoint with a missing <ParameterName> parameter
