@@ -13,15 +13,15 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.CreateWidget
     public class CreateWidgetSteps
     {
         private readonly TestHost testHost;
-        private readonly TestDataHelper testDataHelper;
+        private readonly WidgetDataHelper widgetDataHelper;
         private readonly string validName;
         private readonly int invalidName;
         private ulong newResourceId;
 
-        public CreateWidgetSteps(TestHost testHost, TestDataHelper testDataHelper)
+        public CreateWidgetSteps(TestHost testHost, WidgetDataHelper widgetDataHelper)
         {
             this.testHost = testHost;
-            this.testDataHelper = testDataHelper;
+            this.widgetDataHelper = widgetDataHelper;
             this.validName = Guid.NewGuid().ToString();
             this.invalidName = 1;
         }
@@ -71,7 +71,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Widgets.CreateWidget
         [Then("the Widget record has been inserted into the database")]
         public async Task ThenTheWidgetRecordHasBeenInsertedIntoTheDatabase()
         {
-            var doesRecordExist = await this.testDataHelper.DoesRecordExist<WidgetRecord>(this.newResourceId);
+            var doesRecordExist = await this.widgetDataHelper.DoesRecordExist<WidgetRecord>(this.newResourceId);
 
             Assert.IsTrue(doesRecordExist);
         }
