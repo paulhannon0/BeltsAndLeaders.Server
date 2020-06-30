@@ -12,30 +12,29 @@ Feature: Create User
         And the Location response header contains the ID of the new resource
         And the User record has been inserted into the database
 
-    Scenario: Request Failure - Invalid Name body parameter
+    Scenario Outline: Request Failure - Invalid body parameter
 
         Given a valid request path for the 'Create User' endpoint
-        And a request body for the 'Create User' endpoint containing an invalid Name parameter
+        And a request body for the 'Create User' endpoint containing an invalid <ParameterName> parameter
         When the POST request is made
         Then (400) Bad Request is returned
 
-    Scenario: Request Failure - Invalid Email body parameter
+        Examples:
+            | ParameterName     |
+            | Name              |
+            | Email             |
+            | SpecialistArea    |
+            | ChampionStartDate |
+
+    Scenario: Request Failure - Missing body parameter
 
         Given a valid request path for the 'Create User' endpoint
-        And a request body for the 'Create User' endpoint containing an invalid Email parameter
+        And a request body for the 'Create User' endpoint with a missing <ParameterName> parameter
         When the POST request is made
         Then (400) Bad Request is returned
 
-    Scenario: Request Failure - Invalid SpecialistArea body parameter
-
-        Given a valid request path for the 'Create User' endpoint
-        And a request body for the 'Create User' endpoint containing an invalid SpecialistArea parameter
-        When the POST request is made
-        Then (400) Bad Request is returned
-
-    Scenario: Request Failure - Invalid ChampionStartDate body parameter
-
-        Given a valid request path for the 'Create User' endpoint
-        And a request body for the 'Create User' endpoint containing an invalid ChampionStartDate parameter
-        When the POST request is made
-        Then (400) Bad Request is returned
+        Examples:
+            | ParameterName  |
+            | Name           |
+            | Email          |
+            | SpecialistArea |

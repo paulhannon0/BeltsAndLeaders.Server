@@ -31,36 +31,43 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
         [Given("a valid request body for the \'Create User\' endpoint")]
         public void GivenAValidRequestBodyForTheCreateUserEndpoint()
         {
-            this.testHost.RequestBody.Add("Name", Guid.NewGuid().ToString());
-            this.testHost.RequestBody.Add("Email", Guid.NewGuid().ToString());
-            this.testHost.RequestBody.Add("SpecialistArea", Guid.NewGuid().ToString());
-            this.testHost.RequestBody.Add("ChampionStartDate", DateTimeOffset.Now.Subtract(TimeSpan.FromDays(7)));
+            this.BuildValidRequestBody();
         }
 
         [Given("a request body for the \'Create User\' endpoint containing an invalid (.*) parameter")]
         public void GivenARequestBodyForTheCreateUserEndpointContainingAnInvalidParameter(string field)
         {
+            this.BuildValidRequestBody();
+
             switch (field)
             {
                 case "Name":
-                    this.testHost.RequestBody.Add("Name", 1);
+                    this.testHost.RequestBody["Name"] = 1;
                     break;
 
                 case "Email":
-                    this.testHost.RequestBody.Add("Email", 1);
+                    this.testHost.RequestBody["Email"] = 1;
                     break;
 
                 case "SpecialistArea":
-                    this.testHost.RequestBody.Add("SpecialistArea", 1);
+                    this.testHost.RequestBody["SpecialistArea"] = 1;
                     break;
 
                 case "ChampionStartDate":
-                    this.testHost.RequestBody.Add("ChampionStartDate", "this_is_not_a_date");
+                    this.testHost.RequestBody["ChampionStartDate"] = "this_is_not_a_date";
                     break;
 
                 default:
                     break;
             }
+        }
+
+        [Given("a request body for the \'Create User\' endpoint with a missing (.*) parameter")]
+        public void GivenARequestBodyForTheCreateUserEndpointWithAMissingParameter(string field)
+        {
+            this.BuildValidRequestBody();
+
+            this.testHost.RequestBody[field] = null;
         }
 
         [Then("the Location response header contains the ID of the new resource")]
@@ -85,6 +92,14 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
             var doesRecordExist = await this.testDataHelper.DoesRecordExist<UserRecord>(this.newResourceId);
 
             Assert.IsTrue(doesRecordExist);
+        }
+
+        private void BuildValidRequestBody()
+        {
+            this.testHost.RequestBody.Add("Name", Guid.NewGuid().ToString());
+            this.testHost.RequestBody.Add("Email", Guid.NewGuid().ToString());
+            this.testHost.RequestBody.Add("SpecialistArea", Guid.NewGuid().ToString());
+            this.testHost.RequestBody.Add("ChampionStartDate", DateTimeOffset.Now.Subtract(TimeSpan.FromDays(7)));
         }
     }
 }
