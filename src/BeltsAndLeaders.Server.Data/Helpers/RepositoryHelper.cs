@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Dapper.Contrib.Extensions;
 using BeltsAndLeaders.Server.Data.Models;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace BeltsAndLeaders.Server.Data.Helpers
 {
@@ -39,6 +40,20 @@ namespace BeltsAndLeaders.Server.Data.Helpers
 
                 connection.Close();
                 return record;
+            }
+        }
+
+        public static async Task<IEnumerable<T>> GetAllAsync<T>() where T : class
+        {
+            using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
+            {
+                connection.Open();
+                UseDatabase(connection);
+
+                var records = await connection.GetAllAsync<T>();
+
+                connection.Close();
+                return records;
             }
         }
 

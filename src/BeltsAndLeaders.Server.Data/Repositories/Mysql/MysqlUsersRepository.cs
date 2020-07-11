@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Data.Helpers;
 using BeltsAndLeaders.Server.Data.Models;
@@ -14,6 +15,11 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
         public async Task<UserRecord> GetAsync(ulong id)
         {
             return await RepositoryHelper.GetByIdAsync<UserRecord>(id);
+        }
+
+        public async Task<IEnumerable<UserRecord>> GetAllAsync()
+        {
+            return await RepositoryHelper.GetAllAsync<UserRecord>();
         }
 
         public async Task UpdateAsync(UserRecord widget)

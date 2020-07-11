@@ -15,6 +15,7 @@ using BeltsAndLeaders.Server.Business.Commands.Widgets.DeleteWidget;
 using BeltsAndLeaders.Server.Business.Commands.Users.CreateUser;
 using Microsoft.OpenApi.Models;
 using BeltsAndLeaders.Server.Business.Queries.Users.GetUser;
+using BeltsAndLeaders.Server.Business.Queries.Users.GetAllUsers;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -49,6 +50,7 @@ namespace BeltsAndLeaders.Server.Api
             // Queries
             services.AddScoped<IGetWidgetQuery, GetWidgetQuery>();
             services.AddScoped<IGetUserQuery, GetUserQuery>();
+            services.AddScoped<IGetAllUsersQuery, GetAllUsersQuery>();
 
             // Repositories
             services.AddScoped<IWidgetsRepository, MysqlWidgetsRepository>();
