@@ -1,8 +1,6 @@
 ﻿using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -30,7 +28,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.UpdateUser
             this.userDataHelper = userDataHelper;
             this.invalidId = "Invalid_ID";
             this.nonExistentId = 0;
-            this.updatedUserEmail = "newuser.test@email.com";
+            this.updatedUserEmail = "updateduser@test.com";
             this.championStartDate = DateTime.Now;
             this.name = "UserName";
             this.email = "user@test.com";
@@ -92,7 +90,5 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.UpdateUser
         {
             this.testHost.EndpointPath = $"/users/{userId}";
         }
-
-
     }
 }

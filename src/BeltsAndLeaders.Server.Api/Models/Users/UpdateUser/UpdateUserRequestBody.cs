@@ -12,6 +12,7 @@ namespace BeltsAndLeaders.Server.Api.Models.Users.UpdateUser
         {
             return new UpdateUserCommandRequestModel
             {
+                Id = id,
                 Name = this.Name,
                 SpecialistArea = SpecialistArea,
                 Email = Email

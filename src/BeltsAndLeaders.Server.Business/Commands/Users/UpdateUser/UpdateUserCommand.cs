@@ -28,7 +28,6 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.UpdateUser
 
             User user = new User
             {
-                Id = commandRequest.Id,
                 Name = commandRequest.Name,
                 Email = commandRequest.Email,
                 SpecialistArea = commandRequest.SpecialistArea
