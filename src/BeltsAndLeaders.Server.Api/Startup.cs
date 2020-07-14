@@ -16,6 +16,7 @@ using BeltsAndLeaders.Server.Business.Commands.Users.CreateUser;
 using Microsoft.OpenApi.Models;
 using BeltsAndLeaders.Server.Business.Queries.Users.GetUser;
 using BeltsAndLeaders.Server.Business.Queries.Users.GetAllUsers;
+using BeltsAndLeaders.Server.Business.Commands.Users.UpdateUser;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -46,6 +47,7 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<IUpdateWidgetCommand, UpdateWidgetCommand>();
             services.AddScoped<IDeleteWidgetCommand, DeleteWidgetCommand>();
             services.AddScoped<ICreateUserCommand, CreateUserCommand>();
+            services.AddScoped<IUpdateUserCommand, UpdateUserCommand>();
 
             // Queries
             services.AddScoped<IGetWidgetQuery, GetWidgetQuery>();
