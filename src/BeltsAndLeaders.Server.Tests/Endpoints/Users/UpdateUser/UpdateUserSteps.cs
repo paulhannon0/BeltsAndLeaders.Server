@@ -65,6 +65,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.UpdateUser
         public void GivenAValidRequestBodyForTheUpdateUserEndpoint()
         {
             this.testHost.RequestBody.Add("Email", this.updatedUserEmail);
+            this.testHost.RequestBody.Add("Name", this.name);
+            this.testHost.RequestBody.Add("SpecialistArea", this.specialistArea);
         }
 
         [Given("a request path for the \'Update User\' endpoint with an invalid (.*) parameter")]

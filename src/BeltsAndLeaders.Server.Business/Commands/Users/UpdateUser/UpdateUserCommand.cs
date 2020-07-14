@@ -19,7 +19,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.UpdateUser
 
         public async Task<ulong> ExecuteAsync(UpdateUserCommandRequestModel commandRequest)
         {
-            UserRecord existingUser = await this.usersRepository.GetAsync(commandRequest.Id);
+            var existingUser = await this.usersRepository.GetAsync(commandRequest.Id);
 
             if(existingUser == null)
             {
@@ -28,6 +28,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.UpdateUser
 
             User user = new User
             {
+                Id = commandRequest.Id,
                 Name = commandRequest.Name,
                 Email = commandRequest.Email,
                 SpecialistArea = commandRequest.SpecialistArea
