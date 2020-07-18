@@ -4,6 +4,8 @@ using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetAllMaturityCategor
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetMaturityCategory;
 // using BeltsAndLeaders.Server.Api.Models.MaturityCategories.UpdateMaturityCategory;
 using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.CreateMaturityCategory;
+using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.DeleteMaturityCategory;
+using BeltsAndLeaders.Server.Business.Models.MaturityCategories.DeleteMaturityCategory;
 // using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.DeleteMaturityCategory;
 // using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.UpdateMaturityCategory;
 // using BeltsAndLeaders.Server.Business.Models.MaturityCategories.DeleteMaturityCategory;
@@ -25,7 +27,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         private readonly ILogger<MaturityCategoriesController> logger;
         private readonly ICreateMaturityCategoryCommand createMaturityCategoryCommand;
         // private readonly IUpdateMaturityCategoryCommand updateMaturityCategoryCommand;
-        // private readonly IDeleteMaturityCategoryCommand deleteMaturityCategoryCommand;
+        private readonly IDeleteMaturityCategoryCommand deleteMaturityCategoryCommand;
         private readonly IGetMaturityCategoryQuery getMaturityCategoryQuery;
         private readonly IGetAllMaturityCategoriesQuery getAllMaturityCategoriesQuery;
 
@@ -33,7 +35,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             ILogger<MaturityCategoriesController> logger,
             ICreateMaturityCategoryCommand createMaturityCategoryCommand,
         // IUpdateMaturityCategoryCommand updateMaturityCategoryCommand,
-        // IDeleteMaturityCategoryCommand deleteMaturityCategoryCommand,
+            IDeleteMaturityCategoryCommand deleteMaturityCategoryCommand,
             IGetMaturityCategoryQuery getMaturityCategoryQuery,
             IGetAllMaturityCategoriesQuery getAllMaturityCategoriesQuery
         )
@@ -41,7 +43,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             this.logger = logger;
             this.createMaturityCategoryCommand = createMaturityCategoryCommand;
             // this.updateMaturityCategoryCommand = updateMaturityCategoryCommand;
-            // this.deleteMaturityCategoryCommand = deleteMaturityCategoryCommand;
+            this.deleteMaturityCategoryCommand = deleteMaturityCategoryCommand;
             this.getMaturityCategoryQuery = getMaturityCategoryQuery;
             this.getAllMaturityCategoriesQuery = getAllMaturityCategoriesQuery;
         }
@@ -102,18 +104,18 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         //             return NoContent();
         //         }
 
-        //         [HttpDelete("/maturity-categories/{Id}")]
-        //         [SwaggerResponse((int)HttpStatusCode.NoContent)]
-        //         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-        //         [SwaggerResponse((int)HttpStatusCode.NotFound)]
-        //         public async Task<IActionResult> Delete(
-        //             [FromRoute] ulong id
-        //         )
-        //         {
-        //             var commandRequest = new DeleteMaturityCategoryCommandRequestModel { Id = id };
-        //             await this.deleteMaturityCategoryCommand.ExecuteAsync(commandRequest);
+        [HttpDelete("/maturity-categories/{Id}")]
+        [SwaggerResponse((int)HttpStatusCode.NoContent)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Delete(
+            [FromRoute] ulong id
+        )
+        {
+            var commandRequest = new DeleteMaturityCategoryCommandRequestModel { Id = id };
+            await this.deleteMaturityCategoryCommand.ExecuteAsync(commandRequest);
 
-        //             return NoContent();
-        //         }
+            return NoContent();
+        }
     }
 }

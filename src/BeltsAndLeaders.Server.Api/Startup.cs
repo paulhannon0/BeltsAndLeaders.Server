@@ -21,6 +21,7 @@ using BeltsAndLeaders.Server.Business.Commands.Users.DeleteUser;
 using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.CreateMaturityCategory;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetMaturityCategory;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetAllMaturityCategories;
+using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.DeleteMaturityCategory;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -54,6 +55,7 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<IUpdateUserCommand, UpdateUserCommand>();
             services.AddScoped<IDeleteUserCommand, DeleteUserCommand>();
             services.AddScoped<ICreateMaturityCategoryCommand, CreateMaturityCategoryCommand>();
+            services.AddScoped<IDeleteMaturityCategoryCommand, DeleteMaturityCategoryCommand>();
 
             // Queries
             services.AddScoped<IGetWidgetQuery, GetWidgetQuery>();
