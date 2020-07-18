@@ -20,6 +20,7 @@ using BeltsAndLeaders.Server.Business.Commands.Users.UpdateUser;
 using BeltsAndLeaders.Server.Business.Commands.Users.DeleteUser;
 using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.CreateMaturityCategory;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetMaturityCategory;
+using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetAllMaturityCategories;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -59,6 +60,7 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<IGetUserQuery, GetUserQuery>();
             services.AddScoped<IGetAllUsersQuery, GetAllUsersQuery>();
             services.AddScoped<IGetMaturityCategoryQuery, GetMaturityCategoryQuery>();
+            services.AddScoped<IGetAllMaturityCategoriesQuery, GetAllMaturityCategoriesQuery>();
 
             // Repositories
             services.AddScoped<IWidgetsRepository, MysqlWidgetsRepository>();

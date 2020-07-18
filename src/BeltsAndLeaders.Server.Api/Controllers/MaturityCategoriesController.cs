@@ -1,4 +1,5 @@
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.CreateMaturityCategory;
+using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetAllMaturityCategories;
 // using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetAllMaturityCategories;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetMaturityCategory;
 // using BeltsAndLeaders.Server.Api.Models.MaturityCategories.UpdateMaturityCategory;
@@ -7,6 +8,7 @@ using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.CreateMaturity
 // using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.UpdateMaturityCategory;
 // using BeltsAndLeaders.Server.Business.Models.MaturityCategories.DeleteMaturityCategory;
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories.GetMaturityCategory;
+using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetAllMaturityCategories;
 // using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetAllMaturityCategories;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetMaturityCategory;
 using Microsoft.AspNetCore.Mvc;
@@ -25,15 +27,15 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         // private readonly IUpdateMaturityCategoryCommand updateMaturityCategoryCommand;
         // private readonly IDeleteMaturityCategoryCommand deleteMaturityCategoryCommand;
         private readonly IGetMaturityCategoryQuery getMaturityCategoryQuery;
-        // private readonly IGetAllMaturityCategoriesQuery getAllMaturityCategoriesQuery;
+        private readonly IGetAllMaturityCategoriesQuery getAllMaturityCategoriesQuery;
 
         public MaturityCategoriesController(
             ILogger<MaturityCategoriesController> logger,
             ICreateMaturityCategoryCommand createMaturityCategoryCommand,
         // IUpdateMaturityCategoryCommand updateMaturityCategoryCommand,
         // IDeleteMaturityCategoryCommand deleteMaturityCategoryCommand,
-            IGetMaturityCategoryQuery getMaturityCategoryQuery
-        // IGetAllMaturityCategoriesQuery getAllMaturityCategoriesQuery
+            IGetMaturityCategoryQuery getMaturityCategoryQuery,
+            IGetAllMaturityCategoriesQuery getAllMaturityCategoriesQuery
         )
         {
             this.logger = logger;
@@ -41,7 +43,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             // this.updateMaturityCategoryCommand = updateMaturityCategoryCommand;
             // this.deleteMaturityCategoryCommand = deleteMaturityCategoryCommand;
             this.getMaturityCategoryQuery = getMaturityCategoryQuery;
-            // this.getAllMaturityCategoriesQuery = getAllMaturityCategoriesQuery;
+            this.getAllMaturityCategoriesQuery = getAllMaturityCategoriesQuery;
         }
 
         [HttpPost("/maturity-categories")]
@@ -73,16 +75,16 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             return GetMaturityCategoryResponseModel.FromBusinessModel(queryResponse);
         }
 
-        //         [HttpGet("/maturity-categories")]
-        //         [Produces("application/json")]
-        //         [SwaggerResponse((int)HttpStatusCode.OK)]
-        //         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-        //         public async Task<ActionResult<GetAllMaturityCategoriesResponseModel>> Get()
-        //         {
-        //             var queryResponse = await this.getAllMaturityCategoriesQuery.ExecuteAsync();
+        [HttpGet("/maturity-categories")]
+        [Produces("application/json")]
+        [SwaggerResponse((int)HttpStatusCode.OK)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult<GetAllMaturityCategoriesResponseModel>> Get()
+        {
+            var queryResponse = await this.getAllMaturityCategoriesQuery.ExecuteAsync();
 
-        //             return GetAllMaturityCategoriesResponseModel.FromBusinessModel(queryResponse);
-        //         }
+            return GetAllMaturityCategoriesResponseModel.FromBusinessModel(queryResponse);
+        }
 
         //         [HttpPut("/maturity-categories/{Id}")]
         //         [Consumes("application/json")]
