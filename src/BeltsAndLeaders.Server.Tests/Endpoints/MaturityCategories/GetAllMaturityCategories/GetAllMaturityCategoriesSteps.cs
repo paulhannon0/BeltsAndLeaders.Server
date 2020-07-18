@@ -15,6 +15,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.GetAllMaturi
         private readonly TestHost testHost;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
         private readonly string name;
+
         public GetAllMaturityCategoriesSteps(TestHost testHost, MaturityCategoryDataHelper maturityCategoryDataHelper)
         {
             this.testHost = testHost;
