@@ -18,6 +18,7 @@ using BeltsAndLeaders.Server.Business.Queries.Users.GetUser;
 using BeltsAndLeaders.Server.Business.Queries.Users.GetAllUsers;
 using BeltsAndLeaders.Server.Business.Commands.Users.UpdateUser;
 using BeltsAndLeaders.Server.Business.Commands.Users.DeleteUser;
+using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.CreateMaturityCategory;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -50,6 +51,7 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<ICreateUserCommand, CreateUserCommand>();
             services.AddScoped<IUpdateUserCommand, UpdateUserCommand>();
             services.AddScoped<IDeleteUserCommand, DeleteUserCommand>();
+            services.AddScoped<ICreateMaturityCategoryCommand, CreateMaturityCategoryCommand>();
 
             // Queries
             services.AddScoped<IGetWidgetQuery, GetWidgetQuery>();
@@ -59,6 +61,7 @@ namespace BeltsAndLeaders.Server.Api
             // Repositories
             services.AddScoped<IWidgetsRepository, MysqlWidgetsRepository>();
             services.AddScoped<IUsersRepository, MysqlUsersRepository>();
+            services.AddScoped<IMaturityCategoriesRepository, MysqlMaturityCategoriesRepository>();
 
             services.AddSwaggerGen(c =>
             {
