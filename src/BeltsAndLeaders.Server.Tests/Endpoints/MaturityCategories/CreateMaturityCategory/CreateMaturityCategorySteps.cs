@@ -13,10 +13,10 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.CreateMaturi
     public class CreateMaturityCategorySteps
     {
         private readonly TestHost testHost;
-        private readonly WidgetDataHelper widgetDataHelper;
+        private readonly MaturityCategoryDataHelper widgetDataHelper;
         private ulong newResourceId;
 
-        public CreateMaturityCategorySteps(TestHost testHost, WidgetDataHelper widgetDataHelper)
+        public CreateMaturityCategorySteps(TestHost testHost, MaturityCategoryDataHelper widgetDataHelper)
         {
             this.testHost = testHost;
             this.widgetDataHelper = widgetDataHelper;

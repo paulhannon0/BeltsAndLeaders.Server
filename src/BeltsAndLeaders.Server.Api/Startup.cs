@@ -1,7 +1,5 @@
 using FluentMigrator.Runner;
 using BeltsAndLeaders.Server.Api.Extensions;
-using BeltsAndLeaders.Server.Business.Commands.Widgets.CreateWidget;
-using BeltsAndLeaders.Server.Business.Queries.Widgets.GetWidget;
 using BeltsAndLeaders.Server.Data.Repositories;
 using BeltsAndLeaders.Server.Data.Repositories.Mysql;
 using BeltsAndLeaders.Server.Data.Models;
@@ -10,8 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BeltsAndLeaders.Server.Business.Commands.Widgets.UpdateWidget;
-using BeltsAndLeaders.Server.Business.Commands.Widgets.DeleteWidget;
 using BeltsAndLeaders.Server.Business.Commands.Users.CreateUser;
 using Microsoft.OpenApi.Models;
 using BeltsAndLeaders.Server.Business.Queries.Users.GetUser;

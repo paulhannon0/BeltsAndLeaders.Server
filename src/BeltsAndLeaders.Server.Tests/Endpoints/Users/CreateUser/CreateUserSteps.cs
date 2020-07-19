@@ -13,10 +13,10 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
     public class CreateUserSteps
     {
         private readonly TestHost testHost;
-        private readonly WidgetDataHelper widgetDataHelper;
+        private readonly MaturityCategoryDataHelper widgetDataHelper;
         private ulong newResourceId;
 
-        public CreateUserSteps(TestHost testHost, WidgetDataHelper widgetDataHelper)
+        public CreateUserSteps(TestHost testHost, MaturityCategoryDataHelper widgetDataHelper)
         {
             this.testHost = testHost;
             this.widgetDataHelper = widgetDataHelper;
