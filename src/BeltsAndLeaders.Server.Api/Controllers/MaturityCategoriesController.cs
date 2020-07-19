@@ -1,17 +1,13 @@
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.CreateMaturityCategory;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetAllMaturityCategories;
-// using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetAllMaturityCategories;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetMaturityCategory;
-// using BeltsAndLeaders.Server.Api.Models.MaturityCategories.UpdateMaturityCategory;
+using BeltsAndLeaders.Server.Api.Models.MaturityCategories.UpdateMaturityCategory;
 using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.CreateMaturityCategory;
 using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.DeleteMaturityCategory;
+using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.UpdateMaturityCategory;
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories.DeleteMaturityCategory;
-// using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.DeleteMaturityCategory;
-// using BeltsAndLeaders.Server.Business.Commands.MaturityCategories.UpdateMaturityCategory;
-// using BeltsAndLeaders.Server.Business.Models.MaturityCategories.DeleteMaturityCategory;
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories.GetMaturityCategory;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetAllMaturityCategories;
-// using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetAllMaturityCategories;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetMaturityCategory;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -26,7 +22,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
     {
         private readonly ILogger<MaturityCategoriesController> logger;
         private readonly ICreateMaturityCategoryCommand createMaturityCategoryCommand;
-        // private readonly IUpdateMaturityCategoryCommand updateMaturityCategoryCommand;
+        private readonly IUpdateMaturityCategoryCommand updateMaturityCategoryCommand;
         private readonly IDeleteMaturityCategoryCommand deleteMaturityCategoryCommand;
         private readonly IGetMaturityCategoryQuery getMaturityCategoryQuery;
         private readonly IGetAllMaturityCategoriesQuery getAllMaturityCategoriesQuery;
@@ -34,7 +30,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         public MaturityCategoriesController(
             ILogger<MaturityCategoriesController> logger,
             ICreateMaturityCategoryCommand createMaturityCategoryCommand,
-        // IUpdateMaturityCategoryCommand updateMaturityCategoryCommand,
+            IUpdateMaturityCategoryCommand updateMaturityCategoryCommand,
             IDeleteMaturityCategoryCommand deleteMaturityCategoryCommand,
             IGetMaturityCategoryQuery getMaturityCategoryQuery,
             IGetAllMaturityCategoriesQuery getAllMaturityCategoriesQuery
@@ -42,7 +38,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         {
             this.logger = logger;
             this.createMaturityCategoryCommand = createMaturityCategoryCommand;
-            // this.updateMaturityCategoryCommand = updateMaturityCategoryCommand;
+            this.updateMaturityCategoryCommand = updateMaturityCategoryCommand;
             this.deleteMaturityCategoryCommand = deleteMaturityCategoryCommand;
             this.getMaturityCategoryQuery = getMaturityCategoryQuery;
             this.getAllMaturityCategoriesQuery = getAllMaturityCategoriesQuery;
@@ -88,21 +84,21 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             return GetAllMaturityCategoriesResponseModel.FromBusinessModel(queryResponse);
         }
 
-        //         [HttpPut("/maturity-categories/{Id}")]
-        //         [Consumes("application/json")]
-        //         [SwaggerResponse((int)HttpStatusCode.NoContent)]
-        //         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-        //         [SwaggerResponse((int)HttpStatusCode.NotFound)]
-        //         public async Task<IActionResult> Update(
-        //         [FromRoute] ulong id,
-        //         [FromBody] UpdateMaturityCategoryRequestBody requestBody
-        // )
-        //         {
-        //             var commandRequest = requestBody.ToCommandRequest(id);
-        //             var commandResponse = await this.updateMaturityCategoryCommand.ExecuteAsync(commandRequest);
+        [HttpPut("/maturity-categories/{Id}")]
+        [Consumes("application/json")]
+        [SwaggerResponse((int)HttpStatusCode.NoContent)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Update(
+            [FromRoute] ulong id,
+            [FromBody] UpdateMaturityCategoryRequestBody requestBody
+        )
+        {
+            var commandRequest = requestBody.ToCommandRequest(id);
+            var commandResponse = await this.updateMaturityCategoryCommand.ExecuteAsync(commandRequest);
 
-        //             return NoContent();
-        //         }
+            return NoContent();
+        }
 
         [HttpDelete("/maturity-categories/{Id}")]
         [SwaggerResponse((int)HttpStatusCode.NoContent)]
