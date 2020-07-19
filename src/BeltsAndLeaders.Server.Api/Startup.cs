@@ -49,9 +49,6 @@ namespace BeltsAndLeaders.Server.Api
                );
 
             // Commands
-            services.AddScoped<ICreateWidgetCommand, CreateWidgetCommand>();
-            services.AddScoped<IUpdateWidgetCommand, UpdateWidgetCommand>();
-            services.AddScoped<IDeleteWidgetCommand, DeleteWidgetCommand>();
             services.AddScoped<ICreateUserCommand, CreateUserCommand>();
             services.AddScoped<IUpdateUserCommand, UpdateUserCommand>();
             services.AddScoped<IDeleteUserCommand, DeleteUserCommand>();
@@ -60,14 +57,12 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<IDeleteMaturityCategoryCommand, DeleteMaturityCategoryCommand>();
 
             // Queries
-            services.AddScoped<IGetWidgetQuery, GetWidgetQuery>();
             services.AddScoped<IGetUserQuery, GetUserQuery>();
             services.AddScoped<IGetAllUsersQuery, GetAllUsersQuery>();
             services.AddScoped<IGetMaturityCategoryQuery, GetMaturityCategoryQuery>();
             services.AddScoped<IGetAllMaturityCategoriesQuery, GetAllMaturityCategoriesQuery>();
 
             // Repositories
-            services.AddScoped<IWidgetsRepository, MysqlWidgetsRepository>();
             services.AddScoped<IUsersRepository, MysqlUsersRepository>();
             services.AddScoped<IMaturityCategoriesRepository, MysqlMaturityCategoriesRepository>();
 
