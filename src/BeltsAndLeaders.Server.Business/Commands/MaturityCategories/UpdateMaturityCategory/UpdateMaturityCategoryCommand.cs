@@ -25,15 +25,11 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityCategories.UpdateMatu
                 throw new HttpException(HttpStatusCode.NotFound, $"MaturityCategory (ID: {commandRequest.Id}) cannot be found.");
             }
 
-            MaturityCategory maturityCategory = new MaturityCategory
-            {
-                Id = commandRequest.Id,
-                Name = commandRequest.Name
-            };
+            existingMaturityCategory.Name = commandRequest.Name;
 
-            await this.maturityCategoriesRepository.UpdateAsync(maturityCategory.ToTableRecord());
+            await this.maturityCategoriesRepository.UpdateAsync(existingMaturityCategory);
 
-            return maturityCategory.Id;
+            return existingMaturityCategory.Id;
         }
     }
 }

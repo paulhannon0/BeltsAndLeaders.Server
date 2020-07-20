@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
+using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetMaturityLevel;
 
 namespace BeltsAndLeaders.Server.Tests.Helpers
 {
@@ -22,18 +23,18 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             return ulong.Parse(await responseMessage.Content.ReadAsStringAsync());
         }
 
-        // public async Task<GetMaturityLevelResponseModel> GetMaturityLevelAsync(ulong id)
-        // {
-        //     var responseMessage = await this.TestHost.GetAsync($"/maturity-categories/{id}");
+        public async Task<GetMaturityLevelResponseModel> GetMaturityLevelAsync(ulong id)
+        {
+            var responseMessage = await this.TestHost.GetAsync($"/maturity-levels/{id}");
 
-        //     return JsonSerializer.Deserialize<GetMaturityLevelResponseModel>
-        //     (
-        //         await responseMessage.Content.ReadAsStringAsync(),
-        //         new JsonSerializerOptions
-        //         {
-        //             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        //         }
-        //     );
-        // }
+            return JsonSerializer.Deserialize<GetMaturityLevelResponseModel>
+            (
+                await responseMessage.Content.ReadAsStringAsync(),
+                new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                }
+            );
+        }
     }
 }

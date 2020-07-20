@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetAllMaturityLevels;
@@ -12,6 +9,11 @@ using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevel;
 using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturityLevel;
 using BeltsAndLeaders.Server.Business.Models.MaturityLevels.DeleteMaturityLevel;
 using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.DeleteMaturityLevel;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
+using BeltsAndLeaders.Server.Api.Models.MaturityLevels.UpdateMaturityLevel;
+using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturityLevel;
 
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
@@ -20,7 +22,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
     {
         private readonly ILogger<MaturityLevelsController> logger;
         private readonly ICreateMaturityLevelCommand createMaturityLevelCommand;
-        // private readonly IUpdateMaturityLevelCommand updateMaturityLevelCommand;
+        private readonly IUpdateMaturityLevelCommand updateMaturityLevelCommand;
         private readonly IDeleteMaturityLevelCommand deleteMaturityLevelCommand;
         private readonly IGetMaturityLevelQuery getMaturityLevelQuery;
         private readonly IGetAllMaturityLevelsQuery getAllMaturityLevelsQuery;
@@ -28,7 +30,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         public MaturityLevelsController(
             ILogger<MaturityLevelsController> logger,
             ICreateMaturityLevelCommand createMaturityLevelCommand,
-        //     IUpdateMaturityLevelCommand updateMaturityLevelCommand,
+            IUpdateMaturityLevelCommand updateMaturityLevelCommand,
             IDeleteMaturityLevelCommand deleteMaturityLevelCommand,
             IGetMaturityLevelQuery getMaturityLevelQuery,
             IGetAllMaturityLevelsQuery getAllMaturityLevelsQuery
@@ -36,7 +38,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         {
             this.logger = logger;
             this.createMaturityLevelCommand = createMaturityLevelCommand;
-            //     this.updateMaturityLevelCommand = updateMaturityLevelCommand;
+            this.updateMaturityLevelCommand = updateMaturityLevelCommand;
             this.deleteMaturityLevelCommand = deleteMaturityLevelCommand;
             this.getMaturityLevelQuery = getMaturityLevelQuery;
             this.getAllMaturityLevelsQuery = getAllMaturityLevelsQuery;
@@ -82,21 +84,21 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             return GetAllMaturityLevelsResponseModel.FromBusinessModel(queryResponse);
         }
 
-        // [HttpPut("/maturity-levels/{Id}")]
-        // [Consumes("application/json")]
-        // [SwaggerResponse((int)HttpStatusCode.NoContent)]
-        // [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-        // [SwaggerResponse((int)HttpStatusCode.NotFound)]
-        // public async Task<IActionResult> Update(
-        //     [FromRoute] ulong id,
-        //     [FromBody] UpdateMaturityLevelRequestBody requestBody
-        // )
-        // {
-        //     var commandRequest = requestBody.ToCommandRequest(id);
-        //     var commandResponse = await this.updateMaturityLevelCommand.ExecuteAsync(commandRequest);
+        [HttpPut("/maturity-levels/{Id}")]
+        [Consumes("application/json")]
+        [SwaggerResponse((int)HttpStatusCode.NoContent)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Update(
+            [FromRoute] ulong id,
+            [FromBody] UpdateMaturityLevelRequestBody requestBody
+        )
+        {
+            var commandRequest = requestBody.ToCommandRequest(id);
+            var commandResponse = await this.updateMaturityLevelCommand.ExecuteAsync(commandRequest);
 
-        //     return NoContent();
-        // }
+            return NoContent();
+        }
 
         [HttpDelete("/maturity-levels/{Id}")]
         [SwaggerResponse((int)HttpStatusCode.NoContent)]

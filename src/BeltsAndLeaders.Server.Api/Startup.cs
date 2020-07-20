@@ -23,6 +23,7 @@ using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturityLeve
 using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevel;
 using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetAllMaturityLevels;
 using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.DeleteMaturityLevel;
+using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturityLevel;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -56,6 +57,7 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<IUpdateMaturityCategoryCommand, UpdateMaturityCategoryCommand>();
             services.AddScoped<IDeleteMaturityCategoryCommand, DeleteMaturityCategoryCommand>();
             services.AddScoped<ICreateMaturityLevelCommand, CreateMaturityLevelCommand>();
+            services.AddScoped<IUpdateMaturityLevelCommand, UpdateMaturityLevelCommand>();
             services.AddScoped<IDeleteMaturityLevelCommand, DeleteMaturityLevelCommand>();
 
             // Queries
