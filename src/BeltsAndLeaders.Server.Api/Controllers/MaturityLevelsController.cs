@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
@@ -11,6 +10,8 @@ using BeltsAndLeaders.Server.Business.Models.MaturityLevels.GetMaturityLevel;
 using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetAllMaturityLevels;
 using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevel;
 using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturityLevel;
+using BeltsAndLeaders.Server.Business.Models.MaturityLevels.DeleteMaturityLevel;
+using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.DeleteMaturityLevel;
 
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
@@ -20,7 +21,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         private readonly ILogger<MaturityLevelsController> logger;
         private readonly ICreateMaturityLevelCommand createMaturityLevelCommand;
         // private readonly IUpdateMaturityLevelCommand updateMaturityLevelCommand;
-        // private readonly IDeleteMaturityLevelCommand deleteMaturityLevelCommand;
+        private readonly IDeleteMaturityLevelCommand deleteMaturityLevelCommand;
         private readonly IGetMaturityLevelQuery getMaturityLevelQuery;
         private readonly IGetAllMaturityLevelsQuery getAllMaturityLevelsQuery;
 
@@ -28,7 +29,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             ILogger<MaturityLevelsController> logger,
             ICreateMaturityLevelCommand createMaturityLevelCommand,
         //     IUpdateMaturityLevelCommand updateMaturityLevelCommand,
-        //     IDeleteMaturityLevelCommand deleteMaturityLevelCommand,
+            IDeleteMaturityLevelCommand deleteMaturityLevelCommand,
             IGetMaturityLevelQuery getMaturityLevelQuery,
             IGetAllMaturityLevelsQuery getAllMaturityLevelsQuery
         )
@@ -36,7 +37,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             this.logger = logger;
             this.createMaturityLevelCommand = createMaturityLevelCommand;
             //     this.updateMaturityLevelCommand = updateMaturityLevelCommand;
-            //     this.deleteMaturityLevelCommand = deleteMaturityLevelCommand;
+            this.deleteMaturityLevelCommand = deleteMaturityLevelCommand;
             this.getMaturityLevelQuery = getMaturityLevelQuery;
             this.getAllMaturityLevelsQuery = getAllMaturityLevelsQuery;
         }
@@ -97,18 +98,18 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         //     return NoContent();
         // }
 
-        // [HttpDelete("/maturity-levels/{Id}")]
-        // [SwaggerResponse((int)HttpStatusCode.NoContent)]
-        // [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-        // [SwaggerResponse((int)HttpStatusCode.NotFound)]
-        // public async Task<IActionResult> Delete(
-        //     [FromRoute] ulong id
-        // )
-        // {
-        //     var commandRequest = new DeleteMaturityLevelCommandRequestModel { Id = id };
-        //     await this.deleteMaturityLevelCommand.ExecuteAsync(commandRequest);
+        [HttpDelete("/maturity-levels/{Id}")]
+        [SwaggerResponse((int)HttpStatusCode.NoContent)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Delete(
+            [FromRoute] ulong id
+        )
+        {
+            var commandRequest = new DeleteMaturityLevelCommandRequestModel { Id = id };
+            await this.deleteMaturityLevelCommand.ExecuteAsync(commandRequest);
 
-        //     return NoContent();
-        // }
+            return NoContent();
+        }
     }
 }

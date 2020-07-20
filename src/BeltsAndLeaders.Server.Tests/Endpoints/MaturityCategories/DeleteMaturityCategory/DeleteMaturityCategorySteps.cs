@@ -1,7 +1,6 @@
 using BeltsAndLeaders.Server.Data.Models;
 using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
-using System;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
