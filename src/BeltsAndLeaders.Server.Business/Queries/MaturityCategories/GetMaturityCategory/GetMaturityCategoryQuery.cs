@@ -18,14 +18,14 @@ namespace BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetMaturity
 
         public async Task<MaturityCategory> ExecuteAsync(GetMaturityCategoryQueryRequestModel queryRequest)
         {
-            var user = await this.maturityCategoriesRepository.GetAsync(queryRequest.Id);
+            var maturityCategory = await this.maturityCategoriesRepository.GetAsync(queryRequest.Id);
 
-            if (user == null)
+            if (maturityCategory == null)
             {
                 throw new HttpException(HttpStatusCode.NotFound, $"MaturityCategory (ID: {queryRequest.Id}) cannot be found.");
             }
 
-            return MaturityCategory.FromTableRecord(user);
+            return MaturityCategory.FromTableRecord(maturityCategory);
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetMaturityCategory;
 using BeltsAndLeaders.Server.Tests.Helpers;

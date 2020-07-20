@@ -1,14 +1,14 @@
 // using BeltsAndLeaders.Server.Api.Models.MaturityLevels.CreateMaturityLevel;
 // using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetAllMaturityLevels;
-// using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetMaturityLevel;
+using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetMaturityLevel;
 // using BeltsAndLeaders.Server.Api.Models.MaturityLevels.UpdateMaturityLevel;
 // using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturityLevel;
 // using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.DeleteMaturityLevel;
 // using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturityLevel;
 // using BeltsAndLeaders.Server.Business.Models.MaturityLevels.DeleteMaturityLevel;
-// using BeltsAndLeaders.Server.Business.Models.MaturityLevels.GetMaturityLevel;
+using BeltsAndLeaders.Server.Business.Models.MaturityLevels.GetMaturityLevel;
 // using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetAllMaturityLevels;
-// using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevel;
+using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevel;
 using BeltsAndLeaders.Server.Api.Models.MaturityLevels.CreateMaturityLevel;
 using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturityLevel;
 using Microsoft.AspNetCore.Mvc;
@@ -26,15 +26,15 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         private readonly ICreateMaturityLevelCommand createMaturityLevelCommand;
         // private readonly IUpdateMaturityLevelCommand updateMaturityLevelCommand;
         // private readonly IDeleteMaturityLevelCommand deleteMaturityLevelCommand;
-        // private readonly IGetMaturityLevelQuery getMaturityLevelQuery;
+        private readonly IGetMaturityLevelQuery getMaturityLevelQuery;
         // private readonly IGetAllMaturityLevelsQuery getAllMaturityLevelsQuery;
 
         public MaturityLevelsController(
             ILogger<MaturityLevelsController> logger,
-            ICreateMaturityLevelCommand createMaturityLevelCommand
+            ICreateMaturityLevelCommand createMaturityLevelCommand,
         //     IUpdateMaturityLevelCommand updateMaturityLevelCommand,
         //     IDeleteMaturityLevelCommand deleteMaturityLevelCommand,
-        //     IGetMaturityLevelQuery getMaturityLevelQuery,
+            IGetMaturityLevelQuery getMaturityLevelQuery
         //     IGetAllMaturityLevelsQuery getAllMaturityLevelsQuery
         )
         {
@@ -42,7 +42,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             this.createMaturityLevelCommand = createMaturityLevelCommand;
             //     this.updateMaturityLevelCommand = updateMaturityLevelCommand;
             //     this.deleteMaturityLevelCommand = deleteMaturityLevelCommand;
-            //     this.getMaturityLevelQuery = getMaturityLevelQuery;
+            this.getMaturityLevelQuery = getMaturityLevelQuery;
             //     this.getAllMaturityLevelsQuery = getAllMaturityLevelsQuery;
         }
 
@@ -60,20 +60,20 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             return Created($"/maturity-levels/{commandResponse}", commandResponse);
         }
 
-        // [HttpGet("/maturity-levels/{Id}")]
-        // [Produces("application/json")]
-        // [SwaggerResponse((int)HttpStatusCode.OK)]
-        // [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-        // [SwaggerResponse((int)HttpStatusCode.NotFound)]
-        // public async Task<ActionResult<GetMaturityLevelResponseModel>> Get(
-        //     [FromRoute] ulong id
-        // )
-        // {
-        //     var queryRequest = new GetMaturityLevelQueryRequestModel { Id = id };
-        //     var queryResponse = await this.getMaturityLevelQuery.ExecuteAsync(queryRequest);
+        [HttpGet("/maturity-levels/{Id}")]
+        [Produces("application/json")]
+        [SwaggerResponse((int)HttpStatusCode.OK)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<GetMaturityLevelResponseModel>> Get(
+            [FromRoute] ulong id
+        )
+        {
+            var queryRequest = new GetMaturityLevelQueryRequestModel { Id = id };
+            var queryResponse = await this.getMaturityLevelQuery.ExecuteAsync(queryRequest);
 
-        //     return GetMaturityLevelResponseModel.FromBusinessModel(queryResponse);
-        // }
+            return GetMaturityLevelResponseModel.FromBusinessModel(queryResponse);
+        }
 
         // [HttpGet("/maturity-levels")]
         // [Produces("application/json")]
