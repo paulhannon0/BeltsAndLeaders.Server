@@ -6,13 +6,13 @@ namespace BeltsAndLeaders.Server.Data.Repositories
 {
     public interface IMaturityCategoriesRepository
     {
-        Task<ulong> CreateAsync(MaturityCategoryRecord widget);
+        Task<ulong> CreateAsync(MaturityCategoryRecord maturityCategory);
 
         Task<MaturityCategoryRecord> GetAsync(ulong id);
 
         Task<IEnumerable<MaturityCategoryRecord>> GetAllAsync();
 
-        Task UpdateAsync(MaturityCategoryRecord widget);
+        Task UpdateAsync(MaturityCategoryRecord maturityCategory);
 
         Task DeleteAsync(ulong id);
     }

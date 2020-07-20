@@ -13,13 +13,13 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.CreateMaturi
     public class CreateMaturityCategorySteps
     {
         private readonly TestHost testHost;
-        private readonly MaturityCategoryDataHelper widgetDataHelper;
+        private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
         private ulong newResourceId;
 
-        public CreateMaturityCategorySteps(TestHost testHost, MaturityCategoryDataHelper widgetDataHelper)
+        public CreateMaturityCategorySteps(TestHost testHost, MaturityCategoryDataHelper maturityCategoryDataHelper)
         {
             this.testHost = testHost;
-            this.widgetDataHelper = widgetDataHelper;
+            this.maturityCategoryDataHelper = maturityCategoryDataHelper;
         }
 
         [Given("a valid request path for the \'Create Maturity Category\' endpoint")]
@@ -77,7 +77,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.CreateMaturi
         [Then("the MaturityCategory record has been inserted into the database")]
         public async Task ThenTheMaturityCategoryRecordHasBeenInsertedIntoTheDatabase()
         {
-            var doesRecordExist = await this.widgetDataHelper.DoesRecordExist<MaturityCategoryRecord>(this.newResourceId);
+            var doesRecordExist = await this.maturityCategoryDataHelper.DoesRecordExist<MaturityCategoryRecord>(this.newResourceId);
 
             Assert.IsTrue(doesRecordExist);
         }

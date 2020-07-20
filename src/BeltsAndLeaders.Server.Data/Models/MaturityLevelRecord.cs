@@ -3,7 +3,7 @@ using Dapper.Contrib.Extensions;
 namespace BeltsAndLeaders.Server.Data.Models
 {
     [Table("MaturityLevels")]
-    public class MaturityLevelRecord
+    public class MaturityLevelRecord : IRecord
     {
         [Key]
         public ulong Id { get; set; }

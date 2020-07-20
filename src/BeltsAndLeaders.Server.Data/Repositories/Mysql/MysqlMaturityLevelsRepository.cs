@@ -7,9 +7,9 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 {
     public class MysqlMaturityLevelsRepository : IMaturityLevelsRepository
     {
-        public async Task<ulong> CreateAsync(MaturityLevelRecord widget)
+        public async Task<ulong> CreateAsync(MaturityLevelRecord maturityLevel)
         {
-            return await RepositoryHelper.InsertAsync<MaturityLevelRecord>(widget);
+            return await RepositoryHelper.InsertAsync<MaturityLevelRecord>(maturityLevel);
         }
 
         public async Task<MaturityLevelRecord> GetAsync(ulong id)
@@ -22,9 +22,9 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             return await RepositoryHelper.GetAllAsync<MaturityLevelRecord>();
         }
 
-        public async Task UpdateAsync(MaturityLevelRecord widget)
+        public async Task UpdateAsync(MaturityLevelRecord maturityLevel)
         {
-            await RepositoryHelper.UpdateAsync<MaturityLevelRecord>(widget);
+            await RepositoryHelper.UpdateAsync<MaturityLevelRecord>(maturityLevel);
         }
 
         public async Task DeleteAsync(ulong id)

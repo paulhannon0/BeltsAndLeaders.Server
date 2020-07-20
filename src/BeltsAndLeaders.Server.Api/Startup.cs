@@ -63,6 +63,7 @@ namespace BeltsAndLeaders.Server.Api
             // Repositories
             services.AddScoped<IUsersRepository, MysqlUsersRepository>();
             services.AddScoped<IMaturityCategoriesRepository, MysqlMaturityCategoriesRepository>();
+            services.AddScoped<IMaturityLevelsRepository, MysqlMaturityLevelsRepository>();
 
             services.AddSwaggerGen(c =>
             {
