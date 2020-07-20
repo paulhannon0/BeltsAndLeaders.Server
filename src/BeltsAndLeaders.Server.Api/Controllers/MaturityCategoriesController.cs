@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Net;
+using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.CreateMaturityCategory;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetAllMaturityCategories;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetMaturityCategory;
@@ -9,11 +14,6 @@ using BeltsAndLeaders.Server.Business.Models.MaturityCategories.DeleteMaturityCa
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories.GetMaturityCategory;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetAllMaturityCategories;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetMaturityCategory;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Swashbuckle.AspNetCore.Annotations;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace BeltsAndLeaders.Server.Api.Controllers
 {

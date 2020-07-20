@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetAllMaturityCategories;
