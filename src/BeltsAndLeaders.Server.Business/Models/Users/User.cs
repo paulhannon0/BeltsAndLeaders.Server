@@ -33,13 +33,15 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
                 updatedAt = DateTimeOffset.FromUnixTimeMilliseconds(userRecord.UpdatedAt.Value);
             }
 
+            Enum.TryParse(userRecord.Belt, out BeltType belt);
+
             return new User
             {
                 Id = userRecord.Id,
                 Name = userRecord.Name,
                 Email = userRecord.Email,
                 MaturityLevel = userRecord.MaturityLevel,
-                Belt = userRecord.Belt,
+                Belt = belt,
                 SpecialistArea = userRecord.SpecialistArea,
                 ChampionStartDate = DateTimeOffset.FromUnixTimeMilliseconds(userRecord.ChampionStartDate),
                 CreatedAt = DateTimeOffset.FromUnixTimeMilliseconds(userRecord.CreatedAt),
@@ -58,6 +60,8 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
                 Id = this.Id,
                 Name = this.Name,
                 Email = this.Email,
+                MaturityLevel = this.MaturityLevel,
+                Belt = this.Belt.ToString(),
                 SpecialistArea = this.SpecialistArea,
                 ChampionStartDate = championStartDate
             };

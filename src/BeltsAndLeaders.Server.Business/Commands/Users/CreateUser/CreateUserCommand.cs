@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.Users;
 using BeltsAndLeaders.Server.Business.Models.Users.CreateUser;
+using BeltsAndLeaders.Server.Common.Enums;
 using BeltsAndLeaders.Server.Data.Repositories;
 
 namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
@@ -21,6 +22,8 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
             {
                 Name = commandRequest.Name,
                 Email = commandRequest.Email,
+                MaturityLevel = 0,
+                Belt = BeltType.White,
                 SpecialistArea = commandRequest.SpecialistArea,
                 ChampionStartDate = commandRequest.ChampionStartDate
             };

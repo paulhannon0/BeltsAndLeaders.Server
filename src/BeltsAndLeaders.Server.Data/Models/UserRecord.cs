@@ -15,7 +15,7 @@ namespace BeltsAndLeaders.Server.Data.Models
 
         public byte MaturityLevel { get; set; }
 
-        public BeltType Belt { get; set; }
+        public string Belt { get; set; }
 
         public string SpecialistArea { get; set; }
 
