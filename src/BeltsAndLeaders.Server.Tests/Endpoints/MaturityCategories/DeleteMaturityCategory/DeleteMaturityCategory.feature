@@ -9,6 +9,7 @@ Feature: Delete Maturity Category
         When the DELETE request is made
         Then (204) OK is returned
         And the MaturityCategory record has been deleted from the database
+        And all child MaturityLevel records are deleted from the database
 
     Scenario: Request Failure - Invalid Id URL parameter
 

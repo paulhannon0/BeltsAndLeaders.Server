@@ -56,6 +56,14 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.DeleteMaturi
             Assert.IsFalse(doesRecordExist);
         }
 
+        [Then(@"all child MaturityLevel records are deleted from the database")]
+        public async Task ThenAllChildMaturityLevelRecordsAreDeletedFromTheDatabase()
+        {
+            var maturityLevels = await this.maturityCategoryDataHelper.GetMaturityLevelsByCategoryId(this.validId);
+
+            Assert.IsEmpty(maturityLevels);
+        }
+
         private void SetEndpointPath(object maturityCategoryId)
         {
             this.testHost.EndpointPath = $"/maturity-categories/{maturityCategoryId}";

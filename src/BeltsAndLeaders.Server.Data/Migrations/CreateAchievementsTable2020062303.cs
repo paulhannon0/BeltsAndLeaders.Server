@@ -1,3 +1,4 @@
+using System.Data;
 using BeltsAndLeaders.Server.Data.Extensions;
 using FluentMigrator;
 
@@ -23,11 +24,13 @@ namespace BeltsAndLeaders.Server.Data.Migrations
 
             Create.ForeignKey()
                 .FromTable("Achievements").ForeignColumn("UserId")
-                .ToTable("Users").PrimaryColumn("Id");
+                .ToTable("Users").PrimaryColumn("Id")
+                .OnDelete(Rule.Cascade);
 
             Create.ForeignKey()
                 .FromTable("Achievements").ForeignColumn("MaturityLevelId")
-                .ToTable("MaturityLevels").PrimaryColumn("Id");
+                .ToTable("MaturityLevels").PrimaryColumn("Id")
+                .OnDelete(Rule.Cascade);
         }
 
         public override void Down()
