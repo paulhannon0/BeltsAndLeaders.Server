@@ -5,6 +5,7 @@ using Dapper.Contrib.Extensions;
 using BeltsAndLeaders.Server.Data.Models;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using Dapper;
 
 namespace BeltsAndLeaders.Server.Data.Helpers
 {
@@ -25,6 +26,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
                 var id = GetLastInsertedId(connection);
 
                 connection.Close();
+
                 return id;
             }
         }
@@ -39,6 +41,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
                 var record = await connection.GetAsync<T>(id);
 
                 connection.Close();
+
                 return record;
             }
         }
@@ -51,6 +54,33 @@ namespace BeltsAndLeaders.Server.Data.Helpers
                 UseDatabase(connection);
 
                 var records = await connection.GetAllAsync<T>();
+
+                connection.Close();
+
+                return records;
+            }
+        }
+
+        public static async Task<IEnumerable<T>> GetByNonKeyIdValue<T>(string tableName, string columnName, ulong value) where T : class
+        {
+            using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
+            {
+                connection.Open();
+                UseDatabase(connection);
+
+                var records = await connection.QueryAsync<T>
+                (
+                    $@"
+                        SELECT *
+                        FROM `{tableName}`
+                        WHERE `{columnName}` = @Value
+                    ",
+                    new
+                    {
+                        Value = value
+                    }
+
+                );
 
                 connection.Close();
                 return records;

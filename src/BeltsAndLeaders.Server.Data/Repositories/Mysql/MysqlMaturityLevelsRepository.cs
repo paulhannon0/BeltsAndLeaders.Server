@@ -22,6 +22,16 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             return await RepositoryHelper.GetAllAsync<MaturityLevelRecord>();
         }
 
+        public async Task<IEnumerable<MaturityLevelRecord>> GetByCategoryIdAsync(ulong categoryId)
+        {
+            return await RepositoryHelper.GetByNonKeyIdValue<MaturityLevelRecord>
+            (
+                "MaturityLevels",
+                "MaturityCategoryId",
+                categoryId
+            );
+        }
+
         public async Task UpdateAsync(MaturityLevelRecord maturityLevel)
         {
             await RepositoryHelper.UpdateAsync<MaturityLevelRecord>(maturityLevel);

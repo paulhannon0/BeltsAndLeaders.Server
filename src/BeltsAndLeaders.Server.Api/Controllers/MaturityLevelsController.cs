@@ -14,6 +14,9 @@ using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
 using BeltsAndLeaders.Server.Api.Models.MaturityLevels.UpdateMaturityLevel;
 using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturityLevel;
+using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetMaturityLevelsByCategoryId;
+using BeltsAndLeaders.Server.Business.Models.MaturityLevels.GetMaturityLevelsByCategoryId;
+using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevelsByCategoryId;
 
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
@@ -26,6 +29,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         private readonly IDeleteMaturityLevelCommand deleteMaturityLevelCommand;
         private readonly IGetMaturityLevelQuery getMaturityLevelQuery;
         private readonly IGetAllMaturityLevelsQuery getAllMaturityLevelsQuery;
+        private readonly IGetMaturityLevelsByCategoryIdQuery getMaturityLevelsByCategoryIdQuery;
 
         public MaturityLevelsController(
             ILogger<MaturityLevelsController> logger,
@@ -33,7 +37,8 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             IUpdateMaturityLevelCommand updateMaturityLevelCommand,
             IDeleteMaturityLevelCommand deleteMaturityLevelCommand,
             IGetMaturityLevelQuery getMaturityLevelQuery,
-            IGetAllMaturityLevelsQuery getAllMaturityLevelsQuery
+            IGetAllMaturityLevelsQuery getAllMaturityLevelsQuery,
+            IGetMaturityLevelsByCategoryIdQuery getMaturityLevelsByCategoryIdQuery
         )
         {
             this.logger = logger;
@@ -42,6 +47,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             this.deleteMaturityLevelCommand = deleteMaturityLevelCommand;
             this.getMaturityLevelQuery = getMaturityLevelQuery;
             this.getAllMaturityLevelsQuery = getAllMaturityLevelsQuery;
+            this.getMaturityLevelsByCategoryIdQuery = getMaturityLevelsByCategoryIdQuery;
         }
 
         [HttpPost("/maturity-levels")]
@@ -82,6 +88,21 @@ namespace BeltsAndLeaders.Server.Api.Controllers
             var queryResponse = await this.getAllMaturityLevelsQuery.ExecuteAsync();
 
             return GetAllMaturityLevelsResponseModel.FromBusinessModel(queryResponse);
+        }
+
+        [HttpGet("/maturity-categories/{MaturityCategoryId}/maturity-levels")]
+        [Produces("application/json")]
+        [SwaggerResponse((int)HttpStatusCode.OK)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<GetMaturityLevelsByCategoryIdResponseModel>> GetByCategoryId(
+            [FromRoute] ulong maturityCategoryId
+        )
+        {
+            var queryRequest = new GetMaturityLevelsByCategoryIdQueryRequestModel { CategoryId = maturityCategoryId };
+            var queryResponse = await this.getMaturityLevelsByCategoryIdQuery.ExecuteAsync(queryRequest);
+
+            return GetMaturityLevelsByCategoryIdResponseModel.FromBusinessModel(queryResponse);
         }
 
         [HttpPut("/maturity-levels/{Id}")]

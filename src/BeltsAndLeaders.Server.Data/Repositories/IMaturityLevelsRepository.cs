@@ -12,6 +12,8 @@ namespace BeltsAndLeaders.Server.Data.Repositories
 
         Task<IEnumerable<MaturityLevelRecord>> GetAllAsync();
 
+        Task<IEnumerable<MaturityLevelRecord>> GetByCategoryIdAsync(ulong categoryId);
+
         Task UpdateAsync(MaturityLevelRecord maturityLevel);
 
         Task DeleteAsync(ulong id);
