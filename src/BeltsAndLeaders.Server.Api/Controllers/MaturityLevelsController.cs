@@ -21,7 +21,7 @@ using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevelsBy
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
     [ApiController]
-    public class MaturityLevelsController : ApiController
+    public class MaturityLevelsController : BaseController
     {
         private readonly ILogger<MaturityLevelsController> logger;
         private readonly ICreateMaturityLevelCommand createMaturityLevelCommand;

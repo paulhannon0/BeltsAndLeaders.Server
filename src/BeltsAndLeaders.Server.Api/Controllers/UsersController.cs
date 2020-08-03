@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
     [ApiController]
-    public class UsersController : ApiController
+    public class UsersController : BaseController
     {
         private readonly ILogger<UsersController> logger;
         private readonly ICreateUserCommand createUserCommand;

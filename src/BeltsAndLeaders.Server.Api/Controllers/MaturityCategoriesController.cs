@@ -18,7 +18,7 @@ using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetMaturityCate
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
     [ApiController]
-    public class MaturityCategoriesController : ApiController
+    public class MaturityCategoriesController : BaseController
     {
         private readonly ILogger<MaturityCategoriesController> logger;
         private readonly ICreateMaturityCategoryCommand createMaturityCategoryCommand;

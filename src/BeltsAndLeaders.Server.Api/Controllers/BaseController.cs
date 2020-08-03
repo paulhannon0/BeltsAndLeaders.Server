@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
-    public class ApiController : Controller
+    public class BaseController : Controller
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
