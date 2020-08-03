@@ -8,7 +8,6 @@ namespace BeltsAndLeaders.Server.Data.Models
         [Key]
         public ulong Id { get; set; }
 
-        [ExplicitKey]
         public ulong MaturityCategoryId { get; set; }
 
         public byte MaturityLevel { get; set; }
