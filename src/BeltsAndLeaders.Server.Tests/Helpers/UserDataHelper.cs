@@ -10,7 +10,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
     {
         public UserDataHelper(TestHost testHost) : base(testHost) { }
 
-        public async Task<ulong> CreateUserAsync(string name, string email, string specialistArea, DateTimeOffset? championStartDate)
+        public async Task<ulong> CreateUserAsync(string name, string email, string specialistArea, DateTimeOffset? championStartDate = null)
         {
             var requestBody = new Dictionary<string, object>()
             {

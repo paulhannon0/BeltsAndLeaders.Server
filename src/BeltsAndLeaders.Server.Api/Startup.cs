@@ -25,6 +25,7 @@ using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetAllMaturityLevel
 using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.DeleteMaturityLevel;
 using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturityLevel;
 using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevelsByCategoryId;
+using BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievement;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -60,6 +61,7 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<ICreateMaturityLevelCommand, CreateMaturityLevelCommand>();
             services.AddScoped<IUpdateMaturityLevelCommand, UpdateMaturityLevelCommand>();
             services.AddScoped<IDeleteMaturityLevelCommand, DeleteMaturityLevelCommand>();
+            services.AddScoped<ICreateAchievementCommand, CreateAchievementCommand>();
 
             // Queries
             services.AddScoped<IGetUserQuery, GetUserQuery>();
@@ -74,6 +76,7 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<IUsersRepository, MysqlUsersRepository>();
             services.AddScoped<IMaturityCategoriesRepository, MysqlMaturityCategoriesRepository>();
             services.AddScoped<IMaturityLevelsRepository, MysqlMaturityLevelsRepository>();
+            services.AddScoped<IAchievementsRepository, MysqlAchievementsRepository>();
 
             services.AddSwaggerGen(c =>
             {

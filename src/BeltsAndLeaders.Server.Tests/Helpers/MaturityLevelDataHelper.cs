@@ -15,7 +15,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             {
                 { "MaturityCategoryId", maturityCategoryId },
                 { "MaturityLevel", maturityLevel },
-                { "Description", description },
+                { "Description", description }
             };
 
             var responseMessage = await this.TestHost.PostAsync("/maturity-levels", requestBody);
