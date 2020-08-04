@@ -13,7 +13,7 @@ namespace BeltsAndLeaders.Server.Data.Models
 
         public string Email { get; set; }
 
-        public byte MaturityLevel { get; set; }
+        public int TotalMaturityPoints { get; set; }
 
         public string Belt { get; set; }
 

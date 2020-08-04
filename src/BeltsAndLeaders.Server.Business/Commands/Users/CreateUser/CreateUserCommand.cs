@@ -22,7 +22,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
             {
                 Name = commandRequest.Name,
                 Email = commandRequest.Email,
-                MaturityLevel = 0,
+                TotalMaturityPoints = 0,
                 Belt = BeltType.White,
                 SpecialistArea = commandRequest.SpecialistArea,
                 ChampionStartDate = commandRequest.ChampionStartDate

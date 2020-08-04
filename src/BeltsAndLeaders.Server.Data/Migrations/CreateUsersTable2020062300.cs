@@ -15,7 +15,7 @@ namespace BeltsAndLeaders.Server.Data.Migrations
                     .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                     .WithColumn("Name").AsFixedLengthString(255)
                     .WithColumn("Email").AsFixedLengthString(255)
-                    .WithColumn("MaturityLevel").AsByte()
+                    .WithColumn("TotalMaturityPoints").AsInt32()
                     .WithColumn("Belt").AsFixedLengthString(255)
                     .WithColumn("SpecialistArea").AsFixedLengthString(255).Nullable()
                     .WithColumn("ChampionStartDate").AsInt64()

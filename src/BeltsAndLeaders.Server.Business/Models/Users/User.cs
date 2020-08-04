@@ -12,7 +12,7 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
 
         public string Email { get; set; }
 
-        public byte MaturityLevel { get; set; }
+        public int TotalMaturityPoints { get; set; }
 
         public BeltType Belt { get; set; }
 
@@ -40,7 +40,7 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
                 Id = userRecord.Id,
                 Name = userRecord.Name,
                 Email = userRecord.Email,
-                MaturityLevel = userRecord.MaturityLevel,
+                TotalMaturityPoints = userRecord.TotalMaturityPoints,
                 Belt = belt,
                 SpecialistArea = userRecord.SpecialistArea,
                 ChampionStartDate = DateTimeOffset.FromUnixTimeMilliseconds(userRecord.ChampionStartDate),
@@ -60,7 +60,7 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
                 Id = this.Id,
                 Name = this.Name,
                 Email = this.Email,
-                MaturityLevel = this.MaturityLevel,
+                TotalMaturityPoints = this.TotalMaturityPoints,
                 Belt = this.Belt.ToString(),
                 SpecialistArea = this.SpecialistArea,
                 ChampionStartDate = championStartDate

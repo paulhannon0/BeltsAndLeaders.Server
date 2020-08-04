@@ -81,7 +81,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.GetUser
             Assert.IsTrue(user.Id > 0);
             Assert.AreEqual(this.name, user.Name);
             Assert.AreEqual(this.email, user.Email);
-            Assert.AreEqual(0, user.MaturityLevel);
+            Assert.AreEqual(0, user.TotalMaturityPoints);
             Assert.AreEqual(BeltType.White, user.Belt);
             Assert.AreEqual(this.specialistArea, user.SpecialistArea);
             Assert.AreEqual(this.championStartDate, user.ChampionStartDate);

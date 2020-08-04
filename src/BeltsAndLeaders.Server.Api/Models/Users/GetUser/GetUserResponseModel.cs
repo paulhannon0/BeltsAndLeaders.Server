@@ -12,7 +12,7 @@ namespace BeltsAndLeaders.Server.Api.Models.Users.GetUser
 
         public string Email { get; set; }
 
-        public byte MaturityLevel { get; set; }
+        public int TotalMaturityPoints { get; set; }
 
         public BeltType Belt { get; set; }
 
@@ -31,7 +31,7 @@ namespace BeltsAndLeaders.Server.Api.Models.Users.GetUser
                 Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
-                MaturityLevel = user.MaturityLevel,
+                TotalMaturityPoints = user.TotalMaturityPoints,
                 Belt = user.Belt,
                 SpecialistArea = user.SpecialistArea,
                 ChampionStartDate = user.ChampionStartDate.Value,

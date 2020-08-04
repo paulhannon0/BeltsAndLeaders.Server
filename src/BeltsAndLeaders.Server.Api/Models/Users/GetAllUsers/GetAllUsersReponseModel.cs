@@ -21,7 +21,7 @@ namespace BeltsAndLeaders.Server.Api.Models.Users.GetAllUsers
                         Id = user.Id,
                         Name = user.Name,
                         Email = user.Email,
-                        MaturityLevel = user.MaturityLevel,
+                        TotalMaturityPoints = user.TotalMaturityPoints,
                         Belt = user.Belt,
                         SpecialistArea = user.SpecialistArea,
                         ChampionStartDate = user.ChampionStartDate.Value,
