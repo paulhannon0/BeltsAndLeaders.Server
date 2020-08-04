@@ -22,7 +22,7 @@ Feature: Create Maturity Level
         Examples:
             | ParameterName      |
             | MaturityCategoryId |
-            | MaturityLevel      |
+            | BeltLevel          |
             | Description        |
 
     Scenario: Create Maturity Level - Request Failure - Missing body parameter
@@ -35,5 +35,5 @@ Feature: Create Maturity Level
         Examples:
             | ParameterName      |
             | MaturityCategoryId |
-            | MaturityLevel      |
+            | BeltLevel          |
             | Description        |

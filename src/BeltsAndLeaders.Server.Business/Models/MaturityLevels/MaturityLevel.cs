@@ -1,4 +1,5 @@
 using System;
+using BeltsAndLeaders.Server.Common.Enums;
 using BeltsAndLeaders.Server.Data.Models;
 
 namespace BeltsAndLeaders.Server.Business.Models.MaturityLevels
@@ -9,7 +10,7 @@ namespace BeltsAndLeaders.Server.Business.Models.MaturityLevels
 
         public ulong MaturityCategoryId { get; set; }
 
-        public byte Level { get; set; }
+        public BeltType BeltLevel { get; set; }
 
         public string Description { get; set; }
 
@@ -30,7 +31,7 @@ namespace BeltsAndLeaders.Server.Business.Models.MaturityLevels
             {
                 Id = maturityLevelRecord.Id,
                 MaturityCategoryId = maturityLevelRecord.MaturityCategoryId,
-                Level = maturityLevelRecord.MaturityLevel,
+                BeltLevel = (BeltType)Enum.Parse(typeof(BeltType), maturityLevelRecord.BeltLevel),
                 Description = maturityLevelRecord.Description,
                 CreatedAt = DateTimeOffset.FromUnixTimeMilliseconds(maturityLevelRecord.CreatedAt),
                 UpdatedAt = updatedAt
@@ -43,7 +44,7 @@ namespace BeltsAndLeaders.Server.Business.Models.MaturityLevels
             {
                 Id = this.Id,
                 MaturityCategoryId = this.MaturityCategoryId,
-                MaturityLevel = this.Level,
+                BeltLevel = this.BeltLevel.ToString(),
                 Description = this.Description
             };
         }

@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetAllMaturityLevels;
+using BeltsAndLeaders.Server.Common.Enums;
 using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -15,7 +16,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetAllMaturityLe
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
         private ulong maturityCategoryId;
-        private readonly byte maturityLevel;
+        private readonly BeltType beltLevel;
         private readonly string description;
 
         public GetAllMaturityLevelsSteps(
@@ -27,7 +28,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetAllMaturityLe
             this.testHost = testHost;
             this.maturityLevelDataHelper = maturityLevelDataHelper;
             this.maturityCategoryDataHelper = maturityCategoryDataHelper;
-            this.maturityLevel = 1;
+            this.beltLevel = BeltType.White;
             this.description = "Must have attended 3 security conferences.";
         }
 
@@ -39,7 +40,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetAllMaturityLe
             await this.maturityLevelDataHelper.CreateMaturityLevelAsync
             (
                 this.maturityCategoryId,
-                this.maturityLevel,
+                this.beltLevel,
                 this.description
             );
         }
@@ -58,7 +59,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetAllMaturityLe
 
             Assert.IsTrue(maturityLevel.Id > 0);
             Assert.AreEqual(this.maturityCategoryId, maturityLevel.MaturityCategoryId);
-            Assert.AreEqual(this.maturityLevel, maturityLevel.MaturityLevel);
+            Assert.AreEqual(this.beltLevel, maturityLevel.BeltLevel);
             Assert.AreEqual(this.description, maturityLevel.Description);
         }
     }

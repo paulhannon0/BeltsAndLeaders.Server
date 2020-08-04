@@ -48,6 +48,8 @@ namespace BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievemen
                 Comment = commandRequest.Comment
             };
 
+            // TODO: Belt logic
+
             return await this.achievementsRepository.CreateAsync(achievement.ToTableRecord());
         }
     }

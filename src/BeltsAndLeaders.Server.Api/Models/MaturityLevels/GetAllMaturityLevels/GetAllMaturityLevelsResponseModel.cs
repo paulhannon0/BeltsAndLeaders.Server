@@ -20,7 +20,7 @@ namespace BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetAllMaturityLevels
                     {
                         Id = maturityLevel.Id,
                         MaturityCategoryId = maturityLevel.MaturityCategoryId,
-                        MaturityLevel = maturityLevel.Level,
+                        BeltLevel = maturityLevel.BeltLevel,
                         Description = maturityLevel.Description,
                         CreatedAt = maturityLevel.CreatedAt,
                         UpdatedAt = maturityLevel.UpdatedAt

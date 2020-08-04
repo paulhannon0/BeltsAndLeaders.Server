@@ -1,3 +1,4 @@
+using BeltsAndLeaders.Server.Common.Enums;
 using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.UpdateMaturityLe
             this.validId = await this.maturityLevelDataHelper.CreateMaturityLevelAsync
             (
                 maturityCategoryId,
-                1,
+                BeltType.White,
                 this.description
             );
         }

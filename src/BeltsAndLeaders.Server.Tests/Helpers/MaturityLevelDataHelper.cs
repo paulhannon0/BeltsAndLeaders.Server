@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetMaturityLevel;
+using BeltsAndLeaders.Server.Common.Enums;
 
 namespace BeltsAndLeaders.Server.Tests.Helpers
 {
@@ -9,12 +11,12 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
     {
         public MaturityLevelDataHelper(TestHost testHost) : base(testHost) { }
 
-        public async Task<ulong> CreateMaturityLevelAsync(ulong maturityCategoryId, byte maturityLevel, string description)
+        public async Task<ulong> CreateMaturityLevelAsync(ulong maturityCategoryId, BeltType beltLevel, string description)
         {
             var requestBody = new Dictionary<string, object>()
             {
                 { "MaturityCategoryId", maturityCategoryId },
-                { "MaturityLevel", maturityLevel },
+                { "BeltLevel", beltLevel },
                 { "Description", description }
             };
 
@@ -32,6 +34,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
                 await responseMessage.Content.ReadAsStringAsync(),
                 new JsonSerializerOptions
                 {
+                    Converters = { new JsonStringEnumConverter() },
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 }
             );

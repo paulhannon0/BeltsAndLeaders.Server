@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using BeltsAndLeaders.Server.Common.Enums;
 using BeltsAndLeaders.Server.Data.Models;
 using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
@@ -58,8 +59,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.CreateMaturityLe
                     this.testHost.RequestBody["MaturityCategoryId"] = "invalid_id";
                     break;
 
-                case "MaturityLevel":
-                    this.testHost.RequestBody["MaturityLevel"] = "invalid_byte";
+                case "BeltLevel":
+                    this.testHost.RequestBody["BeltLevel"] = "DarkDarkBlue";
                     break;
 
                 case "Description":
@@ -106,7 +107,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.CreateMaturityLe
         private void BuildValidRequestBody()
         {
             this.testHost.RequestBody.Add("MaturityCategoryId", this.maturityCategoryId);
-            this.testHost.RequestBody.Add("MaturityLevel", 1);
+            this.testHost.RequestBody.Add("BeltLevel", BeltType.White.ToString());
             this.testHost.RequestBody.Add("Description", "Must have attended 3 security conferences.");
         }
     }

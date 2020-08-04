@@ -1,3 +1,4 @@
+using BeltsAndLeaders.Server.Common.Enums;
 using Dapper.Contrib.Extensions;
 
 namespace BeltsAndLeaders.Server.Data.Models
@@ -10,7 +11,7 @@ namespace BeltsAndLeaders.Server.Data.Models
 
         public ulong MaturityCategoryId { get; set; }
 
-        public byte MaturityLevel { get; set; }
+        public string BeltLevel { get; set; }
 
         public string Description { get; set; }
 

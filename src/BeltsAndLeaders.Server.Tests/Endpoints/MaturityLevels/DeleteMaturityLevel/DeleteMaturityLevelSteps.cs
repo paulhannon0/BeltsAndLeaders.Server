@@ -1,3 +1,4 @@
+using BeltsAndLeaders.Server.Common.Enums;
 using BeltsAndLeaders.Server.Data.Models;
 using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
@@ -38,7 +39,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.DeleteMaturityLe
             this.validId = await this.maturityLevelDataHelper.CreateMaturityLevelAsync
             (
                 maturityCategoryId,
-                1,
+                BeltType.White,
                 "Must have attended 3 security conferences."
             );
         }

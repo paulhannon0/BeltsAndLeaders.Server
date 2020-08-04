@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
+using BeltsAndLeaders.Server.Api.Attributes;
 using BeltsAndLeaders.Server.Business.Models.MaturityLevels.CreateMaturityLevel;
+using BeltsAndLeaders.Server.Common.Enums;
 
 namespace BeltsAndLeaders.Server.Api.Models.MaturityLevels.CreateMaturityLevel
 {
@@ -8,8 +10,8 @@ namespace BeltsAndLeaders.Server.Api.Models.MaturityLevels.CreateMaturityLevel
         [Required]
         public ulong MaturityCategoryId { get; set; }
 
-        [Required]
-        public byte MaturityLevel { get; set; }
+        [RequiredEnum]
+        public BeltType BeltLevel { get; set; }
 
         [Required]
         public string Description { get; set; }
@@ -19,7 +21,7 @@ namespace BeltsAndLeaders.Server.Api.Models.MaturityLevels.CreateMaturityLevel
             return new CreateMaturityLevelCommandRequestModel
             {
                 MaturityCategoryId = this.MaturityCategoryId,
-                MaturityLevel = this.MaturityLevel,
+                BeltLevel = this.BeltLevel,
                 Description = this.Description
             };
         }

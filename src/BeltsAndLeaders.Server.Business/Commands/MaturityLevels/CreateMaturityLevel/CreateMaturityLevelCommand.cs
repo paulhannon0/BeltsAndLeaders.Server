@@ -33,7 +33,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturity
             var maturityLevel = new MaturityLevel
             {
                 MaturityCategoryId = commandRequest.MaturityCategoryId,
-                Level = commandRequest.MaturityLevel,
+                BeltLevel = commandRequest.BeltLevel,
                 Description = commandRequest.Description
             };
 

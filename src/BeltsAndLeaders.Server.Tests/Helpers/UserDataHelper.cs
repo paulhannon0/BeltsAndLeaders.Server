@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.Users.GetUser;
 
@@ -38,6 +39,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
                 await responseMessage.Content.ReadAsStringAsync(),
                 new JsonSerializerOptions
                 {
+                    Converters = { new JsonStringEnumConverter() },
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 }
             );

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using BeltsAndLeaders.Server.Common.Enums;
 using BeltsAndLeaders.Server.Data.Models;
 using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
@@ -42,7 +43,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
         {
             this.userId = await this.userDataHelper.CreateUserAsync("John Doe", "johndoe@hotmail.com", "Security");
             var maturityCategoryId = await this.maturityCategoryDataHelper.CreateMaturityCategoryAsync("TestName");
-            this.maturityLevelId = await this.maturityLevelDataHelper.CreateMaturityLevelAsync(maturityCategoryId, 1, "Test");
+            this.maturityLevelId = await this.maturityLevelDataHelper.CreateMaturityLevelAsync(maturityCategoryId, BeltType.White, "Test");
         }
 
         [Given("a valid request path for the \'Create Achievement\' endpoint")]

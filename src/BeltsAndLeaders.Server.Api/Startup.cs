@@ -26,6 +26,7 @@ using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.DeleteMaturityLeve
 using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturityLevel;
 using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevelsByCategoryId;
 using BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievement;
+using System.Text.Json.Serialization;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -81,6 +82,11 @@ namespace BeltsAndLeaders.Server.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BeltsAndLeaders.Server", Version = "v1" });
+            });
+
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
         }
 

@@ -15,7 +15,7 @@ namespace BeltsAndLeaders.Server.Data.Migrations
                 table => table
                     .WithColumn("Id").AsInt64().PrimaryKey().Identity()
                     .WithColumn("MaturityCategoryId").AsInt64()
-                    .WithColumn("MaturityLevel").AsByte()
+                    .WithColumn("BeltLevel").AsString(255)
                     .WithColumn("Description").AsFixedLengthString(1000)
                     .WithColumn("CreatedAt").AsInt64()
                     .WithColumn("UpdatedAt").AsInt64().Nullable()
