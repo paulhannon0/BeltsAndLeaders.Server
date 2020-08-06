@@ -63,7 +63,9 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
                 TotalMaturityPoints = this.TotalMaturityPoints,
                 Belt = this.Belt.ToString(),
                 SpecialistArea = this.SpecialistArea,
-                ChampionStartDate = championStartDate
+                ChampionStartDate = championStartDate,
+                CreatedAt = this.CreatedAt.ToUnixTimeMilliseconds(),
+                UpdatedAt = this.UpdatedAt?.ToUnixTimeMilliseconds()
             };
         }
     }

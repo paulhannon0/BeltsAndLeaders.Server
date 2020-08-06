@@ -19,24 +19,22 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.UpdateUser
 
         public async Task<ulong> ExecuteAsync(UpdateUserCommandRequestModel commandRequest)
         {
-            var existingUser = await this.usersRepository.GetAsync(commandRequest.Id);
+            var userRecord = await this.usersRepository.GetAsync(commandRequest.Id);
 
-            if(existingUser == null)
+            if (userRecord == null)
             {
                 throw new HttpException(HttpStatusCode.NotFound, $"User (ID: {commandRequest.Id}) cannot be found.");
             }
 
-            User user = new User
-            {
-                Id = commandRequest.Id,
-                Name = commandRequest.Name,
-                Email = commandRequest.Email,
-                SpecialistArea = commandRequest.SpecialistArea
-            };
+            var existingUser = User.FromTableRecord(userRecord);
 
-            await this.usersRepository.UpdateAsync(user.ToTableRecord());
+            existingUser.Name = commandRequest.Name;
+            existingUser.Email = commandRequest.Email;
+            existingUser.SpecialistArea = commandRequest.SpecialistArea;
 
-            return user.Id;
+            await this.usersRepository.UpdateAsync(existingUser.ToTableRecord());
+
+            return existingUser.Id;
         }
     }
 }
