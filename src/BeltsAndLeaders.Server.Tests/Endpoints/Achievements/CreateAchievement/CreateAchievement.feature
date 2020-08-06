@@ -3,41 +3,23 @@
 
 Feature: Create Achievement
 
-    Scenario: Create Achievement - Request Successful - No Existing Belt - White Belt Achievement
+    Scenario Outline: Create Achievement - Request Successful - No Existing Belt - Each Possible Belt Achieved
 
         Given a user with 0 total maturity points
         And a valid request path for the 'Create Achievement' endpoint
-        And a valid request body for the 'Create Achievement' endpoint with a White belt achievement
+        And a valid request body for the 'Create Achievement' endpoint with a <BeltType> belt achievement
         When the POST request is made
         Then (201) Created is returned
         And the Location response header contains the ID of the new resource
         And the Achievement record has been inserted into the database
         And the relevant User has had their Belt value updated to None
-        And the relevant User has had their TotalMaturityPoints value updated to 1
+        And the relevant User has had their TotalMaturityPoints value updated to <TotalMaturityPoints>
 
-    Scenario: Create Achievement - Request Successful - No Existing Belt - Green Belt Achievement
-
-        Given a user with 0 total maturity points
-        And a valid request path for the 'Create Achievement' endpoint
-        And a valid request body for the 'Create Achievement' endpoint with a Green belt achievement
-        When the POST request is made
-        Then (201) Created is returned
-        And the Location response header contains the ID of the new resource
-        And the Achievement record has been inserted into the database
-        And the relevant User has had their Belt value updated to None
-        And the relevant User has had their TotalMaturityPoints value updated to 2
-
-    Scenario: Create Achievement - Request Successful - No Existing Belt - Black Belt Achievement
-
-        Given a user with 0 total maturity points
-        And a valid request path for the 'Create Achievement' endpoint
-        And a valid request body for the 'Create Achievement' endpoint with a Black belt achievement
-        When the POST request is made
-        Then (201) Created is returned
-        And the Location response header contains the ID of the new resource
-        And the Achievement record has been inserted into the database
-        And the relevant User has had their Belt value updated to None
-        And the relevant User has had their TotalMaturityPoints value updated to 3
+        Examples:
+            | BeltType | TotalMaturityPoints |
+            | White    | 1                   |
+            | Green    | 2                   |
+            | Black    | 3                   |
 
     Scenario: Create Achievement - Request Successful - No Existing Belt - Upgrade to White Belt
 
