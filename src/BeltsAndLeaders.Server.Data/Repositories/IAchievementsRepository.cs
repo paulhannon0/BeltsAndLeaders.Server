@@ -14,6 +14,12 @@ namespace BeltsAndLeaders.Server.Data.Repositories
 
         Task<IEnumerable<AchievementRecord>> GetByUserIdAsync(ulong userId);
 
+        Task<int> GetGreenBeltAchievementCountByUserId(ulong userId);
+
+        Task<int> GetBlackBeltAchievementCountByUserId(ulong userId);
+
+        Task<int> GetUniqueAchievementsCountByUserId(ulong userId);
+
         Task UpdateAsync(AchievementRecord achievement);
 
         Task DeleteAsync(ulong id);

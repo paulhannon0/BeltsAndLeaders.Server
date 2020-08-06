@@ -2,6 +2,9 @@ using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.Achievements;
 using BeltsAndLeaders.Server.Business.Models.Achievements.CreateAchievement;
+using BeltsAndLeaders.Server.Business.Models.MaturityLevels;
+using BeltsAndLeaders.Server.Business.Models.Users;
+using BeltsAndLeaders.Server.Common.Enums;
 using BeltsAndLeaders.Server.Common.Exceptions;
 using BeltsAndLeaders.Server.Data.Repositories;
 
@@ -26,20 +29,22 @@ namespace BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievemen
 
         public async Task<ulong> ExecuteAsync(CreateAchievementCommandRequestModel commandRequest)
         {
-            var user = await this.usersRepository.GetAsync(commandRequest.UserId);
+            var userRecord = await this.usersRepository.GetAsync(commandRequest.UserId);
 
-            if (user is null)
+            if (userRecord is null)
             {
                 throw new HttpException(HttpStatusCode.NotFound, $"User (ID: {commandRequest.UserId}) cannot be found.");
             }
 
-            var maturityLevel = await this.maturityLevelsRepository.GetAsync(commandRequest.MaturityLevelId);
+            var maturityLevelRecord = await this.maturityLevelsRepository.GetAsync(commandRequest.MaturityLevelId);
 
-            if (maturityLevel is null)
+            if (maturityLevelRecord is null)
             {
                 throw new HttpException(HttpStatusCode.NotFound, $"MaturityLevel (ID: {commandRequest.MaturityLevelId}) cannot be found.");
             }
 
+            var user = User.FromTableRecord(userRecord);
+            var maturityLevel = MaturityLevel.FromTableRecord(maturityLevelRecord);
             var achievement = new Achievement
             {
                 UserId = commandRequest.UserId,
@@ -48,9 +53,34 @@ namespace BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievemen
                 Comment = commandRequest.Comment
             };
 
-            // TODO: Belt logic
+            user.TotalMaturityPoints += (int)maturityLevel.BeltLevel;
 
-            return await this.achievementsRepository.CreateAsync(achievement.ToTableRecord());
+            var achievementId = await this.achievementsRepository.CreateAsync(achievement.ToTableRecord());
+
+            var numberOfUniqueAchievements = await this.achievementsRepository.GetUniqueAchievementsCountByUserId(user.Id);
+            var numberOfGreenBeltAchievements = await this.achievementsRepository.GetGreenBeltAchievementCountByUserId(user.Id);
+            var numberOfBlackBeltAchievements = await this.achievementsRepository.GetBlackBeltAchievementCountByUserId(user.Id);
+
+            if (numberOfUniqueAchievements >= 9 && numberOfBlackBeltAchievements >= 3)
+            {
+                user.Belt = BeltType.Black;
+            }
+            else if (numberOfUniqueAchievements >= 3 && numberOfBlackBeltAchievements >= 1 && numberOfGreenBeltAchievements >= 2)
+            {
+                user.Belt = BeltType.Green;
+            }
+            else if (numberOfUniqueAchievements >= 5)
+            {
+                user.Belt = BeltType.White;
+            }
+            else
+            {
+                user.Belt = BeltType.None;
+            }
+
+            await this.usersRepository.UpdateAsync(user.ToTableRecord());
+
+            return achievementId;
         }
     }
 }

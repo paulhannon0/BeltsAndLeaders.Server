@@ -115,7 +115,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
             }
         }
 
-        private static void UseDatabase(IDbConnection connection)
+        public static void UseDatabase(IDbConnection connection)
         {
             var command = connection.CreateCommand();
 

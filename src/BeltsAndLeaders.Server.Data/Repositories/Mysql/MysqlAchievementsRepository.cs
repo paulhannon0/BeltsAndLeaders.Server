@@ -32,6 +32,21 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             );
         }
 
+        public async Task<int> GetGreenBeltAchievementCountByUserId(ulong userId)
+        {
+            return await AchievementsRepositoryHelper.GetAchievementCountByUserIdAndBeltColour(userId, "Green");
+        }
+
+        public async Task<int> GetBlackBeltAchievementCountByUserId(ulong userId)
+        {
+            return await AchievementsRepositoryHelper.GetAchievementCountByUserIdAndBeltColour(userId, "Black");
+        }
+
+        public async Task<int> GetUniqueAchievementsCountByUserId(ulong userId)
+        {
+            return await AchievementsRepositoryHelper.GetUniqueAchievementsCountByUserId(userId);
+        }
+
         public async Task UpdateAsync(AchievementRecord achievement)
         {
             await RepositoryHelper.UpdateAsync<AchievementRecord>(achievement);

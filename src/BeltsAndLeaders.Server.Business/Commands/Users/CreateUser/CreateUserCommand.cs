@@ -23,7 +23,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
                 Name = commandRequest.Name,
                 Email = commandRequest.Email,
                 TotalMaturityPoints = 0,
-                Belt = BeltType.White,
+                Belt = BeltType.None,
                 SpecialistArea = commandRequest.SpecialistArea,
                 ChampionStartDate = commandRequest.ChampionStartDate
             };

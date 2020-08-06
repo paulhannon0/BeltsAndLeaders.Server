@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Common.Enums;
@@ -20,6 +21,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private ulong newResourceId;
         private ulong userId;
+        private ulong maturityCategoryId;
         private ulong maturityLevelId;
 
         public CreateAchievementSteps(
@@ -42,8 +44,37 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
         public async Task BeforeScenario()
         {
             this.userId = await this.userDataHelper.CreateUserAsync("John Doe", "johndoe@hotmail.com", "Security");
-            var maturityCategoryId = await this.maturityCategoryDataHelper.CreateMaturityCategoryAsync("TestName");
-            this.maturityLevelId = await this.maturityLevelDataHelper.CreateMaturityLevelAsync(maturityCategoryId, BeltType.White, "Test");
+            this.maturityCategoryId = await this.maturityCategoryDataHelper.CreateMaturityCategoryAsync("TestName");
+        }
+
+        [Given("a user with (.*) total maturity points")]
+        public async Task GivenAUserWithTotalMaturityPoints(int totalMaturityPoints)
+        {
+            var whiteBeltLevelIds = await this.CreateWhiteBeltMaturityLevels(totalMaturityPoints);
+
+            await this.CreateAchievements(whiteBeltLevelIds);
+        }
+
+        [Given("a user with 9 total maturity points including 2 green belt and 1 black belt achievements")]
+        public async Task GivenAUserWith9TotalMaturityPointsIncluding2GreenBeltAnd1BlackBeltAchievements()
+        {
+            var whiteBeltLevelIds = await this.CreateWhiteBeltMaturityLevels(2);
+            var greenBeltLevelIds = await this.CreateGreenBeltMaturityLevels(2);
+            var blackBeltLevelIds = await this.CreateBlackBeltMaturityLevels(1);
+
+            await this.CreateAchievements(whiteBeltLevelIds);
+            await this.CreateAchievements(greenBeltLevelIds);
+            await this.CreateAchievements(blackBeltLevelIds);
+        }
+
+        [Given("a user with 14 total maturity points including 3 black belt achievements")]
+        public async Task GivenAUserWith14TotalMaturityPointsIncluding3BlackBeltAchievements()
+        {
+            var whiteBeltLevelIds = await this.CreateWhiteBeltMaturityLevels(5);
+            var blackBeltLevelIds = await this.CreateBlackBeltMaturityLevels(3);
+
+            await this.CreateAchievements(whiteBeltLevelIds);
+            await this.CreateAchievements(blackBeltLevelIds);
         }
 
         [Given("a valid request path for the \'Create Achievement\' endpoint")]
@@ -52,9 +83,16 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
             this.testHost.EndpointPath = "/achievements";
         }
 
-        [Given("a valid request body for the \'Create Achievement\' endpoint")]
-        public void GivenAValidRequestBodyForTheCreateAchievementEndpoint()
+        [Given("a valid request body for the \'Create Achievement\' endpoint with a (White|Green|Black) belt achievement")]
+        public async Task GivenAValidRequestBodyForTheCreateAchievementEndpoint(string belt)
         {
+            this.maturityLevelId = await this.maturityLevelDataHelper.CreateMaturityLevelAsync
+            (
+                maturityCategoryId,
+                (BeltType)Enum.Parse(typeof(BeltType), belt),
+                "Test"
+            );
+
             this.BuildValidRequestBody();
         }
 
@@ -118,10 +156,20 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
             Assert.IsTrue(doesRecordExist);
         }
 
-        [Then("the relevant User has had their Belt and MaturityLevel values updated in the database")]
-        public void ThenTheRelevantUserHasHadTheirBeltAndMaturityLevelValuesUpdatedInTheDatabase()
+        [Then("the relevant User has had their Belt value updated to (None|White|Green|Black)")]
+        public async Task ThenTheRelevantUserHasHadTheirBeltValueUpdatedTo(string belt)
         {
+            var user = await this.userDataHelper.GetUserAsync(this.userId);
 
+            Assert.AreEqual(belt, user.Belt.ToString());
+        }
+
+        [Then("the relevant User has had their TotalMaturityPoints value updated to (.*)")]
+        public async Task ThenTheRelevantUserHasHadTheirTotalMaturityPointsValueUpdatedTo(int totalMaturityPoints)
+        {
+            var user = await this.userDataHelper.GetUserAsync(this.userId);
+
+            Assert.AreEqual(totalMaturityPoints, user.TotalMaturityPoints);
         }
 
         private void BuildValidRequestBody()
@@ -130,6 +178,55 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
             this.testHost.RequestBody.Add("MaturityLevelId", this.maturityLevelId);
             this.testHost.RequestBody.Add("AchievementDate", DateTimeOffset.Now);
             this.testHost.RequestBody.Add("Comment", "I did good at the thing.");
+        }
+
+        private async Task<IEnumerable<ulong>> CreateWhiteBeltMaturityLevels(int count)
+        {
+            return await this.CreateMaturityLevels(count, BeltType.White);
+        }
+
+        private async Task<IEnumerable<ulong>> CreateGreenBeltMaturityLevels(int count)
+        {
+            return await this.CreateMaturityLevels(count, BeltType.Green);
+        }
+
+        private async Task<IEnumerable<ulong>> CreateBlackBeltMaturityLevels(int count)
+        {
+            return await this.CreateMaturityLevels(count, BeltType.Black);
+        }
+
+        private async Task<IEnumerable<ulong>> CreateMaturityLevels(int count, BeltType beltType)
+        {
+            var recordIds = new List<ulong>();
+
+            for (int i = 0; i < count; i++)
+            {
+                recordIds.Add
+                (
+                    await this.maturityLevelDataHelper.CreateMaturityLevelAsync
+                    (
+                        this.maturityCategoryId,
+                        beltType,
+                        "Test"
+                    )
+                );
+            }
+
+            return recordIds;
+        }
+
+        private async Task CreateAchievements(IEnumerable<ulong> maturityLevelIds)
+        {
+            foreach (var maturityLevelId in maturityLevelIds)
+            {
+                await this.achievementDataHelper.CreateAchievementAsync
+                (
+                    this.userId,
+                    maturityLevelId,
+                    DateTimeOffset.Now,
+                    "Test"
+                );
+            }
         }
     }
 }
