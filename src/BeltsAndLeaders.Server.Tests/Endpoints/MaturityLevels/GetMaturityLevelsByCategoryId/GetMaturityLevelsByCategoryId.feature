@@ -16,7 +16,7 @@ Feature: Get Maturity Levels by Category ID
         When the GET request is made
         Then (400) Bad Request is returned
 
-    Scenario: Get Maturity Levels by Category ID - Request Failure - Maturity Level resource does not exist
+    Scenario: Get Maturity Levels by Category ID - Request Failure - Maturity Category resource does not exist
 
         Given a request path for the 'Get Maturity Levels by Category ID' endpoint with an ID for a non-existent resource
         When the GET request is made
