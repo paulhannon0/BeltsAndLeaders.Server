@@ -27,6 +27,8 @@ using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturityLeve
 using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevelsByCategoryId;
 using BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievement;
 using System.Text.Json.Serialization;
+using BeltsAndLeaders.Server.Business.Queries.Achievements.GetAchievement;
+using BeltsAndLeaders.Server.Business.Queries.Achievements.GetAchievementsByUserId;
 
 namespace BeltsAndLeaders.Server.Api
 {
@@ -72,6 +74,8 @@ namespace BeltsAndLeaders.Server.Api
             services.AddScoped<IGetMaturityLevelQuery, GetMaturityLevelQuery>();
             services.AddScoped<IGetAllMaturityLevelsQuery, GetAllMaturityLevelsQuery>();
             services.AddScoped<IGetMaturityLevelsByCategoryIdQuery, GetMaturityLevelsByCategoryIdQuery>();
+            services.AddScoped<IGetAchievementQuery, GetAchievementQuery>();
+            services.AddScoped<IGetAchievementsByUserIdQuery, GetAchievementsByUserIdQuery>();
 
             // Repositories
             services.AddScoped<IUsersRepository, MysqlUsersRepository>();
