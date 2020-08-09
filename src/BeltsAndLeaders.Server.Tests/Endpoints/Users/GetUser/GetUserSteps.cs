@@ -31,7 +31,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.GetUser
             /* 
                 Conversion from/to Unix timestamp is necessary here to mimic the
                 same operation the server does when inserting into the DB, resulting
-                in a DateTimeOffset to 3 decimal places after the seconds rather than 6
+                in a DateTimeOffset to 3 decimal places after the seconds rather than 6,
+                so 2020-08-09 16:05:15.7954576+00:00 becomes 2020-08-09 16:05:15.795+00:00
             */
             this.championStartDate = DateTimeOffset.FromUnixTimeMilliseconds
             (
