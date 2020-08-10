@@ -56,7 +56,6 @@ namespace BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievemen
             user.TotalMaturityPoints += (int)maturityLevel.BeltLevel;
 
             var achievementId = await this.achievementsRepository.CreateAsync(achievement.ToTableRecord());
-
             var numberOfUniqueAchievements = await this.achievementsRepository.GetUniqueAchievementsCountByUserId(user.Id);
             var numberOfGreenBeltAchievements = await this.achievementsRepository.GetGreenBeltAchievementCountByUserId(user.Id);
             var numberOfBlackBeltAchievements = await this.achievementsRepository.GetBlackBeltAchievementCountByUserId(user.Id);
