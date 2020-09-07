@@ -29,12 +29,15 @@ using BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievement;
 using System.Text.Json.Serialization;
 using BeltsAndLeaders.Server.Business.Queries.Achievements.GetAchievement;
 using BeltsAndLeaders.Server.Business.Queries.Achievements.GetAchievementsByUserId;
+using System;
 
 namespace BeltsAndLeaders.Server.Api
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
+
+        private string allowOriginsPolicyName = "_allowOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -43,6 +46,18 @@ namespace BeltsAndLeaders.Server.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy
+                (
+                    name: this.allowOriginsPolicyName,
+                    builder =>
+                    {
+                        builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
+                    }
+                );
+            });
+
             services.AddControllers();
 
             services.AddFluentMigratorCore()
@@ -112,6 +127,8 @@ namespace BeltsAndLeaders.Server.Api
             app.UseRouting();
             app.UseHttpExceptionHandling();
             // app.UseAuthorization();
+
+            app.UseCors(this.allowOriginsPolicyName);
 
             app.UseEndpoints(endpoints =>
             {
