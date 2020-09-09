@@ -53,7 +53,10 @@ namespace BeltsAndLeaders.Server.Api
                     name: this.allowOriginsPolicyName,
                     builder =>
                     {
-                        builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
+                        builder
+                            .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
                     }
                 );
             });
