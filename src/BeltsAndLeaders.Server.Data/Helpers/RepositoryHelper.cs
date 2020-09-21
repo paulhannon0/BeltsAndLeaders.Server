@@ -11,7 +11,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
 {
     public static class RepositoryHelper
     {
-        public static async Task<ulong> InsertAsync<T>(T record) where T : class
+        public static async Task<Guid> InsertAsync<T>(T record) where T : class
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {
@@ -31,7 +31,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
             }
         }
 
-        public static async Task<T> GetByIdAsync<T>(ulong id) where T : class
+        public static async Task<T> GetByIdAsync<T>(Guid id) where T : class
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {
@@ -61,7 +61,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
             }
         }
 
-        public static async Task<IEnumerable<T>> GetByNonKeyIdValue<T>(string tableName, string columnName, ulong value) where T : class
+        public static async Task<IEnumerable<T>> GetByNonKeyIdValue<T>(string tableName, string columnName, Guid value) where T : class
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {
@@ -123,12 +123,12 @@ namespace BeltsAndLeaders.Server.Data.Helpers
             command.ExecuteNonQuery();
         }
 
-        private static ulong GetLastInsertedId(IDbConnection connection)
+        private static Guid GetLastInsertedId(IDbConnection connection)
         {
             var command = connection.CreateCommand();
             command.CommandText = "SELECT LAST_INSERT_ID();";
 
-            return (ulong)command.ExecuteScalar();
+            return (Guid)command.ExecuteScalar();
         }
     }
 }

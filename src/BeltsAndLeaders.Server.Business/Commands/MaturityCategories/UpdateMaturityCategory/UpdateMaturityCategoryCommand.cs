@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories;
@@ -16,7 +17,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityCategories.UpdateMatu
             this.maturityCategoriesRepository = maturityCategoriesRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(UpdateMaturityCategoryCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(UpdateMaturityCategoryCommandRequestModel commandRequest)
         {
             var existingMaturityCategory = await this.maturityCategoriesRepository.GetAsync(commandRequest.Id);
 

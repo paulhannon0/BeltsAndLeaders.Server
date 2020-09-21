@@ -12,6 +12,7 @@ using BeltsAndLeaders.Server.Business.Queries.Users.GetUser;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -64,7 +65,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<GetUserResponseModel>> Get(
-            [FromRoute] ulong id
+            [FromRoute] Guid id
         )
         {
             var queryRequest = new GetUserQueryRequestModel { Id = id };
@@ -90,7 +91,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Update(
-        [FromRoute] ulong id,
+        [FromRoute] Guid id,
         [FromBody] UpdateUserRequestBody requestBody
 )
         {
@@ -105,7 +106,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Delete(
-            [FromRoute] ulong id
+            [FromRoute] Guid id
         )
         {
             var commandRequest = new DeleteUserCommandRequestModel { Id = id };

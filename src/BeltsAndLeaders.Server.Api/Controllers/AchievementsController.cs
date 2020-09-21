@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.Achievements.CreateAchievement;
@@ -55,7 +56,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<GetAchievementResponseModel>> Get(
-            [FromRoute] ulong id
+            [FromRoute] Guid id
         )
         {
             var queryRequest = new GetAchievementQueryRequestModel { Id = id };
@@ -70,7 +71,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<GetAchievementsByUserIdResponseModel>> GetByUserId(
-            [FromRoute] ulong userId
+            [FromRoute] Guid userId
         )
         {
             var queryRequest = new GetAchievementsByUserIdQueryRequestModel { UserId = userId };

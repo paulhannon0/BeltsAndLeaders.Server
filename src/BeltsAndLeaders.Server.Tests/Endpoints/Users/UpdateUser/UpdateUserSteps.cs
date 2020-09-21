@@ -12,9 +12,9 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.UpdateUser
     {
         private readonly TestHost testHost;
         private readonly UserDataHelper userDataHelper;
-        private ulong validId;
+        private Guid validId;
         private readonly string invalidId;
-        private readonly ulong nonExistentId;
+        private readonly Guid nonExistentId;
         private readonly string email;
         private readonly string updatedUserEmail;
         private readonly string name;
@@ -27,7 +27,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.UpdateUser
             this.testHost = testHost;
             this.userDataHelper = userDataHelper;
             this.invalidId = "Invalid_ID";
-            this.nonExistentId = 0;
+            // this.nonExistentId = 0;
             this.updatedUserEmail = "updateduser@test.com";
             this.championStartDate = DateTime.Now;
             this.name = "UserName";

@@ -16,7 +16,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
             this.usersRepository = usersRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(CreateUserCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(CreateUserCommandRequestModel commandRequest)
         {
             var user = new User
             {

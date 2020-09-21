@@ -5,7 +5,7 @@ namespace BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetMaturityCatego
 {
     public class GetMaturityCategoryResponseModel
     {
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

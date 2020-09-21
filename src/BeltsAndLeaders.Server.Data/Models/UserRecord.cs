@@ -1,3 +1,4 @@
+using System;
 using BeltsAndLeaders.Server.Common.Enums;
 using Dapper.Contrib.Extensions;
 
@@ -7,7 +8,7 @@ namespace BeltsAndLeaders.Server.Data.Models
     public class UserRecord : IRecord
     {
         [Key]
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

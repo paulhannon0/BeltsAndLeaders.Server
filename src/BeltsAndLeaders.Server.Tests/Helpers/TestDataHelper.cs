@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Data.Helpers;
 
@@ -12,7 +13,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             this.TestHost = testHost;
         }
 
-        public async Task<bool> DoesRecordExist<T>(ulong id) where T : class
+        public async Task<bool> DoesRecordExist<T>(Guid id) where T : class
         {
             var record = await RepositoryHelper.GetByIdAsync<T>(id);
 

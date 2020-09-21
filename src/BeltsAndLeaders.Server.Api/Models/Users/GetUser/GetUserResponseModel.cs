@@ -6,7 +6,7 @@ namespace BeltsAndLeaders.Server.Api.Models.Users.GetUser
 {
     public class GetUserResponseModel
     {
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

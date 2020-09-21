@@ -1,3 +1,4 @@
+using System;
 using Dapper.Contrib.Extensions;
 
 namespace BeltsAndLeaders.Server.Data.Models
@@ -6,7 +7,7 @@ namespace BeltsAndLeaders.Server.Data.Models
     public class MaturityCategoryRecord : IRecord
     {
         [Key]
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

@@ -17,6 +17,7 @@ using BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturityLeve
 using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetMaturityLevelsByCategoryId;
 using BeltsAndLeaders.Server.Business.Models.MaturityLevels.GetMaturityLevelsByCategoryId;
 using BeltsAndLeaders.Server.Business.Queries.MaturityLevels.GetMaturityLevelsByCategoryId;
+using System;
 
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
@@ -70,7 +71,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<GetMaturityLevelResponseModel>> Get(
-            [FromRoute] ulong id
+            [FromRoute] Guid id
         )
         {
             var queryRequest = new GetMaturityLevelQueryRequestModel { Id = id };
@@ -96,7 +97,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<GetMaturityLevelsByCategoryIdResponseModel>> GetByCategoryId(
-            [FromRoute] ulong maturityCategoryId
+            [FromRoute] Guid maturityCategoryId
         )
         {
             var queryRequest = new GetMaturityLevelsByCategoryIdQueryRequestModel { CategoryId = maturityCategoryId };
@@ -111,7 +112,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Update(
-            [FromRoute] ulong id,
+            [FromRoute] Guid id,
             [FromBody] UpdateMaturityLevelRequestBody requestBody
         )
         {
@@ -126,7 +127,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Delete(
-            [FromRoute] ulong id
+            [FromRoute] Guid id
         )
         {
             var commandRequest = new DeleteMaturityLevelCommandRequestModel { Id = id };

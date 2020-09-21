@@ -5,11 +5,11 @@ namespace BeltsAndLeaders.Server.Business.Models.Achievements
 {
     public class Achievement
     {
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
-        public ulong UserId { get; set; }
+        public Guid UserId { get; set; }
 
-        public ulong MaturityLevelId { get; set; }
+        public Guid MaturityLevelId { get; set; }
 
         public string Comment { get; set; }
 

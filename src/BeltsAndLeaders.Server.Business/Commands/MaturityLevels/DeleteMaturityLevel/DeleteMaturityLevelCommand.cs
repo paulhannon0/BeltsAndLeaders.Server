@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.MaturityLevels.DeleteMaturityLevel;
@@ -15,7 +16,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityLevels.DeleteMaturity
             this.maturityLevelsRepository = maturityLevelsRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(DeleteMaturityLevelCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(DeleteMaturityLevelCommandRequestModel commandRequest)
         {
             var maturityLevel = await this.maturityLevelsRepository.GetAsync(commandRequest.Id);
 

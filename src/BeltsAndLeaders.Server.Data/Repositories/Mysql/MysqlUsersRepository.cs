@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Data.Helpers;
@@ -7,12 +8,12 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 {
     public class MysqlUsersRepository : IUsersRepository
     {
-        public async Task<ulong> CreateAsync(UserRecord user)
+        public async Task<Guid> CreateAsync(UserRecord user)
         {
             return await RepositoryHelper.InsertAsync<UserRecord>(user);
         }
 
-        public async Task<UserRecord> GetAsync(ulong id)
+        public async Task<UserRecord> GetAsync(Guid id)
         {
             return await RepositoryHelper.GetByIdAsync<UserRecord>(id);
         }
@@ -27,7 +28,7 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             await RepositoryHelper.UpdateAsync<UserRecord>(user);
         }
 
-        public async Task DeleteAsync(ulong id)
+        public async Task DeleteAsync(Guid id)
         {
             await RepositoryHelper.DeleteAsync<UserRecord>(new UserRecord { Id = id });
         }

@@ -14,7 +14,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.CreateMaturi
     {
         private readonly TestHost testHost;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
-        private ulong newResourceId;
+        private Guid newResourceId;
 
         public CreateMaturityCategorySteps(TestHost testHost, MaturityCategoryDataHelper maturityCategoryDataHelper)
         {
@@ -63,7 +63,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.CreateMaturi
         {
             var locationHeader = this.testHost.LastResponseMessage.Headers.Location;
 
-            this.newResourceId = ulong.Parse
+            this.newResourceId = Guid.Parse
             (
                 locationHeader
                     ?.ToString()

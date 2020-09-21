@@ -1,3 +1,4 @@
+using System;
 using BeltsAndLeaders.Server.Business.Models.MaturityLevels.UpdateMaturityLevel;
 
 namespace BeltsAndLeaders.Server.Api.Models.MaturityLevels.UpdateMaturityLevel
@@ -6,7 +7,7 @@ namespace BeltsAndLeaders.Server.Api.Models.MaturityLevels.UpdateMaturityLevel
     {
         public string Description { get; set; }
 
-        public UpdateMaturityLevelCommandRequestModel ToCommandRequest(ulong id)
+        public UpdateMaturityLevelCommandRequestModel ToCommandRequest(Guid id)
         {
             return new UpdateMaturityLevelCommandRequestModel
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.Achievements;
@@ -27,7 +28,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievemen
             this.usersRepository = usersRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(CreateAchievementCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(CreateAchievementCommandRequestModel commandRequest)
         {
             var userRecord = await this.usersRepository.GetAsync(commandRequest.UserId);
 

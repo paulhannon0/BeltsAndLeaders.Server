@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetMaturityLevelsByCategoryId;
@@ -15,8 +16,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetMaturityLevel
         private readonly TestHost testHost;
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
-        private ulong validId;
-        private ulong maturityLevelId;
+        private Guid validId;
+        private Guid maturityLevelId;
         private readonly BeltType beltLevel;
         private readonly string description;
 

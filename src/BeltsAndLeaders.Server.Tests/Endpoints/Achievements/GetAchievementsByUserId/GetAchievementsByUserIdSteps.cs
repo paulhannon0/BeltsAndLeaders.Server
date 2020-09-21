@@ -18,10 +18,10 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.GetAchievementsByU
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private readonly UserDataHelper userDataHelper;
-        private ulong validId;
-        private ulong maturityCategoryId;
-        private ulong maturityLevelId;
-        private ulong achievementId;
+        private Guid validId;
+        private Guid maturityCategoryId;
+        private Guid maturityLevelId;
+        private Guid achievementId;
         private readonly DateTimeOffset achievementDate;
         private readonly string comment;
 

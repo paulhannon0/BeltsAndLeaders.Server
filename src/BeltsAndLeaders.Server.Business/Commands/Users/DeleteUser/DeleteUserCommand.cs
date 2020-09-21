@@ -1,6 +1,7 @@
 ﻿using BeltsAndLeaders.Server.Business.Models.Users.DeleteUser;
 using BeltsAndLeaders.Server.Common.Exceptions;
 using BeltsAndLeaders.Server.Data.Repositories;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.DeleteUser
             this.usersRepository = usersRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(DeleteUserCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(DeleteUserCommandRequestModel commandRequest)
         {
             var user = await this.usersRepository.GetAsync(commandRequest.Id);
 

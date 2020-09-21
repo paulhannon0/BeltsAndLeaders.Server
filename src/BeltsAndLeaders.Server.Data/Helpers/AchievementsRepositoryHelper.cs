@@ -11,7 +11,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
 {
     public static class AchievementsRepositoryHelper
     {
-        public static async Task<int> GetAchievementCountByUserIdAndBeltColour(ulong userId, string beltLevel)
+        public static async Task<int> GetAchievementCountByUserIdAndBeltColour(Guid userId, string beltLevel)
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {
@@ -45,7 +45,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
             }
         }
 
-        public static async Task<int> GetUniqueAchievementsCountByUserId(ulong userId)
+        public static async Task<int> GetUniqueAchievementsCountByUserId(Guid userId)
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {

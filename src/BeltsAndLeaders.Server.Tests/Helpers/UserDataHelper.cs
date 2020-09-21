@@ -11,7 +11,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
     {
         public UserDataHelper(TestHost testHost) : base(testHost) { }
 
-        public async Task<ulong> CreateUserAsync(string name, string email, string specialistArea, DateTimeOffset? championStartDate = null)
+        public async Task<Guid> CreateUserAsync(string name, string email, string specialistArea, DateTimeOffset? championStartDate = null)
         {
             var requestBody = new Dictionary<string, object>()
             {
@@ -27,10 +27,10 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
 
             var responseMessage = await this.TestHost.PostAsync("/users", requestBody);
 
-            return ulong.Parse(await responseMessage.Content.ReadAsStringAsync());
+            return Guid.Parse(await responseMessage.Content.ReadAsStringAsync());
         }
 
-        public async Task<GetUserResponseModel> GetUserAsync(ulong id)
+        public async Task<GetUserResponseModel> GetUserAsync(Guid id)
         {
             var responseMessage = await this.TestHost.GetAsync($"/users/{id}");
 

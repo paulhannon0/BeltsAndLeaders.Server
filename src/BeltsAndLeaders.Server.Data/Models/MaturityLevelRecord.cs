@@ -1,3 +1,4 @@
+using System;
 using BeltsAndLeaders.Server.Common.Enums;
 using Dapper.Contrib.Extensions;
 
@@ -7,9 +8,9 @@ namespace BeltsAndLeaders.Server.Data.Models
     public class MaturityLevelRecord : IRecord
     {
         [Key]
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
-        public ulong MaturityCategoryId { get; set; }
+        public Guid MaturityCategoryId { get; set; }
 
         public string BeltLevel { get; set; }
 

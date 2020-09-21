@@ -13,10 +13,10 @@ namespace BeltsAndLeaders.Server.Data.Migrations
             (
                 "Achievements",
                 table => table
-                    .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                    .WithColumn("UserId").AsInt64()
-                    .WithColumn("MaturityLevelId").AsInt64()
-                    .WithColumn("AchievementDate").AsInt64()
+                    .WithColumn("Id").AsBinary(16).PrimaryKey()
+                    .WithColumn("UserId").AsBinary(16)
+                    .WithColumn("MaturityLevelId").AsBinary(16)
+                    .WithColumn("AchievementDate").AsBinary(16)
                     .WithColumn("Comment").AsFixedLengthString(1000)
                     .WithColumn("CreatedAt").AsInt64()
                     .WithColumn("UpdatedAt").AsInt64().Nullable()

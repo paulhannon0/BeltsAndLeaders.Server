@@ -7,10 +7,10 @@ namespace BeltsAndLeaders.Server.Api.Models.Achievements.CreateAchievement
     public class CreateAchievementRequestBody
     {
         [Required]
-        public ulong UserId { get; set; }
+        public Guid UserId { get; set; }
 
         [Required]
-        public ulong MaturityLevelId { get; set; }
+        public Guid MaturityLevelId { get; set; }
 
         [Required]
         public DateTimeOffset AchievementDate { get; set; }

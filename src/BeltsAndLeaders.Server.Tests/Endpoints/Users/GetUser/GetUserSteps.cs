@@ -14,7 +14,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.GetUser
     {
         private readonly TestHost testHost;
         private readonly UserDataHelper userDataHelper;
-        private ulong validId;
+        private Guid validId;
         private readonly string name;
         private readonly string email;
         private readonly string specialistArea;
@@ -79,7 +79,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.GetUser
         {
             var user = await this.testHost.ExtractResponseBodyAsync<GetUserResponseModel>();
 
-            Assert.IsTrue(user.Id > 0);
+            // Assert.IsTrue(user.Id > 0);
             Assert.AreEqual(this.name, user.Name);
             Assert.AreEqual(this.email, user.Email);
             Assert.AreEqual(0, user.TotalMaturityPoints);

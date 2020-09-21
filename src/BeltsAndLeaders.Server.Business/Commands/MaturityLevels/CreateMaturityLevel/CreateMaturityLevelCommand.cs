@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.MaturityLevels;
@@ -21,7 +22,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturity
             this.maturityCategoriesRepository = maturityCategoriesRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(CreateMaturityLevelCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(CreateMaturityLevelCommandRequestModel commandRequest)
         {
             var maturityCategory = await this.maturityCategoriesRepository.GetAsync(commandRequest.MaturityCategoryId);
 

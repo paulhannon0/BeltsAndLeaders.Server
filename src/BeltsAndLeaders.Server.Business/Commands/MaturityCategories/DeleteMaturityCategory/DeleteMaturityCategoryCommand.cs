@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories.DeleteMaturityCategory;
@@ -15,7 +16,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityCategories.DeleteMatu
             this.maturityCategoriesRepository = maturityCategoriesRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(DeleteMaturityCategoryCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(DeleteMaturityCategoryCommandRequestModel commandRequest)
         {
             var maturityCategory = await this.maturityCategoriesRepository.GetAsync(commandRequest.Id);
 

@@ -4,9 +4,9 @@ namespace BeltsAndLeaders.Server.Business.Models.Achievements.CreateAchievement
 {
     public class CreateAchievementCommandRequestModel
     {
-        public ulong UserId { get; set; }
+        public Guid UserId { get; set; }
 
-        public ulong MaturityLevelId { get; set; }
+        public Guid MaturityLevelId { get; set; }
 
         public DateTimeOffset AchievementDate { get; set; }
 

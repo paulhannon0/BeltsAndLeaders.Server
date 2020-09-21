@@ -14,6 +14,7 @@ using BeltsAndLeaders.Server.Business.Models.MaturityCategories.DeleteMaturityCa
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories.GetMaturityCategory;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetAllMaturityCategories;
 using BeltsAndLeaders.Server.Business.Queries.MaturityCategories.GetMaturityCategory;
+using System;
 
 namespace BeltsAndLeaders.Server.Api.Controllers
 {
@@ -64,7 +65,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<GetMaturityCategoryResponseModel>> Get(
-            [FromRoute] ulong id
+            [FromRoute] Guid id
         )
         {
             var queryRequest = new GetMaturityCategoryQueryRequestModel { Id = id };
@@ -90,7 +91,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Update(
-            [FromRoute] ulong id,
+            [FromRoute] Guid id,
             [FromBody] UpdateMaturityCategoryRequestBody requestBody
         )
         {
@@ -105,7 +106,7 @@ namespace BeltsAndLeaders.Server.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Delete(
-            [FromRoute] ulong id
+            [FromRoute] Guid id
         )
         {
             var commandRequest = new DeleteMaturityCategoryCommandRequestModel { Id = id };

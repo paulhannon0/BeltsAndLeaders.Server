@@ -12,7 +12,7 @@ namespace BeltsAndLeaders.Server.Data.Migrations
             (
                 "MaturityCategories",
                 table => table
-                    .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+                    .WithColumn("Id").AsBinary(16).PrimaryKey()
                     .WithColumn("Name").AsFixedLengthString(255)
                     .WithColumn("CreatedAt").AsInt64()
                     .WithColumn("UpdatedAt").AsInt64().Nullable()

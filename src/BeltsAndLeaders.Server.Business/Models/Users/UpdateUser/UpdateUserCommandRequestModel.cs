@@ -6,7 +6,7 @@ namespace BeltsAndLeaders.Server.Business.Models.Users.UpdateUser
 {
     public class UpdateUserCommandRequestModel
     {
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

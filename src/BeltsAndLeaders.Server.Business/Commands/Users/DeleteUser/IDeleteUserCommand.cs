@@ -1,8 +1,7 @@
-﻿using BeltsAndLeaders.Server.Business.Models.Users.DeleteUser;
+﻿using System;
+using BeltsAndLeaders.Server.Business.Models.Users.DeleteUser;
 
 namespace BeltsAndLeaders.Server.Business.Commands.Users.DeleteUser
 {
-    public interface IDeleteUserCommand : ICommand<DeleteUserCommandRequestModel, ulong>
-    {
-    }
+    public interface IDeleteUserCommand : ICommand<DeleteUserCommandRequestModel, Guid> { }
 }

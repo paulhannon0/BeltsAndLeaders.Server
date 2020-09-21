@@ -1,6 +1,7 @@
 using BeltsAndLeaders.Server.Data.Models;
 using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
+using System;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -12,16 +13,16 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.DeleteMaturi
     {
         private readonly TestHost testHost;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
-        private ulong validId;
+        private Guid validId;
         private readonly string invalidId;
-        private readonly ulong nonExistentId;
+        private readonly Guid nonExistentId;
 
         public DeleteMaturityCategorySteps(TestHost testHost, MaturityCategoryDataHelper maturityCategoryDataHelper)
         {
             this.testHost = testHost;
             this.maturityCategoryDataHelper = maturityCategoryDataHelper;
             this.invalidId = "invalid_id";
-            this.nonExistentId = 0;
+            // this.nonExistentId = 0;
         }
 
         [BeforeScenario]

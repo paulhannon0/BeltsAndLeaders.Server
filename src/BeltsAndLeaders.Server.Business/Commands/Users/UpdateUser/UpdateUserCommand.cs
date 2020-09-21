@@ -3,6 +3,7 @@ using BeltsAndLeaders.Server.Business.Models.Users.UpdateUser;
 using BeltsAndLeaders.Server.Common.Exceptions;
 using BeltsAndLeaders.Server.Data.Models;
 using BeltsAndLeaders.Server.Data.Repositories;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.UpdateUser
             this.usersRepository = usersRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(UpdateUserCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(UpdateUserCommandRequestModel commandRequest)
         {
             var userRecord = await this.usersRepository.GetAsync(commandRequest.Id);
 

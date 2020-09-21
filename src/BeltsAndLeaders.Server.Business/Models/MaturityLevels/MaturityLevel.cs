@@ -6,9 +6,9 @@ namespace BeltsAndLeaders.Server.Business.Models.MaturityLevels
 {
     public class MaturityLevel
     {
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
-        public ulong MaturityCategoryId { get; set; }
+        public Guid MaturityCategoryId { get; set; }
 
         public BeltType BeltLevel { get; set; }
 

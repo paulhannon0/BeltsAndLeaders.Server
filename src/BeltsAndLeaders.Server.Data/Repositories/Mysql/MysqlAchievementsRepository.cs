@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Data.Helpers;
@@ -7,12 +8,12 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 {
     public class MysqlAchievementsRepository : IAchievementsRepository
     {
-        public async Task<ulong> CreateAsync(AchievementRecord achievement)
+        public async Task<Guid> CreateAsync(AchievementRecord achievement)
         {
             return await RepositoryHelper.InsertAsync<AchievementRecord>(achievement);
         }
 
-        public async Task<AchievementRecord> GetAsync(ulong id)
+        public async Task<AchievementRecord> GetAsync(Guid id)
         {
             return await RepositoryHelper.GetByIdAsync<AchievementRecord>(id);
         }
@@ -22,7 +23,7 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             return await RepositoryHelper.GetAllAsync<AchievementRecord>();
         }
 
-        public async Task<IEnumerable<AchievementRecord>> GetByUserIdAsync(ulong userId)
+        public async Task<IEnumerable<AchievementRecord>> GetByUserIdAsync(Guid userId)
         {
             return await RepositoryHelper.GetByNonKeyIdValue<AchievementRecord>
             (
@@ -32,17 +33,17 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             );
         }
 
-        public async Task<int> GetGreenBeltAchievementCountByUserId(ulong userId)
+        public async Task<int> GetGreenBeltAchievementCountByUserId(Guid userId)
         {
             return await AchievementsRepositoryHelper.GetAchievementCountByUserIdAndBeltColour(userId, "Green");
         }
 
-        public async Task<int> GetBlackBeltAchievementCountByUserId(ulong userId)
+        public async Task<int> GetBlackBeltAchievementCountByUserId(Guid userId)
         {
             return await AchievementsRepositoryHelper.GetAchievementCountByUserIdAndBeltColour(userId, "Black");
         }
 
-        public async Task<int> GetUniqueAchievementsCountByUserId(ulong userId)
+        public async Task<int> GetUniqueAchievementsCountByUserId(Guid userId)
         {
             return await AchievementsRepositoryHelper.GetUniqueAchievementsCountByUserId(userId);
         }
@@ -52,7 +53,7 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             await RepositoryHelper.UpdateAsync<AchievementRecord>(achievement);
         }
 
-        public async Task DeleteAsync(ulong id)
+        public async Task DeleteAsync(Guid id)
         {
             await RepositoryHelper.DeleteAsync<AchievementRecord>(new AchievementRecord { Id = id });
         }

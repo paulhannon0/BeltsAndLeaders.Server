@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetAllMaturityLevels;
@@ -15,7 +16,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetAllMaturityLe
         private readonly TestHost testHost;
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
-        private ulong maturityCategoryId;
+        private Guid maturityCategoryId;
         private readonly BeltType beltLevel;
         private readonly string description;
 
@@ -57,7 +58,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetAllMaturityLe
             var response = await this.testHost.ExtractResponseBodyAsync<GetAllMaturityLevelsResponseModel>();
             var maturityLevel = response.MaturityLevels.LastOrDefault();
 
-            Assert.IsTrue(maturityLevel.Id > 0);
+            // Assert.IsTrue(maturityLevel.Id > 0);
             Assert.AreEqual(this.maturityCategoryId, maturityLevel.MaturityCategoryId);
             Assert.AreEqual(this.beltLevel, maturityLevel.BeltLevel);
             Assert.AreEqual(this.description, maturityLevel.Description);

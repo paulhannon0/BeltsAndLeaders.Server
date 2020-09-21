@@ -44,7 +44,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.GetAllMaturi
             var response = await this.testHost.ExtractResponseBodyAsync<GetAllMaturityCategoriesResponseModel>();
             var maturityCategory = response.MaturityCategories.LastOrDefault();
 
-            Assert.IsTrue(maturityCategory.Id > 0);
+            // Assert.IsTrue(maturityCategory.Id > 0);
             Assert.AreEqual(this.name, maturityCategory.Name);
         }
     }
