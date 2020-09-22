@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             this.maturityLevelsRepository = maturityLevelsRepository;
         }
 
-        public async Task<ulong> CreateMaturityCategoryAsync(string name)
+        public async Task<Guid> CreateMaturityCategoryAsync(string name)
         {
             var requestBody = new Dictionary<string, object>()
             {
@@ -28,11 +29,12 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             };
 
             var responseMessage = await this.TestHost.PostAsync("/maturity-categories", requestBody);
+            var locationFragments = responseMessage.Headers.Location.OriginalString.Split("/");
 
-            return ulong.Parse(await responseMessage.Content.ReadAsStringAsync());
+            return Guid.Parse(locationFragments[2]);
         }
 
-        public async Task<GetMaturityCategoryResponseModel> GetMaturityCategoryAsync(ulong id)
+        public async Task<GetMaturityCategoryResponseModel> GetMaturityCategoryAsync(Guid id)
         {
             var responseMessage = await this.TestHost.GetAsync($"/maturity-categories/{id}");
 
@@ -46,7 +48,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             );
         }
 
-        public async Task<IEnumerable<MaturityLevel>> GetMaturityLevelsByCategoryId(ulong categoryId)
+        public async Task<IEnumerable<MaturityLevel>> GetMaturityLevelsByCategoryId(Guid categoryId)
         {
             var records = await this.maturityLevelsRepository.GetByCategoryIdAsync(categoryId);
             var entities = new List<MaturityLevel>();

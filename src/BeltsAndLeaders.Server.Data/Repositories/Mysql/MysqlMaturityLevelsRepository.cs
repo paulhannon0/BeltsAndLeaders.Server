@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Data.Helpers;
@@ -7,14 +8,14 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 {
     public class MysqlMaturityLevelsRepository : IMaturityLevelsRepository
     {
-        public async Task<ulong> CreateAsync(MaturityLevelRecord maturityLevel)
+        public async Task CreateAsync(MaturityLevelRecord maturityLevel)
         {
-            return await RepositoryHelper.InsertAsync<MaturityLevelRecord>(maturityLevel);
+            await RepositoryHelper.InsertAsync<MaturityLevelRecord>(maturityLevel);
         }
 
-        public async Task<MaturityLevelRecord> GetAsync(ulong id)
+        public async Task<MaturityLevelRecord> GetAsync(Guid id)
         {
-            return await RepositoryHelper.GetByIdAsync<MaturityLevelRecord>(id);
+            return await RepositoryHelper.GetByIdAsync<MaturityLevelRecord>(id.ToByteArray());
         }
 
         public async Task<IEnumerable<MaturityLevelRecord>> GetAllAsync()
@@ -22,13 +23,13 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             return await RepositoryHelper.GetAllAsync<MaturityLevelRecord>();
         }
 
-        public async Task<IEnumerable<MaturityLevelRecord>> GetByCategoryIdAsync(ulong categoryId)
+        public async Task<IEnumerable<MaturityLevelRecord>> GetByCategoryIdAsync(Guid categoryId)
         {
             return await RepositoryHelper.GetByNonKeyIdValue<MaturityLevelRecord>
             (
                 "MaturityLevels",
                 "MaturityCategoryId",
-                categoryId
+                categoryId.ToByteArray()
             );
         }
 
@@ -37,9 +38,9 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             await RepositoryHelper.UpdateAsync<MaturityLevelRecord>(maturityLevel);
         }
 
-        public async Task DeleteAsync(ulong id)
+        public async Task DeleteAsync(Guid id)
         {
-            await RepositoryHelper.DeleteAsync<MaturityLevelRecord>(new MaturityLevelRecord { Id = id });
+            await RepositoryHelper.DeleteAsync<MaturityLevelRecord>(new MaturityLevelRecord { Id = id.ToByteArray() });
         }
     }
 }

@@ -16,10 +16,11 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
             this.usersRepository = usersRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(CreateUserCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(CreateUserCommandRequestModel commandRequest)
         {
             var user = new User
             {
+                Id = Guid.NewGuid(),
                 Name = commandRequest.Name,
                 Email = commandRequest.Email,
                 TotalMaturityPoints = 0,
@@ -28,7 +29,9 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
                 ChampionStartDate = commandRequest.ChampionStartDate
             };
 
-            return await this.usersRepository.CreateAsync(user.ToTableRecord());
+            await this.usersRepository.CreateAsync(user.ToTableRecord());
+
+            return user.Id;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Common.Enums;
@@ -15,8 +16,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.CreateMaturityLe
         private readonly TestHost testHost;
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
-        private ulong newResourceId;
-        private ulong maturityCategoryId;
+        private Guid newResourceId;
+        private Guid maturityCategoryId;
 
         public CreateMaturityLevelSteps(
             TestHost testHost,
@@ -85,7 +86,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.CreateMaturityLe
         {
             var locationHeader = this.testHost.LastResponseMessage.Headers.Location;
 
-            this.newResourceId = ulong.Parse
+            this.newResourceId = Guid.Parse
             (
                 locationHeader
                     ?.ToString()

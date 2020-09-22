@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.Achievements;
@@ -27,7 +28,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievemen
             this.usersRepository = usersRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(CreateAchievementCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(CreateAchievementCommandRequestModel commandRequest)
         {
             var userRecord = await this.usersRepository.GetAsync(commandRequest.UserId);
 
@@ -47,6 +48,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievemen
             var maturityLevel = MaturityLevel.FromTableRecord(maturityLevelRecord);
             var achievement = new Achievement
             {
+                Id = Guid.NewGuid(),
                 UserId = commandRequest.UserId,
                 MaturityLevelId = commandRequest.MaturityLevelId,
                 AchievementDate = commandRequest.AchievementDate,
@@ -55,7 +57,8 @@ namespace BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievemen
 
             user.TotalMaturityPoints += (int)maturityLevel.BeltLevel;
 
-            var achievementId = await this.achievementsRepository.CreateAsync(achievement.ToTableRecord());
+            await this.achievementsRepository.CreateAsync(achievement.ToTableRecord());
+
             var numberOfUniqueAchievements = await this.achievementsRepository.GetUniqueAchievementsCountByUserId(user.Id);
             var numberOfGreenBeltAchievements = await this.achievementsRepository.GetGreenBeltAchievementCountByUserId(user.Id);
             var numberOfBlackBeltAchievements = await this.achievementsRepository.GetBlackBeltAchievementCountByUserId(user.Id);
@@ -79,7 +82,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Achievements.CreateAchievemen
 
             await this.usersRepository.UpdateAsync(user.ToTableRecord());
 
-            return achievementId;
+            return achievement.Id;
         }
     }
 }

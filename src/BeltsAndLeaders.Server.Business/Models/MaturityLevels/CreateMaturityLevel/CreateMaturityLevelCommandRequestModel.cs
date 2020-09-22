@@ -1,10 +1,11 @@
+using System;
 using BeltsAndLeaders.Server.Common.Enums;
 
 namespace BeltsAndLeaders.Server.Business.Models.MaturityLevels.CreateMaturityLevel
 {
     public class CreateMaturityLevelCommandRequestModel
     {
-        public ulong MaturityCategoryId { get; set; }
+        public Guid MaturityCategoryId { get; set; }
 
         public BeltType BeltLevel { get; set; }
 

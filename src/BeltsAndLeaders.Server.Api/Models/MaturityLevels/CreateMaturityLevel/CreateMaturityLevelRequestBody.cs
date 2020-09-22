@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using BeltsAndLeaders.Server.Api.Attributes;
 using BeltsAndLeaders.Server.Business.Models.MaturityLevels.CreateMaturityLevel;
@@ -8,7 +9,7 @@ namespace BeltsAndLeaders.Server.Api.Models.MaturityLevels.CreateMaturityLevel
     public class CreateMaturityLevelRequestBody
     {
         [Required]
-        public ulong MaturityCategoryId { get; set; }
+        public Guid MaturityCategoryId { get; set; }
 
         [RequiredEnum]
         public BeltType BeltLevel { get; set; }

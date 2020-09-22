@@ -13,16 +13,16 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.DeleteUser
     {
         private readonly TestHost testHost;
         private readonly UserDataHelper userDataHelper;
-        private ulong validId;
+        private Guid validId;
         private readonly string invalidId;
-        private readonly ulong nonExistentId;
+        private readonly Guid nonExistentId;
 
         public DeleteUserSteps(TestHost testHost, UserDataHelper userDataHelper)
         {
             this.testHost = testHost;
             this.userDataHelper = userDataHelper;
             this.invalidId = "invalid_id";
-            this.nonExistentId = 0;
+            this.nonExistentId = Guid.NewGuid();
         }
 
         [BeforeScenario]

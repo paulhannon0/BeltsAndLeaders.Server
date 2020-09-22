@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetAllMaturityCategories;
@@ -13,6 +14,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.GetAllMaturi
     {
         private readonly TestHost testHost;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
+        private Guid maturityCategoryId;
         private readonly string name;
 
         public GetAllMaturityCategoriesSteps(TestHost testHost, MaturityCategoryDataHelper maturityCategoryDataHelper)
@@ -26,7 +28,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.GetAllMaturi
         [Scope(Feature = "Get All Maturity Categories")]
         public async Task BeforeScenario()
         {
-            await this.maturityCategoryDataHelper.CreateMaturityCategoryAsync
+            this.maturityCategoryId = await this.maturityCategoryDataHelper.CreateMaturityCategoryAsync
             (
                 this.name
             );
@@ -42,9 +44,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.GetAllMaturi
         public async Task ThenTheMaturityCategoryRecordsCanBeFoundInTheResponseBody()
         {
             var response = await this.testHost.ExtractResponseBodyAsync<GetAllMaturityCategoriesResponseModel>();
-            var maturityCategory = response.MaturityCategories.LastOrDefault();
+            var maturityCategory = response.MaturityCategories.Find(c => c.Id == this.maturityCategoryId);
 
-            Assert.IsTrue(maturityCategory.Id > 0);
             Assert.AreEqual(this.name, maturityCategory.Name);
         }
     }

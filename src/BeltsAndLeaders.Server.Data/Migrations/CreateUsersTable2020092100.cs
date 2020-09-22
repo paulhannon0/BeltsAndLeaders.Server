@@ -4,7 +4,7 @@ using FluentMigrator;
 namespace BeltsAndLeaders.Server.Data.Migrations
 {
     [Migration(2020062300)]
-    public class CreateUsersTable2020062300 : Migration
+    public class CreateUsersTable2020092100 : Migration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace BeltsAndLeaders.Server.Data.Migrations
             (
                 "Users",
                 table => table
-                    .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+                    .WithColumn("Id").AsCustom("BINARY(16)").PrimaryKey()
                     .WithColumn("Name").AsFixedLengthString(255)
                     .WithColumn("Email").AsFixedLengthString(255)
                     .WithColumn("TotalMaturityPoints").AsInt32()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -11,7 +12,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
     {
         public MaturityLevelDataHelper(TestHost testHost) : base(testHost) { }
 
-        public async Task<ulong> CreateMaturityLevelAsync(ulong maturityCategoryId, BeltType beltLevel, string description)
+        public async Task<Guid> CreateMaturityLevelAsync(Guid maturityCategoryId, BeltType beltLevel, string description)
         {
             var requestBody = new Dictionary<string, object>()
             {
@@ -21,11 +22,12 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             };
 
             var responseMessage = await this.TestHost.PostAsync("/maturity-levels", requestBody);
+            var locationFragments = responseMessage.Headers.Location.OriginalString.Split("/");
 
-            return ulong.Parse(await responseMessage.Content.ReadAsStringAsync());
+            return Guid.Parse(locationFragments[2]);
         }
 
-        public async Task<GetMaturityLevelResponseModel> GetMaturityLevelAsync(ulong id)
+        public async Task<GetMaturityLevelResponseModel> GetMaturityLevelAsync(Guid id)
         {
             var responseMessage = await this.TestHost.GetAsync($"/maturity-levels/{id}");
 

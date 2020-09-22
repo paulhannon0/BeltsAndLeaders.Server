@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.MaturityLevels;
@@ -16,7 +17,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturity
             this.maturityLevelsRepository = maturityLevelsRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(UpdateMaturityLevelCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(UpdateMaturityLevelCommandRequestModel commandRequest)
         {
             var existingMaturityLevel = await this.maturityLevelsRepository.GetAsync(commandRequest.Id);
 
@@ -29,7 +30,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturity
 
             await this.maturityLevelsRepository.UpdateAsync(existingMaturityLevel);
 
-            return existingMaturityLevel.Id;
+            return new Guid(existingMaturityLevel.Id);
         }
     }
 }

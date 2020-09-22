@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.MaturityLevels;
@@ -21,7 +22,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturity
             this.maturityCategoriesRepository = maturityCategoriesRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(CreateMaturityLevelCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(CreateMaturityLevelCommandRequestModel commandRequest)
         {
             var maturityCategory = await this.maturityCategoriesRepository.GetAsync(commandRequest.MaturityCategoryId);
 
@@ -32,12 +33,15 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturity
 
             var maturityLevel = new MaturityLevel
             {
+                Id = Guid.NewGuid(),
                 MaturityCategoryId = commandRequest.MaturityCategoryId,
                 BeltLevel = commandRequest.BeltLevel,
                 Description = commandRequest.Description
             };
 
-            return await this.maturityLevelsRepository.CreateAsync(maturityLevel.ToTableRecord());
+            await this.maturityLevelsRepository.CreateAsync(maturityLevel.ToTableRecord());
+
+            return maturityLevel.Id;
         }
     }
 }

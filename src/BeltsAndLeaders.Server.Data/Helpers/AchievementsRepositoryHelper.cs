@@ -1,17 +1,13 @@
 using System;
-using System.Data;
 using System.Threading.Tasks;
-using Dapper.Contrib.Extensions;
-using BeltsAndLeaders.Server.Data.Models;
 using MySql.Data.MySqlClient;
-using System.Collections.Generic;
 using Dapper;
 
 namespace BeltsAndLeaders.Server.Data.Helpers
 {
     public static class AchievementsRepositoryHelper
     {
-        public static async Task<int> GetAchievementCountByUserIdAndBeltColour(ulong userId, string beltLevel)
+        public static async Task<int> GetAchievementCountByUserIdAndBeltColour(byte[] userId, string beltLevel)
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {
@@ -45,7 +41,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
             }
         }
 
-        public static async Task<int> GetUniqueAchievementsCountByUserId(ulong userId)
+        public static async Task<int> GetUniqueAchievementsCountByUserId(byte[] userId)
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {

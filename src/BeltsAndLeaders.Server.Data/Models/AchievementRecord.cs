@@ -1,17 +1,16 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Dapper.Contrib.Extensions;
 
 namespace BeltsAndLeaders.Server.Data.Models
 {
     [Table("Achievements")]
     public class AchievementRecord : IRecord
     {
-        [Key]
-        public ulong Id { get; set; }
+        [ExplicitKey]
+        public byte[] Id { get; set; }
 
-        public ulong UserId { get; set; }
+        public byte[] UserId { get; set; }
 
-        public ulong MaturityLevelId { get; set; }
+        public byte[] MaturityLevelId { get; set; }
 
         public long AchievementDate { get; set; }
 

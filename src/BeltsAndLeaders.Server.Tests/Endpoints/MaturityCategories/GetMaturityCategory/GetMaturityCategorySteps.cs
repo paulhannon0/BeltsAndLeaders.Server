@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityCategories.GetMaturityCategory;
 using BeltsAndLeaders.Server.Tests.Helpers;
@@ -12,7 +13,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.GetMaturityC
     {
         private readonly TestHost testHost;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
-        private ulong validId;
+        private Guid validId;
         private readonly string name;
 
         public GetMaturityCategorySteps(TestHost testHost, MaturityCategoryDataHelper maturityCategoryDataHelper)
@@ -47,7 +48,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.GetMaturityC
         [Given("a request path for the \'Get Maturity Category\' endpoint with an ID for a non-existent resource")]
         public void GivenARequestPathForTheGetMaturityCategoryEndpointWitBeltsAndLeadersIdForANonExistentResource()
         {
-            this.SetEndpointPath(0);
+            this.SetEndpointPath(Guid.NewGuid());
         }
 
         [Then(@"the MaturityCategory record can be found in the response body")]
@@ -55,7 +56,6 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.GetMaturityC
         {
             var maturityCategory = await this.testHost.ExtractResponseBodyAsync<GetMaturityCategoryResponseModel>();
 
-            Assert.IsTrue(maturityCategory.Id > 0);
             Assert.AreEqual(this.name, maturityCategory.Name);
         }
 

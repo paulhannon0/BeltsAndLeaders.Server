@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetMaturityLevelsByCategoryId;
@@ -15,8 +16,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetMaturityLevel
         private readonly TestHost testHost;
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
-        private ulong validId;
-        private ulong maturityLevelId;
+        private Guid validId;
+        private Guid maturityLevelId;
         private readonly BeltType beltLevel;
         private readonly string description;
 
@@ -61,7 +62,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetMaturityLevel
         [Given("a request path for the \'Get Maturity Levels by Category ID\' endpoint with an ID for a non-existent resource")]
         public void GivenARequestPathForTheGetMaturityLevelsByCategoryIdEndpointWitBeltsAndLeadersIdForANonExistentResource()
         {
-            this.SetEndpointPath(0);
+            this.SetEndpointPath(Guid.NewGuid());
         }
 
         [Then(@"the MaturityLevel record can be found in the response body")]

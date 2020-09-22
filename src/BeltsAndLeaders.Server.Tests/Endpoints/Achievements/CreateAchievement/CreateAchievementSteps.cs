@@ -19,10 +19,10 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
         private readonly UserDataHelper userDataHelper;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
-        private ulong newResourceId;
-        private ulong userId;
-        private ulong maturityCategoryId;
-        private ulong maturityLevelId;
+        private Guid newResourceId;
+        private Guid userId;
+        private Guid maturityCategoryId;
+        private Guid maturityLevelId;
 
         public CreateAchievementSteps(
             TestHost testHost,
@@ -137,7 +137,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
         {
             var locationHeader = this.testHost.LastResponseMessage.Headers.Location;
 
-            this.newResourceId = ulong.Parse
+            this.newResourceId = Guid.Parse
             (
                 locationHeader
                     ?.ToString()
@@ -180,24 +180,24 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
             this.testHost.RequestBody.Add("Comment", "I did good at the thing.");
         }
 
-        private async Task<IEnumerable<ulong>> CreateWhiteBeltMaturityLevels(int count)
+        private async Task<IEnumerable<Guid>> CreateWhiteBeltMaturityLevels(int count)
         {
             return await this.CreateMaturityLevels(count, BeltType.White);
         }
 
-        private async Task<IEnumerable<ulong>> CreateGreenBeltMaturityLevels(int count)
+        private async Task<IEnumerable<Guid>> CreateGreenBeltMaturityLevels(int count)
         {
             return await this.CreateMaturityLevels(count, BeltType.Green);
         }
 
-        private async Task<IEnumerable<ulong>> CreateBlackBeltMaturityLevels(int count)
+        private async Task<IEnumerable<Guid>> CreateBlackBeltMaturityLevels(int count)
         {
             return await this.CreateMaturityLevels(count, BeltType.Black);
         }
 
-        private async Task<IEnumerable<ulong>> CreateMaturityLevels(int count, BeltType beltType)
+        private async Task<IEnumerable<Guid>> CreateMaturityLevels(int count, BeltType beltType)
         {
-            var recordIds = new List<ulong>();
+            var recordIds = new List<Guid>();
 
             for (int i = 0; i < count; i++)
             {
@@ -215,7 +215,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.CreateAchievement
             return recordIds;
         }
 
-        private async Task CreateAchievements(IEnumerable<ulong> maturityLevelIds)
+        private async Task CreateAchievements(IEnumerable<Guid> maturityLevelIds)
         {
             foreach (var maturityLevelId in maturityLevelIds)
             {

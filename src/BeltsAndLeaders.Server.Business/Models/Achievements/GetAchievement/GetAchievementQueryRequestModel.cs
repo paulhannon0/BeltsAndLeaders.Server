@@ -1,7 +1,9 @@
+using System;
+
 namespace BeltsAndLeaders.Server.Business.Models.Achievements.GetAchievement
 {
     public class GetAchievementQueryRequestModel
     {
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
+using System;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -11,9 +12,9 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.UpdateMaturi
     {
         private readonly TestHost testHost;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
-        private ulong validId;
+        private Guid validId;
         private readonly string invalidId;
-        private readonly ulong nonExistentId;
+        private readonly Guid nonExistentId;
         private readonly string name;
         private readonly string updatedName;
 
@@ -23,7 +24,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.UpdateMaturi
             this.testHost = testHost;
             this.maturityCategoryDataHelper = maturityCategoryDataHelper;
             this.invalidId = "Invalid_ID";
-            this.nonExistentId = 0;
+            this.nonExistentId = Guid.NewGuid();
             this.name = "MaturityCategoryName";
             this.updatedName = "UpdatedMaturityCategoryName";
         }

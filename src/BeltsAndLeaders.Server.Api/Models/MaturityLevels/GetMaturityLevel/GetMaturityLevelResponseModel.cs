@@ -6,9 +6,9 @@ namespace BeltsAndLeaders.Server.Api.Models.MaturityLevels.GetMaturityLevel
 {
     public class GetMaturityLevelResponseModel
     {
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
-        public ulong MaturityCategoryId { get; set; }
+        public Guid MaturityCategoryId { get; set; }
 
         public BeltType BeltLevel { get; set; }
 

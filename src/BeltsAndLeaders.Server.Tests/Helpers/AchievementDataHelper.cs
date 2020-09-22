@@ -9,9 +9,9 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
     {
         public AchievementDataHelper(TestHost testHost) : base(testHost) { }
 
-        public async Task<ulong> CreateAchievementAsync(
-            ulong userId,
-            ulong maturityLevelId,
+        public async Task<Guid> CreateAchievementAsync(
+            Guid userId,
+            Guid maturityLevelId,
             DateTimeOffset achievementDate,
             string comment
 
@@ -26,11 +26,12 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             };
 
             var responseMessage = await this.TestHost.PostAsync("/achievements", requestBody);
+            var locationFragments = responseMessage.Headers.Location.OriginalString.Split("/");
 
-            return ulong.Parse(await responseMessage.Content.ReadAsStringAsync());
+            return Guid.Parse(locationFragments[2]);
         }
 
-        // public async Task<GetAchievementResponseModel> GetAchievementAsync(ulong id)
+        // public async Task<GetAchievementResponseModel> GetAchievementAsync(Guid id)
         // {
         //     var responseMessage = await this.TestHost.GetAsync($"/achievements/{id}");
 

@@ -14,7 +14,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
     {
         private readonly TestHost testHost;
         private readonly MaturityCategoryDataHelper userDataHelper;
-        private ulong newResourceId;
+        private Guid newResourceId;
 
         public CreateUserSteps(TestHost testHost, MaturityCategoryDataHelper userDataHelper)
         {
@@ -75,7 +75,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.CreateUser
         {
             var locationHeader = this.testHost.LastResponseMessage.Headers.Location;
 
-            this.newResourceId = ulong.Parse
+            this.newResourceId = Guid.Parse
             (
                 locationHeader
                     ?.ToString()

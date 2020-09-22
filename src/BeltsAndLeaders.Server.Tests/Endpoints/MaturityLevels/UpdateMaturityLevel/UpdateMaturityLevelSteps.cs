@@ -1,6 +1,7 @@
 using BeltsAndLeaders.Server.Common.Enums;
 using BeltsAndLeaders.Server.Tests.Helpers;
 using NUnit.Framework;
+using System;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -13,9 +14,9 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.UpdateMaturityLe
         private readonly TestHost testHost;
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
-        private ulong validId;
+        private Guid validId;
         private readonly string invalidId;
-        private readonly ulong nonExistentId;
+        private readonly Guid nonExistentId;
         private readonly string description;
         private readonly string updatedDescription;
 
@@ -30,7 +31,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.UpdateMaturityLe
             this.maturityLevelDataHelper = maturityLevelDataHelper;
             this.maturityCategoryDataHelper = maturityCategoryDataHelper;
             this.invalidId = "Invalid_ID";
-            this.nonExistentId = 0;
+            this.nonExistentId = Guid.NewGuid();
             this.description = "MaturityLevelDescription";
             this.updatedDescription = "UpdatedMaturityLevelDescription";
         }

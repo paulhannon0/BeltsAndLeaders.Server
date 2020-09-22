@@ -1,4 +1,5 @@
-﻿using BeltsAndLeaders.Server.Business.Models.Users.UpdateUser;
+﻿using System;
+using BeltsAndLeaders.Server.Business.Models.Users.UpdateUser;
 
 namespace BeltsAndLeaders.Server.Api.Models.Users.UpdateUser
 {
@@ -8,7 +9,7 @@ namespace BeltsAndLeaders.Server.Api.Models.Users.UpdateUser
         public string Email { get; set; }
         public string SpecialistArea { get; set; }
 
-        public UpdateUserCommandRequestModel ToCommandRequest(ulong id)
+        public UpdateUserCommandRequestModel ToCommandRequest(Guid id)
         {
             return new UpdateUserCommandRequestModel
             {

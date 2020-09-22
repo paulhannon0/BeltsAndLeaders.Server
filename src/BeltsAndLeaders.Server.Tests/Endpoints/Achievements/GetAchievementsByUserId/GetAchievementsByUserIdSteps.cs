@@ -18,10 +18,10 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.GetAchievementsByU
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private readonly UserDataHelper userDataHelper;
-        private ulong validId;
-        private ulong maturityCategoryId;
-        private ulong maturityLevelId;
-        private ulong achievementId;
+        private Guid validId;
+        private Guid maturityCategoryId;
+        private Guid maturityLevelId;
+        private Guid achievementId;
         private readonly DateTimeOffset achievementDate;
         private readonly string comment;
 
@@ -85,7 +85,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.GetAchievementsByU
         [Given("a request path for the \'Get Achievements by User ID\' endpoint with an ID for a non-existent resource")]
         public void GivenARequestPathForTheGetAchievementsByUserIdEndpointWitBeltsAndLeadersIdForANonExistentResource()
         {
-            this.SetEndpointPath(0);
+            this.SetEndpointPath(Guid.NewGuid());
         }
 
         [Then(@"the Achievement record can be found in the response body")]

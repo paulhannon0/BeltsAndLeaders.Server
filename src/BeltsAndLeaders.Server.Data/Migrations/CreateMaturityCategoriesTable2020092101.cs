@@ -3,8 +3,8 @@ using FluentMigrator;
 
 namespace BeltsAndLeaders.Server.Data.Migrations
 {
-    [Migration(2020062301)]
-    public class CreateMaturityCategoriesTable2020062301 : Migration
+    [Migration(2020092101)]
+    public class CreateMaturityCategoriesTable2020092101 : Migration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace BeltsAndLeaders.Server.Data.Migrations
             (
                 "MaturityCategories",
                 table => table
-                    .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+                    .WithColumn("Id").AsCustom("BINARY(16)").PrimaryKey()
                     .WithColumn("Name").AsFixedLengthString(255)
                     .WithColumn("CreatedAt").AsInt64()
                     .WithColumn("UpdatedAt").AsInt64().Nullable()

@@ -1,10 +1,12 @@
+using System;
+
 namespace BeltsAndLeaders.Server.Api.Models.MaturityCategories.CreateMaturityCategory
 {
     public class CreateMaturityCategoryResponseModel
     {
-        public ulong Id { get; set; }
+        public Guid Id { get; set; }
 
-        public static CreateMaturityCategoryResponseModel FromBusinessModel(ulong id)
+        public static CreateMaturityCategoryResponseModel FromBusinessModel(Guid id)
         {
             return new CreateMaturityCategoryResponseModel
             {

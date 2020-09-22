@@ -1,3 +1,4 @@
+using System;
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories.UpdateMaturityCategory;
 
 namespace BeltsAndLeaders.Server.Api.Models.MaturityCategories.UpdateMaturityCategory
@@ -6,7 +7,7 @@ namespace BeltsAndLeaders.Server.Api.Models.MaturityCategories.UpdateMaturityCat
     {
         public string Name { get; set; }
 
-        public UpdateMaturityCategoryCommandRequestModel ToCommandRequest(ulong id)
+        public UpdateMaturityCategoryCommandRequestModel ToCommandRequest(Guid id)
         {
             return new UpdateMaturityCategoryCommandRequestModel
             {

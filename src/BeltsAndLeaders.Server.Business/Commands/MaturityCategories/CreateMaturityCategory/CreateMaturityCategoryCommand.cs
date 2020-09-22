@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories;
 using BeltsAndLeaders.Server.Business.Models.MaturityCategories.CreateMaturityCategory;
@@ -14,14 +15,17 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityCategories.CreateMatu
             this.maturityCategoriesRepository = maturityCategoriesRepository;
         }
 
-        public async Task<ulong> ExecuteAsync(CreateMaturityCategoryCommandRequestModel commandRequest)
+        public async Task<Guid> ExecuteAsync(CreateMaturityCategoryCommandRequestModel commandRequest)
         {
             var maturityCategory = new MaturityCategory
             {
+                Id = Guid.NewGuid(),
                 Name = commandRequest.Name
             };
 
-            return await this.maturityCategoriesRepository.CreateAsync(maturityCategory.ToTableRecord());
+            await this.maturityCategoriesRepository.CreateAsync(maturityCategory.ToTableRecord());
+
+            return maturityCategory.Id;
         }
     }
 }
