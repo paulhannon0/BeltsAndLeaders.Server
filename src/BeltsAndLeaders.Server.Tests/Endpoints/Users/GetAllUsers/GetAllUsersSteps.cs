@@ -14,6 +14,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.GetAllUsers
     {
         private readonly TestHost testHost;
         private readonly UserDataHelper userDataHelper;
+        private Guid userId;
         private readonly string name;
         private readonly string email;
         private readonly string specialistArea;
@@ -45,7 +46,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.GetAllUsers
         [Scope(Feature = "Get All Users")]
         public async Task BeforeScenario()
         {
-            await this.userDataHelper.CreateUserAsync
+            this.userId = await this.userDataHelper.CreateUserAsync
             (
                 this.name,
                 this.email,
@@ -64,9 +65,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.GetAllUsers
         public async Task ThenTheUserRecordsCanBeFoundInTheResponseBody()
         {
             var response = await this.testHost.ExtractResponseBodyAsync<GetAllUsersResponseModel>();
-            var user = response.Users.LastOrDefault();
+            var user = response.Users.Find(u => u.Id == this.userId);
 
-            // Assert.IsTrue(user.Id > 0);
             Assert.AreEqual(this.name, user.Name);
             Assert.AreEqual(this.email, user.Email);
             Assert.AreEqual(this.specialistArea, user.SpecialistArea);

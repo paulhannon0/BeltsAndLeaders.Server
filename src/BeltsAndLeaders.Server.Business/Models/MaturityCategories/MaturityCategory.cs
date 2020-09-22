@@ -24,7 +24,7 @@ namespace BeltsAndLeaders.Server.Business.Models.MaturityCategories
 
             return new MaturityCategory
             {
-                Id = maturityCategoryRecord.Id,
+                Id = new Guid(maturityCategoryRecord.Id),
                 Name = maturityCategoryRecord.Name,
                 CreatedAt = DateTimeOffset.FromUnixTimeMilliseconds(maturityCategoryRecord.CreatedAt),
                 UpdatedAt = updatedAt
@@ -35,7 +35,7 @@ namespace BeltsAndLeaders.Server.Business.Models.MaturityCategories
         {
             return new MaturityCategoryRecord
             {
-                Id = this.Id,
+                Id = this.Id.ToByteArray(),
                 Name = this.Name
             };
         }

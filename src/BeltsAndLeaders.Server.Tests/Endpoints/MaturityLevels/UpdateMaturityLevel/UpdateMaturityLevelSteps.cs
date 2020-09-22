@@ -31,7 +31,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.UpdateMaturityLe
             this.maturityLevelDataHelper = maturityLevelDataHelper;
             this.maturityCategoryDataHelper = maturityCategoryDataHelper;
             this.invalidId = "Invalid_ID";
-            // this.nonExistentId = 0;
+            this.nonExistentId = Guid.NewGuid();
             this.description = "MaturityLevelDescription";
             this.updatedDescription = "UpdatedMaturityLevelDescription";
         }

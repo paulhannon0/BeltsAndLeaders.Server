@@ -37,7 +37,7 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
 
             return new User
             {
-                Id = userRecord.Id,
+                Id = new Guid(userRecord.Id),
                 Name = userRecord.Name,
                 Email = userRecord.Email,
                 TotalMaturityPoints = userRecord.TotalMaturityPoints,
@@ -57,7 +57,7 @@ namespace BeltsAndLeaders.Server.Business.Models.Users
 
             return new UserRecord
             {
-                Id = this.Id,
+                Id = this.Id.ToByteArray(),
                 Name = this.Name,
                 Email = this.Email,
                 TotalMaturityPoints = this.TotalMaturityPoints,

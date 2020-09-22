@@ -22,7 +22,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.DeleteMaturi
             this.testHost = testHost;
             this.maturityCategoryDataHelper = maturityCategoryDataHelper;
             this.invalidId = "invalid_id";
-            // this.nonExistentId = 0;
+            this.nonExistentId = Guid.NewGuid();
         }
 
         [BeforeScenario]

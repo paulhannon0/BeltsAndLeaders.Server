@@ -27,7 +27,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.UpdateUser
             this.testHost = testHost;
             this.userDataHelper = userDataHelper;
             this.invalidId = "Invalid_ID";
-            // this.nonExistentId = 0;
+            this.nonExistentId = Guid.NewGuid();
             this.updatedUserEmail = "updateduser@test.com";
             this.championStartDate = DateTime.Now;
             this.name = "UserName";

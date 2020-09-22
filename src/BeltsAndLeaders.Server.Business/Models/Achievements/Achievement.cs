@@ -30,9 +30,9 @@ namespace BeltsAndLeaders.Server.Business.Models.Achievements
 
             return new Achievement
             {
-                Id = achievementRecord.Id,
-                UserId = achievementRecord.UserId,
-                MaturityLevelId = achievementRecord.MaturityLevelId,
+                Id = new Guid(achievementRecord.Id),
+                UserId = new Guid(achievementRecord.UserId),
+                MaturityLevelId = new Guid(achievementRecord.MaturityLevelId),
                 AchievementDate = DateTimeOffset.FromUnixTimeMilliseconds(achievementRecord.AchievementDate),
                 Comment = achievementRecord.Comment,
                 CreatedAt = DateTimeOffset.FromUnixTimeMilliseconds(achievementRecord.CreatedAt),
@@ -44,11 +44,11 @@ namespace BeltsAndLeaders.Server.Business.Models.Achievements
         {
             return new AchievementRecord
             {
-                Id = this.Id,
-                UserId = this.UserId,
-                MaturityLevelId = this.MaturityLevelId,
+                Id = this.Id.ToByteArray(),
+                UserId = this.UserId.ToByteArray(),
+                MaturityLevelId = this.MaturityLevelId.ToByteArray(),
                 AchievementDate = this.AchievementDate.ToUnixTimeMilliseconds(),
-                Comment = this.Comment,
+                Comment = this.Comment
             };
         }
     }

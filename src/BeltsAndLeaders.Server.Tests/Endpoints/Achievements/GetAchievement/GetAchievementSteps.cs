@@ -84,7 +84,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.GetAchievement
         [Given("a request path for the \'Get Achievement\' endpoint with an ID for a non-existent resource")]
         public void GivenARequestPathForTheGetAchievementEndpointWitBeltsAndLeadersIdForANonExistentResource()
         {
-            this.SetEndpointPath(0);
+            this.SetEndpointPath(Guid.NewGuid());
         }
 
         [Then(@"the Achievement record can be found in the response body")]
@@ -92,7 +92,6 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Achievements.GetAchievement
         {
             var achievement = await this.testHost.ExtractResponseBodyAsync<GetAchievementResponseModel>();
 
-            // Assert.IsTrue(achievement.Id > 0);
             Assert.AreEqual(this.userId, achievement.UserId);
             Assert.AreEqual(this.maturityLevelId, achievement.MaturityLevelId);
             Assert.AreEqual(this.achievementDate, achievement.AchievementDate);

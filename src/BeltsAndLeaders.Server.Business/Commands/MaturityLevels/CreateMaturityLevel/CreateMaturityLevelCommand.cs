@@ -33,12 +33,15 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityLevels.CreateMaturity
 
             var maturityLevel = new MaturityLevel
             {
+                Id = Guid.NewGuid(),
                 MaturityCategoryId = commandRequest.MaturityCategoryId,
                 BeltLevel = commandRequest.BeltLevel,
                 Description = commandRequest.Description
             };
 
-            return await this.maturityLevelsRepository.CreateAsync(maturityLevel.ToTableRecord());
+            await this.maturityLevelsRepository.CreateAsync(maturityLevel.ToTableRecord());
+
+            return maturityLevel.Id;
         }
     }
 }

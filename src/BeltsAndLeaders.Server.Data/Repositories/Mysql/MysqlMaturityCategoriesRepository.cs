@@ -8,14 +8,14 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 {
     public class MysqlMaturityCategoriesRepository : IMaturityCategoriesRepository
     {
-        public async Task<Guid> CreateAsync(MaturityCategoryRecord maturityCategory)
+        public async Task CreateAsync(MaturityCategoryRecord maturityCategory)
         {
-            return await RepositoryHelper.InsertAsync<MaturityCategoryRecord>(maturityCategory);
+            await RepositoryHelper.InsertAsync<MaturityCategoryRecord>(maturityCategory);
         }
 
         public async Task<MaturityCategoryRecord> GetAsync(Guid id)
         {
-            return await RepositoryHelper.GetByIdAsync<MaturityCategoryRecord>(id);
+            return await RepositoryHelper.GetByIdAsync<MaturityCategoryRecord>(id.ToByteArray());
         }
 
         public async Task<IEnumerable<MaturityCategoryRecord>> GetAllAsync()
@@ -30,7 +30,7 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 
         public async Task DeleteAsync(Guid id)
         {
-            await RepositoryHelper.DeleteAsync<MaturityCategoryRecord>(new MaturityCategoryRecord { Id = id });
+            await RepositoryHelper.DeleteAsync<MaturityCategoryRecord>(new MaturityCategoryRecord { Id = id.ToByteArray() });
         }
     }
 }

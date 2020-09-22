@@ -61,7 +61,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetMaturityLevel
         [Given("a request path for the \'Get Maturity Level\' endpoint with an ID for a non-existent resource")]
         public void GivenARequestPathForTheGetMaturityLevelEndpointWitBeltsAndLeadersIdForANonExistentResource()
         {
-            this.SetEndpointPath(0);
+            this.SetEndpointPath(Guid.NewGuid());
         }
 
         [Then(@"the MaturityLevel record can be found in the response body")]
@@ -69,7 +69,6 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetMaturityLevel
         {
             var maturityLevel = await this.testHost.ExtractResponseBodyAsync<GetMaturityLevelResponseModel>();
 
-            // Assert.IsTrue(maturityLevel.Id > 0);
             Assert.AreEqual(this.maturityCategoryId, maturityLevel.MaturityCategoryId);
             Assert.AreEqual(this.beltLevel, maturityLevel.BeltLevel);
             Assert.AreEqual(this.description, maturityLevel.Description);

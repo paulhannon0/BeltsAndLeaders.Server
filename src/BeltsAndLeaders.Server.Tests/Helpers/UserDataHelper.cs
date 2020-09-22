@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Api.Models.Users.GetUser;
 
@@ -26,8 +27,9 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             }
 
             var responseMessage = await this.TestHost.PostAsync("/users", requestBody);
+            var locationFragments = responseMessage.Headers.Location.OriginalString.Split("/");
 
-            return Guid.Parse(await responseMessage.Content.ReadAsStringAsync());
+            return Guid.Parse(locationFragments[2]);
         }
 
         public async Task<GetUserResponseModel> GetUserAsync(Guid id)

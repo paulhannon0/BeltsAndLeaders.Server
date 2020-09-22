@@ -62,7 +62,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetMaturityLevel
         [Given("a request path for the \'Get Maturity Levels by Category ID\' endpoint with an ID for a non-existent resource")]
         public void GivenARequestPathForTheGetMaturityLevelsByCategoryIdEndpointWitBeltsAndLeadersIdForANonExistentResource()
         {
-            this.SetEndpointPath(0);
+            this.SetEndpointPath(Guid.NewGuid());
         }
 
         [Then(@"the MaturityLevel record can be found in the response body")]

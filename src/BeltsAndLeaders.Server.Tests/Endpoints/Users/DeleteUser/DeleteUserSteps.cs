@@ -22,7 +22,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.DeleteUser
             this.testHost = testHost;
             this.userDataHelper = userDataHelper;
             this.invalidId = "invalid_id";
-            // this.nonExistentId = 0;
+            this.nonExistentId = Guid.NewGuid();
         }
 
         [BeforeScenario]

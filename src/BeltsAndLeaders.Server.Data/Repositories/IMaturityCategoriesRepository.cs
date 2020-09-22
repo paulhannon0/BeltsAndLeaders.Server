@@ -7,7 +7,7 @@ namespace BeltsAndLeaders.Server.Data.Repositories
 {
     public interface IMaturityCategoriesRepository
     {
-        Task<Guid> CreateAsync(MaturityCategoryRecord maturityCategory);
+        Task CreateAsync(MaturityCategoryRecord maturityCategory);
 
         Task<MaturityCategoryRecord> GetAsync(Guid id);
 

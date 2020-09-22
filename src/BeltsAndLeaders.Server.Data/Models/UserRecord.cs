@@ -7,8 +7,8 @@ namespace BeltsAndLeaders.Server.Data.Models
     [Table("Users")]
     public class UserRecord : IRecord
     {
-        [Key]
-        public Guid Id { get; set; }
+        [ExplicitKey]
+        public byte[] Id { get; set; }
 
         public string Name { get; set; }
 

@@ -16,6 +16,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetAllMaturityLe
         private readonly TestHost testHost;
         private readonly MaturityLevelDataHelper maturityLevelDataHelper;
         private readonly MaturityCategoryDataHelper maturityCategoryDataHelper;
+        private Guid maturityLevelId;
         private Guid maturityCategoryId;
         private readonly BeltType beltLevel;
         private readonly string description;
@@ -38,7 +39,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetAllMaturityLe
         public async Task BeforeScenario()
         {
             this.maturityCategoryId = await this.maturityCategoryDataHelper.CreateMaturityCategoryAsync("TestName");
-            await this.maturityLevelDataHelper.CreateMaturityLevelAsync
+            this.maturityLevelId = await this.maturityLevelDataHelper.CreateMaturityLevelAsync
             (
                 this.maturityCategoryId,
                 this.beltLevel,
@@ -56,9 +57,8 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityLevels.GetAllMaturityLe
         public async Task ThenTheMaturityLevelRecordsCanBeFoundInTheResponseBody()
         {
             var response = await this.testHost.ExtractResponseBodyAsync<GetAllMaturityLevelsResponseModel>();
-            var maturityLevel = response.MaturityLevels.LastOrDefault();
+            var maturityLevel = response.MaturityLevels.Find(l => l.Id == this.maturityLevelId);
 
-            // Assert.IsTrue(maturityLevel.Id > 0);
             Assert.AreEqual(this.maturityCategoryId, maturityLevel.MaturityCategoryId);
             Assert.AreEqual(this.beltLevel, maturityLevel.BeltLevel);
             Assert.AreEqual(this.description, maturityLevel.Description);

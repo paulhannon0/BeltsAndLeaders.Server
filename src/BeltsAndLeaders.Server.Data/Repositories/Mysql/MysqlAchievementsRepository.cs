@@ -8,14 +8,14 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 {
     public class MysqlAchievementsRepository : IAchievementsRepository
     {
-        public async Task<Guid> CreateAsync(AchievementRecord achievement)
+        public async Task CreateAsync(AchievementRecord achievement)
         {
-            return await RepositoryHelper.InsertAsync<AchievementRecord>(achievement);
+            await RepositoryHelper.InsertAsync<AchievementRecord>(achievement);
         }
 
         public async Task<AchievementRecord> GetAsync(Guid id)
         {
-            return await RepositoryHelper.GetByIdAsync<AchievementRecord>(id);
+            return await RepositoryHelper.GetByIdAsync<AchievementRecord>(id.ToByteArray());
         }
 
         public async Task<IEnumerable<AchievementRecord>> GetAllAsync()
@@ -29,23 +29,23 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
             (
                 "Achievements",
                 "UserId",
-                userId
+                userId.ToByteArray()
             );
         }
 
         public async Task<int> GetGreenBeltAchievementCountByUserId(Guid userId)
         {
-            return await AchievementsRepositoryHelper.GetAchievementCountByUserIdAndBeltColour(userId, "Green");
+            return await AchievementsRepositoryHelper.GetAchievementCountByUserIdAndBeltColour(userId.ToByteArray(), "Green");
         }
 
         public async Task<int> GetBlackBeltAchievementCountByUserId(Guid userId)
         {
-            return await AchievementsRepositoryHelper.GetAchievementCountByUserIdAndBeltColour(userId, "Black");
+            return await AchievementsRepositoryHelper.GetAchievementCountByUserIdAndBeltColour(userId.ToByteArray(), "Black");
         }
 
         public async Task<int> GetUniqueAchievementsCountByUserId(Guid userId)
         {
-            return await AchievementsRepositoryHelper.GetUniqueAchievementsCountByUserId(userId);
+            return await AchievementsRepositoryHelper.GetUniqueAchievementsCountByUserId(userId.ToByteArray());
         }
 
         public async Task UpdateAsync(AchievementRecord achievement)
@@ -55,7 +55,7 @@ namespace BeltsAndLeaders.Server.Data.Repositories.Mysql
 
         public async Task DeleteAsync(Guid id)
         {
-            await RepositoryHelper.DeleteAsync<AchievementRecord>(new AchievementRecord { Id = id });
+            await RepositoryHelper.DeleteAsync<AchievementRecord>(new AchievementRecord { Id = id.ToByteArray() });
         }
     }
 }

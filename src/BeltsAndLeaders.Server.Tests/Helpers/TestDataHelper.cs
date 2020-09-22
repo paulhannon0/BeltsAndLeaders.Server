@@ -15,7 +15,7 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
 
         public async Task<bool> DoesRecordExist<T>(Guid id) where T : class
         {
-            var record = await RepositoryHelper.GetByIdAsync<T>(id);
+            var record = await RepositoryHelper.GetByIdAsync<T>(id.ToByteArray());
 
             return record != null;
         }

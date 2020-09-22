@@ -30,7 +30,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityLevels.UpdateMaturity
 
             await this.maturityLevelsRepository.UpdateAsync(existingMaturityLevel);
 
-            return existingMaturityLevel.Id;
+            return new Guid(existingMaturityLevel.Id);
         }
     }
 }

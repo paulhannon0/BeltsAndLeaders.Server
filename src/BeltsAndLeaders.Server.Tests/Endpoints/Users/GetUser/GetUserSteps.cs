@@ -71,7 +71,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.GetUser
         [Given("a request path for the \'Get User\' endpoint with an ID for a non-existent resource")]
         public void GivenARequestPathForTheGetUserEndpointWitBeltsAndLeadersIdForANonExistentResource()
         {
-            this.SetEndpointPath(0);
+            this.SetEndpointPath(Guid.NewGuid());
         }
 
         [Then(@"the User record can be found in the response body")]
@@ -79,7 +79,6 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.Users.GetUser
         {
             var user = await this.testHost.ExtractResponseBodyAsync<GetUserResponseModel>();
 
-            // Assert.IsTrue(user.Id > 0);
             Assert.AreEqual(this.name, user.Name);
             Assert.AreEqual(this.email, user.Email);
             Assert.AreEqual(0, user.TotalMaturityPoints);

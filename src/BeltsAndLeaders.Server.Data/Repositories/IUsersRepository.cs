@@ -7,7 +7,7 @@ namespace BeltsAndLeaders.Server.Data.Repositories
 {
     public interface IUsersRepository
     {
-        Task<Guid> CreateAsync(UserRecord user);
+        Task CreateAsync(UserRecord user);
 
         Task<UserRecord> GetAsync(Guid id);
 

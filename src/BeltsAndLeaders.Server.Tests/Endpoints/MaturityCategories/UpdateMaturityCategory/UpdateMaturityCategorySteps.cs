@@ -24,7 +24,7 @@ namespace BeltsAndLeaders.Server.Tests.Endpoints.MaturityCategories.UpdateMaturi
             this.testHost = testHost;
             this.maturityCategoryDataHelper = maturityCategoryDataHelper;
             this.invalidId = "Invalid_ID";
-            // this.nonExistentId = 0;
+            this.nonExistentId = Guid.NewGuid();
             this.name = "MaturityCategoryName";
             this.updatedName = "UpdatedMaturityCategoryName";
         }

@@ -22,8 +22,9 @@ namespace BeltsAndLeaders.Server.Tests.Helpers
             };
 
             var responseMessage = await this.TestHost.PostAsync("/maturity-levels", requestBody);
+            var locationFragments = responseMessage.Headers.Location.OriginalString.Split("/");
 
-            return Guid.Parse(await responseMessage.Content.ReadAsStringAsync());
+            return Guid.Parse(locationFragments[2]);
         }
 
         public async Task<GetMaturityLevelResponseModel> GetMaturityLevelAsync(Guid id)

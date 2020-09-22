@@ -30,7 +30,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityCategories.UpdateMatu
 
             await this.maturityCategoriesRepository.UpdateAsync(existingMaturityCategory);
 
-            return existingMaturityCategory.Id;
+            return new Guid(existingMaturityCategory.Id);
         }
     }
 }

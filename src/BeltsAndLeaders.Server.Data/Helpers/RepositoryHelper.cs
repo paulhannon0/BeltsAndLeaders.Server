@@ -11,7 +11,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
 {
     public static class RepositoryHelper
     {
-        public static async Task<Guid> InsertAsync<T>(T record) where T : class
+        public static async Task InsertAsync<T>(T record) where T : class
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {
@@ -23,15 +23,11 @@ namespace BeltsAndLeaders.Server.Data.Helpers
 
                 await connection.InsertAsync<T>(castRecord as T);
 
-                var id = GetLastInsertedId(connection);
-
                 connection.Close();
-
-                return id;
             }
         }
 
-        public static async Task<T> GetByIdAsync<T>(Guid id) where T : class
+        public static async Task<T> GetByIdAsync<T>(byte[] id) where T : class
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {
@@ -61,7 +57,7 @@ namespace BeltsAndLeaders.Server.Data.Helpers
             }
         }
 
-        public static async Task<IEnumerable<T>> GetByNonKeyIdValue<T>(string tableName, string columnName, Guid value) where T : class
+        public static async Task<IEnumerable<T>> GetByNonKeyIdValue<T>(string tableName, string columnName, byte[] value) where T : class
         {
             using (var connection = new MySqlConnection(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")))
             {
@@ -121,14 +117,6 @@ namespace BeltsAndLeaders.Server.Data.Helpers
 
             command.CommandText = "USE `BeltsAndLeaders`;";
             command.ExecuteNonQuery();
-        }
-
-        private static Guid GetLastInsertedId(IDbConnection connection)
-        {
-            var command = connection.CreateCommand();
-            command.CommandText = "SELECT LAST_INSERT_ID();";
-
-            return (Guid)command.ExecuteScalar();
         }
     }
 }

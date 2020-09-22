@@ -6,8 +6,8 @@ namespace BeltsAndLeaders.Server.Data.Models
     [Table("MaturityCategories")]
     public class MaturityCategoryRecord : IRecord
     {
-        [Key]
-        public Guid Id { get; set; }
+        [ExplicitKey]
+        public byte[] Id { get; set; }
 
         public string Name { get; set; }
 

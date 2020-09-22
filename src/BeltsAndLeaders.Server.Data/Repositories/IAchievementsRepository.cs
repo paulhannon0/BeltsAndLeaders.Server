@@ -7,7 +7,7 @@ namespace BeltsAndLeaders.Server.Data.Repositories
 {
     public interface IAchievementsRepository
     {
-        Task<Guid> CreateAsync(AchievementRecord achievement);
+        Task CreateAsync(AchievementRecord achievement);
 
         Task<AchievementRecord> GetAsync(Guid id);
 

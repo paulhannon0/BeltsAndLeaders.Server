@@ -20,6 +20,7 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
         {
             var user = new User
             {
+                Id = Guid.NewGuid(),
                 Name = commandRequest.Name,
                 Email = commandRequest.Email,
                 TotalMaturityPoints = 0,
@@ -28,7 +29,9 @@ namespace BeltsAndLeaders.Server.Business.Commands.Users.CreateUser
                 ChampionStartDate = commandRequest.ChampionStartDate
             };
 
-            return await this.usersRepository.CreateAsync(user.ToTableRecord());
+            await this.usersRepository.CreateAsync(user.ToTableRecord());
+
+            return user.Id;
         }
     }
 }

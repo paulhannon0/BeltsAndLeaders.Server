@@ -19,10 +19,13 @@ namespace BeltsAndLeaders.Server.Business.Commands.MaturityCategories.CreateMatu
         {
             var maturityCategory = new MaturityCategory
             {
+                Id = Guid.NewGuid(),
                 Name = commandRequest.Name
             };
 
-            return await this.maturityCategoriesRepository.CreateAsync(maturityCategory.ToTableRecord());
+            await this.maturityCategoriesRepository.CreateAsync(maturityCategory.ToTableRecord());
+
+            return maturityCategory.Id;
         }
     }
 }
