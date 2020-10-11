@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BeltsAndLeaders.Server.Business.Models.Users;
 using BeltsAndLeaders.Server.Data.Repositories;
@@ -24,7 +25,7 @@ namespace BeltsAndLeaders.Server.Business.Queries.Users.GetAllUsers
                 userList.Add(User.FromTableRecord(user));
             }
 
-            return userList;
+            return userList.OrderByDescending(u => u.TotalMaturityPoints);
         }
     }
 }
